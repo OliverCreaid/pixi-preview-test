@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple SDK Test</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .preview { background: #1099bb; height: 450px; border-radius: 8px; }
+        .log { background: #2d2d2d; color: #0f0; padding: 10px; font-family: monospace; white-space: pre-wrap; height: 200px; overflow-y: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple SDK Test</h1>
+        <button onclick="test()">Start Test</button>
+        <div id="preview" class="preview"></div>
+        <div id="log" class="log">Ready to test...\n</div>
+    </div>
+
+    <script src="/dist-sdk/staging/v1.0.0/video-preview-sdk.js"></script>
+    <script>
+        function log(msg) {
+            const logEl = document.getElementById('log');
+            logEl.textContent += new Date().toLocaleTimeString() + ': ' + msg + '\n';
+            logEl.scrollTop = logEl.scrollHeight;
+            console.log(msg);
+        }
+
+        let sdk = null;
+
+        function test() {
+            try {
+                log('Creating SDK instance...');
+                
+                sdk = new VideoPreviewSDK({
+                    container: '#preview'
+                });
+                
+                log('SDK created successfully');
+                
+                // Set up message handlers
+                sdk.onMessage('READY', () => {
+                    log('🎉 READY message received from iframe!');
+                    loadTestProject();
+                });
+                
+                sdk.onMessage('ERROR', (error) => {
+                    log('❌ ERROR from iframe: ' + error);
+                });
+                
+                log('Message handlers set up, waiting for READY...');
+                
+            } catch (error) {
+                log('ERROR: ' + error.message);
+            }
+        }
+
+        async function loadTestProject() {
+            try {
+                log('Loading test project data...');
+                
+                const response = await fetch('/test-project.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const projectData = await response.json();
+                log('✅ Project data loaded: ' + (projectData.elements?.length || 0) + ' elements');
+                
+                log('Sending project data to iframe...');
+                sdk.loadProject(projectData);
+                
+                log('✅ Project data sent successfully!');
+                
+            } catch (error) {
+                log('❌ Failed to load project: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>

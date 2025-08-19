@@ -81,8 +81,13 @@ class VideoPreviewSDK {
    * Get the base URL for iframe source
    */
   getBaseUrl() {
-    // For staging and production builds, always use GitHub Pages
-    return 'https://olivercreaid.github.io/pixi-preview-test/dist-sdk/staging/v1.0.0/';
+    // Check if we're running on localhost for development
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      return window.location.origin + '/dist-sdk/staging/v1.0.0';
+    }
+    
+    // For production/staging deployed versions, use GitHub Pages
+    return 'https://olivercreaid.github.io/pixi-preview-test/dist-sdk/staging/v1.0.0';
   }
 
   /**

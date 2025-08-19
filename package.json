@@ -8,6 +8,7 @@
     "build": "npm run lint && tsc && vite build",
     "lint": "eslint .",
     "dev": "vite",
+    "build:sdk:local": "npm run lint && tsc && VITE_USE_LOCALHOST=true vite build --config vite.config.sdk.js --mode sdk-staging",
     "build:sdk:staging": "npm run lint && tsc && vite build --config vite.config.sdk.js --mode sdk-staging",
     "build:sdk:prod": "npm run lint && tsc && vite build --config vite.config.sdk.js --mode sdk-prod",
     "build:sdk:all": "npm run build:sdk:staging && npm run build:sdk:prod"

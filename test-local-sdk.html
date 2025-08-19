@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local SDK Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .preview-container {
+            background: #1099bb;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .logs {
+            background: #2d2d2d;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Local SDK Test</h1>
+        
+        <div class="controls">
+            <button onclick="testSDK()">Test SDK</button>
+            <button onclick="clearLogs()">Clear Logs</button>
+        </div>
+
+        <div id="preview-container" class="preview-container"></div>
+        
+        <div class="logs" id="logs"></div>
+    </div>
+
+    <!-- Load local SDK -->
+    <script src="/dist-sdk/staging/v1.0.0/video-preview-sdk.js"></script>
+    
+    <script>
+        const logsEl = document.getElementById('logs');
+        
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            logsEl.textContent += `[${timestamp}] ${message}\n`;
+            logsEl.scrollTop = logsEl.scrollHeight;
+            console.log(message);
+        }
+
+        function clearLogs() {
+            logsEl.textContent = '';
+        }
+
+        async function testSDK() {
+            try {
+                log('=== Starting SDK Test ===');
+                
+                // Clear container
+                document.getElementById('preview-container').innerHTML = '';
+                
+                // Initialize SDK
+                log('Initializing VideoPreviewSDK...');
+                const preview = new VideoPreviewSDK({
+                    container: '#preview-container'
+                });
+                
+                // Set up message handlers
+                preview.onMessage('READY', () => {
+                    log('🎉 READY message received from iframe!');
+                    
+                    // Load test project data
+                    loadTestProject(preview);
+                });
+                
+                preview.onMessage('ERROR', (error) => {
+                    log(`❌ ERROR from iframe: ${error}`);
+                });
+                
+                log('SDK initialized, waiting for READY message...');
+                
+            } catch (error) {
+                log(`❌ Failed to initialize SDK: ${error.message}`);
+            }
+        }
+
+        async function loadTestProject(preview) {
+            try {
+                log('Loading test project data...');
+                
+                const response = await fetch('/test-project.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const projectData = await response.json();
+                log(`✅ Project data loaded: ${projectData.elements?.length || 0} elements`);
+                
+                // Send to iframe
+                log('Sending project data to iframe...');
+                preview.loadProject(projectData);
+                
+            } catch (error) {
+                log(`❌ Failed to load project: ${error.message}`);
+            }
+        }
+
+        // Override console.log to capture SDK messages
+        const originalLog = console.log;
+        console.log = function(...args) {
+            const message = args.join(' ');
+            if (message.includes('📦') || message.includes('🖼️') || message.includes('✅') || 
+                message.includes('📨') || message.includes('📤') || message.includes('🎯')) {
+                log(`SDK: ${message}`);
+            }
+            originalLog.apply(console, args);
+        };
+
+        log('Local SDK Test page loaded');
+    </script>
+</body>
+</html>

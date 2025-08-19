@@ -22,10 +22,14 @@ export default defineConfig(({ mode }) => {
   const envFolder = isStaging ? 'staging' : 'prod';
   const outDir = `dist-sdk/${envFolder}/${SDK_VERSION}`;
 
+  // Determine base URL based on environment variable or mode
+  const useLocalhost = process.env.VITE_USE_LOCALHOST === 'true' || mode.includes('local');
+  const baseUrl = useLocalhost ? '/' : 'https://olivercreaid.github.io/pixi-preview-test/';
+
   return {
     root: './',
     publicDir: 'public',
-    base: 'https://olivercreaid.github.io/pixi-preview-test/', // Set absolute base for GitHub Pages
+    base: baseUrl,
     define: {
       'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'staging'),
     },
