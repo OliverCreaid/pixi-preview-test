@@ -81,35 +81,8 @@ class VideoPreviewSDK {
    * Get the base URL for iframe source
    */
   getBaseUrl() {
-    // Always try to get the URL from where the SDK script was loaded
-    const currentScript = document.currentScript;
-    if (currentScript) {
-      const scriptUrl = new URL(currentScript.src);
-      
-      // Check if we're in localhost development mode
-      if (window.location.hostname === 'localhost' && window.location.port) {
-        // If both page and script are on localhost, use localhost
-        if (scriptUrl.hostname === 'localhost') {
-          return window.location.origin;
-        }
-        // If page is localhost but script is from GitHub Pages, still use localhost for iframe
-        // This allows testing the SDK from GitHub Pages on a localhost parent page
-        return window.location.origin;
-      }
-      
-      // Check if script is loaded from GitHub Pages
-      if (scriptUrl.hostname === 'olivercreaid.github.io') {
-        return 'https://olivercreaid.github.io/pixi-preview-test';
-      }
-      
-      // For other scenarios, extract base path from script URL
-      const pathParts = scriptUrl.pathname.split('/');
-      pathParts.pop(); // Remove the script filename
-      return scriptUrl.origin + pathParts.join('/');
-    }
-    
-    // Fallback to same origin only if we couldn't get script location
-    return window.location.origin;
+    // For staging and production builds, always use GitHub Pages
+    return 'https://olivercreaid.github.io/pixi-preview-test';
   }
 
   /**
