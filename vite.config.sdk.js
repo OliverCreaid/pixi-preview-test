@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
 
   // Determine base URL based on environment variable or mode
   const useLocalhost = process.env.VITE_USE_LOCALHOST === 'true' || mode.includes('local');
-  const baseUrl = useLocalhost ? '/' : 'https://olivercreaid.github.io/pixi-preview-test/';
+  const baseUrl = useLocalhost ? '/' : './';
 
   return {
     root: './',

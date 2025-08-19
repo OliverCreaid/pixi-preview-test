@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/browserAll-BddJSil4.js","assets/webworkerAll-R37e8YhC.js","assets/colorToUniform-DM-Z9UrG.js","assets/WebGPURenderer-DRYzyGuU.js","assets/SharedSystems-DO8My66A.js","assets/WebGLRenderer-CHRQPF0f.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./browserAll-Cywv7iSb.js","./webworkerAll-CasgKAey.js","./colorToUniform-DM-Z9UrG.js","./WebGPURenderer-DQS9nBz3.js","./SharedSystems-DNI3Egqt.js","./WebGLRenderer-CD4uwm4d.js"])))=>i.map(i=>d[i]);
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
@@ -40,8 +40,8 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
   }
 })();
 const scriptRel = "modulepreload";
-const assetsURL = function(dep) {
-  return "https://olivercreaid.github.io/pixi-preview-test/" + dep;
+const assetsURL = function(dep, importerUrl) {
+  return new URL(dep, importerUrl).href;
 };
 const seen = {};
 const __vitePreload = function preload(baseModule, deps, importerUrl) {
@@ -57,19 +57,27 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
         )
       );
     };
-    document.getElementsByTagName("link");
+    const links = document.getElementsByTagName("link");
     const cspNonceMeta = document.querySelector(
       "meta[property=csp-nonce]"
     );
     const cspNonce = cspNonceMeta?.nonce || cspNonceMeta?.getAttribute("nonce");
     promise2 = allSettled2(
       deps.map((dep) => {
-        dep = assetsURL(dep);
+        dep = assetsURL(dep, importerUrl);
         if (dep in seen) return;
         seen[dep] = true;
         const isCss = dep.endsWith(".css");
         const cssSelector = isCss ? '[rel="stylesheet"]' : "";
-        if (document.querySelector(`link[href="${dep}"]${cssSelector}`)) {
+        const isBaseRelative = !!importerUrl;
+        if (isBaseRelative) {
+          for (let i2 = links.length - 1; i2 >= 0; i2--) {
+            const link2 = links[i2];
+            if (link2.href === dep && (!isCss || link2.rel === "stylesheet")) {
+              return;
+            }
+          }
+        } else if (document.querySelector(`link[href="${dep}"]${cssSelector}`)) {
           return;
         }
         const link = document.createElement("link");
@@ -382,7 +390,7 @@ const browserExt = {
   },
   test: () => true,
   load: async () => {
-    await __vitePreload(() => import("./browserAll-BddJSil4.js"), true ? __vite__mapDeps([0,1,2]) : void 0);
+    await __vitePreload(() => import("./browserAll-Cywv7iSb.js"), true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url);
   }
 };
 const webworkerExt = {
@@ -393,7 +401,7 @@ const webworkerExt = {
   },
   test: () => typeof self !== "undefined" && self.WorkerGlobalScope !== void 0,
   load: async () => {
-    await __vitePreload(() => import("./webworkerAll-R37e8YhC.js"), true ? __vite__mapDeps([1,2]) : void 0);
+    await __vitePreload(() => import("./webworkerAll-CasgKAey.js"), true ? __vite__mapDeps([1,2]) : void 0, import.meta.url);
   }
 };
 class ObservablePoint {
@@ -12345,9 +12353,9 @@ async function autoDetectRenderer(options) {
     const rendererType = preferredOrder[i2];
     if (rendererType === "webgpu" && await isWebGPUSupported()) {
       const { WebGPURenderer } = await __vitePreload(async () => {
-        const { WebGPURenderer: WebGPURenderer2 } = await import("./WebGPURenderer-DRYzyGuU.js");
+        const { WebGPURenderer: WebGPURenderer2 } = await import("./WebGPURenderer-DQS9nBz3.js");
         return { WebGPURenderer: WebGPURenderer2 };
-      }, true ? __vite__mapDeps([3,2,4]) : void 0);
+      }, true ? __vite__mapDeps([3,2,4]) : void 0, import.meta.url);
       RendererClass = WebGPURenderer;
       finalOptions = { ...options, ...options.webgpu };
       break;
@@ -12355,9 +12363,9 @@ async function autoDetectRenderer(options) {
       options.failIfMajorPerformanceCaveat ?? AbstractRenderer.defaultOptions.failIfMajorPerformanceCaveat
     )) {
       const { WebGLRenderer } = await __vitePreload(async () => {
-        const { WebGLRenderer: WebGLRenderer2 } = await import("./WebGLRenderer-CHRQPF0f.js");
+        const { WebGLRenderer: WebGLRenderer2 } = await import("./WebGLRenderer-CD4uwm4d.js");
         return { WebGLRenderer: WebGLRenderer2 };
-      }, true ? __vite__mapDeps([5,2,4]) : void 0);
+      }, true ? __vite__mapDeps([5,2,4]) : void 0, import.meta.url);
       RendererClass = WebGLRenderer;
       finalOptions = { ...options, ...options.webgl };
       break;
@@ -29003,4 +29011,4 @@ export {
   getGlobalBounds as y,
   Bounds as z
 };
-//# sourceMappingURL=iframe-B5oOyvjU.js.map
+//# sourceMappingURL=iframe-Dn8pYeoo.js.map
