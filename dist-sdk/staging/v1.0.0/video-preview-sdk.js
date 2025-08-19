@@ -81,13 +81,22 @@ class VideoPreviewSDK {
    * Get the base URL for iframe source
    */
   getBaseUrl() {
-    // Check if we're running on localhost for development
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      return window.location.origin + '/dist-sdk/staging/v1.0.0';
+    const hostname = window.location.hostname;
+    const port = window.location.port;
+    
+    console.log(`🔍 Detecting environment - hostname: "${hostname}", port: "${port}"`);
+    
+    // Check if we're running on this project's localhost (has port)
+    if ((hostname === 'localhost' || hostname === '127.0.0.1') && port) {
+      const localUrl = window.location.origin + '/dist-sdk/staging/v1.0.0';
+      console.log(`🏠 Using LOCAL development mode: ${localUrl}`);
+      return localUrl;
     }
     
-    // For production/staging deployed versions, use GitHub Pages
-    return 'https://olivercreaid.github.io/pixi-preview-test/dist-sdk/staging/v1.0.0';
+    // For other localhost (no port) or production, use GitHub Pages
+    const githubUrl = 'https://olivercreaid.github.io/pixi-preview-test/dist-sdk/staging/v1.0.0';
+    console.log(`🌐 Using GITHUB PAGES mode: ${githubUrl}`);
+    return githubUrl;
   }
 
   /**

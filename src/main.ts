@@ -79,6 +79,8 @@ class VideoPreviewApp {
   }
 
   async initialize(): Promise<void> {
+    console.log(window.location);
+
     // Initialize PixiJS scene
     await this.sceneManager.initialize();
 

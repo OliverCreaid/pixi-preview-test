@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./browserAll-Cywv7iSb.js","./webworkerAll-CasgKAey.js","./colorToUniform-DM-Z9UrG.js","./WebGPURenderer-DQS9nBz3.js","./SharedSystems-DNI3Egqt.js","./WebGLRenderer-CD4uwm4d.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./browserAll-BUnx5HBN.js","./webworkerAll-sr9HrPOb.js","./colorToUniform-DM-Z9UrG.js","./WebGPURenderer-kR9yNOuQ.js","./SharedSystems-C5V0ohr7.js","./WebGLRenderer-AdxC7FA7.js"])))=>i.map(i=>d[i]);
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
@@ -390,7 +390,7 @@ const browserExt = {
   },
   test: () => true,
   load: async () => {
-    await __vitePreload(() => import("./browserAll-Cywv7iSb.js"), true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url);
+    await __vitePreload(() => import("./browserAll-BUnx5HBN.js"), true ? __vite__mapDeps([0,1,2]) : void 0, import.meta.url);
   }
 };
 const webworkerExt = {
@@ -401,7 +401,7 @@ const webworkerExt = {
   },
   test: () => typeof self !== "undefined" && self.WorkerGlobalScope !== void 0,
   load: async () => {
-    await __vitePreload(() => import("./webworkerAll-CasgKAey.js"), true ? __vite__mapDeps([1,2]) : void 0, import.meta.url);
+    await __vitePreload(() => import("./webworkerAll-sr9HrPOb.js"), true ? __vite__mapDeps([1,2]) : void 0, import.meta.url);
   }
 };
 class ObservablePoint {
@@ -12353,7 +12353,7 @@ async function autoDetectRenderer(options) {
     const rendererType = preferredOrder[i2];
     if (rendererType === "webgpu" && await isWebGPUSupported()) {
       const { WebGPURenderer } = await __vitePreload(async () => {
-        const { WebGPURenderer: WebGPURenderer2 } = await import("./WebGPURenderer-DQS9nBz3.js");
+        const { WebGPURenderer: WebGPURenderer2 } = await import("./WebGPURenderer-kR9yNOuQ.js");
         return { WebGPURenderer: WebGPURenderer2 };
       }, true ? __vite__mapDeps([3,2,4]) : void 0, import.meta.url);
       RendererClass = WebGPURenderer;
@@ -12363,7 +12363,7 @@ async function autoDetectRenderer(options) {
       options.failIfMajorPerformanceCaveat ?? AbstractRenderer.defaultOptions.failIfMajorPerformanceCaveat
     )) {
       const { WebGLRenderer } = await __vitePreload(async () => {
-        const { WebGLRenderer: WebGLRenderer2 } = await import("./WebGLRenderer-CD4uwm4d.js");
+        const { WebGLRenderer: WebGLRenderer2 } = await import("./WebGLRenderer-AdxC7FA7.js");
         return { WebGLRenderer: WebGLRenderer2 };
       }, true ? __vite__mapDeps([5,2,4]) : void 0, import.meta.url);
       RendererClass = WebGLRenderer;
@@ -28450,6 +28450,7 @@ class VideoPreviewApp {
     }
   }
   async initialize() {
+    console.log(window.location);
     await this.sceneManager.initialize();
     if (this.isInIframe) {
       this.loadingProgress.setStatus("Waiting for project data...");
@@ -29011,4 +29012,4 @@ export {
   getGlobalBounds as y,
   Bounds as z
 };
-//# sourceMappingURL=iframe-Dn8pYeoo.js.map
+//# sourceMappingURL=iframe-BP1wRWlA.js.map
