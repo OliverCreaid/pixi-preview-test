@@ -81,20 +81,23 @@ class VideoPreviewSDK {
    * Get the base URL for iframe source
    */
   getBaseUrl() {
-    // Check if we're in development mode (has port number typically)
-    if (window.location.port && window.location.hostname === 'localhost') {
-      // Development mode - iframe content is served by same dev server
-      return window.location.origin;
-    }
-    
-    // Production mode - iframe is in the same directory as the SDK
+    // Always try to get the URL from where the SDK script was loaded
     const currentScript = document.currentScript;
     if (currentScript) {
       const scriptUrl = new URL(currentScript.src);
+      
+      // If script is loaded from same origin as the page, check if it's development
+      if (scriptUrl.origin === window.location.origin && 
+          window.location.port && window.location.hostname === 'localhost') {
+        // True development mode - both script and page are on same localhost
+        return window.location.origin;
+      }
+      
+      // Script loaded from different origin (like GitHub Pages) - use script's origin
       return scriptUrl.origin + scriptUrl.pathname.replace('/video-preview-sdk.js', '');
     }
     
-    // Fallback to same origin
+    // Fallback to same origin only if we couldn't get script location
     return window.location.origin;
   }
 
