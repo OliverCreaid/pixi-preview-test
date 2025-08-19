@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) => {
   return {
     root: './',
     publicDir: 'public',
+    base: 'https://olivercreaid.github.io/pixi-preview-test/', // Set absolute base for GitHub Pages
     define: {
       'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'staging'),
     },

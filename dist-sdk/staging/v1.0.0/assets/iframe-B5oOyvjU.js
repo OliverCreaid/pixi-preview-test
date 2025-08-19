@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/browserAll-BP4j9YJ2.js","assets/webworkerAll-D5ZiFxMe.js","assets/colorToUniform-DM-Z9UrG.js","assets/WebGPURenderer-DgXDnHZy.js","assets/SharedSystems-DJVZpWIX.js","assets/WebGLRenderer-BjBpjA5r.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/browserAll-BddJSil4.js","assets/webworkerAll-R37e8YhC.js","assets/colorToUniform-DM-Z9UrG.js","assets/WebGPURenderer-DRYzyGuU.js","assets/SharedSystems-DO8My66A.js","assets/WebGLRenderer-CHRQPF0f.js"])))=>i.map(i=>d[i]);
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
@@ -41,7 +41,7 @@ var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "sy
 })();
 const scriptRel = "modulepreload";
 const assetsURL = function(dep) {
-  return "/" + dep;
+  return "https://olivercreaid.github.io/pixi-preview-test/" + dep;
 };
 const seen = {};
 const __vitePreload = function preload(baseModule, deps, importerUrl) {
@@ -382,7 +382,7 @@ const browserExt = {
   },
   test: () => true,
   load: async () => {
-    await __vitePreload(() => import("./browserAll-BP4j9YJ2.js"), true ? __vite__mapDeps([0,1,2]) : void 0);
+    await __vitePreload(() => import("./browserAll-BddJSil4.js"), true ? __vite__mapDeps([0,1,2]) : void 0);
   }
 };
 const webworkerExt = {
@@ -393,7 +393,7 @@ const webworkerExt = {
   },
   test: () => typeof self !== "undefined" && self.WorkerGlobalScope !== void 0,
   load: async () => {
-    await __vitePreload(() => import("./webworkerAll-D5ZiFxMe.js"), true ? __vite__mapDeps([1,2]) : void 0);
+    await __vitePreload(() => import("./webworkerAll-R37e8YhC.js"), true ? __vite__mapDeps([1,2]) : void 0);
   }
 };
 class ObservablePoint {
@@ -12345,7 +12345,7 @@ async function autoDetectRenderer(options) {
     const rendererType = preferredOrder[i2];
     if (rendererType === "webgpu" && await isWebGPUSupported()) {
       const { WebGPURenderer } = await __vitePreload(async () => {
-        const { WebGPURenderer: WebGPURenderer2 } = await import("./WebGPURenderer-DgXDnHZy.js");
+        const { WebGPURenderer: WebGPURenderer2 } = await import("./WebGPURenderer-DRYzyGuU.js");
         return { WebGPURenderer: WebGPURenderer2 };
       }, true ? __vite__mapDeps([3,2,4]) : void 0);
       RendererClass = WebGPURenderer;
@@ -12355,7 +12355,7 @@ async function autoDetectRenderer(options) {
       options.failIfMajorPerformanceCaveat ?? AbstractRenderer.defaultOptions.failIfMajorPerformanceCaveat
     )) {
       const { WebGLRenderer } = await __vitePreload(async () => {
-        const { WebGLRenderer: WebGLRenderer2 } = await import("./WebGLRenderer-BjBpjA5r.js");
+        const { WebGLRenderer: WebGLRenderer2 } = await import("./WebGLRenderer-CHRQPF0f.js");
         return { WebGLRenderer: WebGLRenderer2 };
       }, true ? __vite__mapDeps([5,2,4]) : void 0);
       RendererClass = WebGLRenderer;
@@ -29003,4 +29003,4 @@ export {
   getGlobalBounds as y,
   Bounds as z
 };
-//# sourceMappingURL=iframe-DbxEOlMW.js.map
+//# sourceMappingURL=iframe-B5oOyvjU.js.map
