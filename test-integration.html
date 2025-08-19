@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Preview SDK - Test Integration</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f0f0f0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+
+      .preview-container {
+        background: #1099bb;
+        border-radius: 8px;
+        margin: 20px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .controls {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      button {
+        background: #007acc;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin: 0 10px;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background: #005a9e;
+      }
+
+      button:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+      }
+
+      .logs {
+        background: #2d2d2d;
+        color: #00ff00;
+        padding: 15px;
+        border-radius: 4px;
+        font-family: monospace;
+        height: 200px;
+        overflow-y: auto;
+        margin-top: 20px;
+      }
+
+      .status {
+        text-align: center;
+        margin: 10px 0;
+        font-weight: bold;
+      }
+
+      .status.ready {
+        color: #008000;
+      }
+
+      .status.error {
+        color: #ff0000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎬 Video Preview SDK Test</h1>
+
+      <div class="status" id="status">Initializing SDK...</div>
+
+      <div class="controls">
+        <button id="loadTestProject" disabled>Load Test Project</button>
+        <button id="destroySdk" disabled>Destroy SDK</button>
+      </div>
+
+      <!-- This is where our video preview will be embedded -->
+      <div id="video-preview-container" class="preview-container"></div>
+
+      <div class="logs" id="logs">
+        <div>--- SDK Test Logs ---</div>
+      </div>
+    </div>
+
+    <!-- Load our SDK -->
+    <script src="/sdk/VideoPreviewSDK.js"></script>
+
+    <script>
+      // Test data - using the existing test-project.json structure
+      let testProjectData = null;
+      let previewSDK = null;
+
+      // UI elements
+      const statusEl = document.getElementById("status");
+      const logsEl = document.getElementById("logs");
+      const loadBtn = document.getElementById("loadTestProject");
+      const destroyBtn = document.getElementById("destroySdk");
+
+      // Logging function
+      function log(message) {
+        const timestamp = new Date().toLocaleTimeString();
+        const logEntry = document.createElement("div");
+        logEntry.textContent = `[${timestamp}] ${message}`;
+        logsEl.appendChild(logEntry);
+        logsEl.scrollTop = logsEl.scrollHeight;
+        console.log(message);
+      }
+
+      // Update status
+      function updateStatus(message, className = "") {
+        statusEl.textContent = message;
+        statusEl.className = "status " + className;
+        log(`Status: ${message}`);
+      }
+
+      // Load test project data
+      async function loadTestProjectData() {
+        try {
+          log("Loading test project data...");
+          const response = await fetch("/test-project.json");
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+          }
+          testProjectData = await response.json();
+          log("Test project data loaded successfully");
+          return true;
+        } catch (error) {
+          log(`Failed to load test project data: ${error.message}`);
+          updateStatus("Failed to load test project data", "error");
+          return false;
+        }
+      }
+
+      // Initialize SDK
+      async function initializeSDK() {
+        try {
+          log("Initializing Video Preview SDK...");
+
+          previewSDK = new VideoPreviewSDK({
+            container: "#video-preview-container",
+          });
+
+          // Set up event handlers
+          previewSDK.onMessage("READY", () => {
+            log("📹 Preview iframe is ready!");
+            updateStatus('SDK Ready - Click "Load Test Project"', "ready");
+            loadBtn.disabled = false;
+            destroyBtn.disabled = false;
+          });
+
+          previewSDK.onMessage("ERROR", (error) => {
+            log(`❌ Preview error: ${error}`);
+            updateStatus(`Error: ${error}`, "error");
+          });
+
+          log("SDK initialized successfully");
+        } catch (error) {
+          log(`Failed to initialize SDK: ${error.message}`);
+          updateStatus(`Initialization failed: ${error.message}`, "error");
+        }
+      }
+
+      // Event handlers
+      loadBtn.addEventListener("click", async () => {
+        if (!previewSDK) {
+          log("SDK not initialized");
+          return;
+        }
+
+        if (!testProjectData) {
+          log("Test project data not available");
+          return;
+        }
+
+        log("Loading project into preview...");
+        updateStatus("Loading project...", "");
+        loadBtn.disabled = true;
+
+        try {
+          previewSDK.loadProject(testProjectData);
+          log("Project load command sent to SDK");
+          updateStatus("Project loading...", "");
+        } catch (error) {
+          log(`Failed to load project: ${error.message}`);
+          updateStatus(`Load failed: ${error.message}`, "error");
+          loadBtn.disabled = false;
+        }
+      });
+
+      destroyBtn.addEventListener("click", () => {
+        if (previewSDK) {
+          log("Destroying SDK...");
+          previewSDK.destroy();
+          previewSDK = null;
+          updateStatus("SDK destroyed", "");
+          loadBtn.disabled = true;
+          destroyBtn.disabled = true;
+        }
+      });
+
+      // Initialize everything when page loads
+      document.addEventListener("DOMContentLoaded", async () => {
+        log("Page loaded, starting initialization...");
+
+        // Load test project data first
+        const dataLoaded = await loadTestProjectData();
+        if (!dataLoaded) return;
+
+        // Initialize SDK
+        await initializeSDK();
+      });
+    </script>
+  </body>
+</html>

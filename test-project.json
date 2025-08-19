@@ -1,0 +1,2653 @@
+{
+  "head": {
+    "userId": "",
+    "companyId": "",
+    "id": 2994,
+    "title": "Sóltún 7",
+    "type": 1287,
+    "subtype": 1806,
+    "useVoice": true,
+    "mood": "casual",
+    "prompt": "Title: Sóltún 7\nDescription:  Gimli og Inga Reynis kynna í einkasölu fallega, bjarta  3ja herbergja íbúð miðsvæðis í Reykjavík með suður palli / sérafnotarétti.Eignin er í vinsælu og grónu hverfi í Reykjavík. Frábær staðsetning þar sem stutt er í fjölda versluna og stutt í alla þjónustu, skóla og leikskóla. Laugardalurinn er í göngufæri frá ásamt miðbænum.Eignin er laus við kaupsamning.* Smelltu hérna til að horfa á videó af eigninni *Skráð stærð eignar samkvæmt Þjóðskrá Íslands er 102,40 fm þar af er geymslan 4.9 fm.Fasteignamat 2025 er 74.650.000 kr.Íbúðin er á jarðhæð og skiptist upp í anddyri,  tvö svefnherbergi, stofu, borðstofu, eldhús, baðherbergi og þvottahús innan íbúðar, ein geymsla er innan íbúðar og 2 geymslur í sameign. Hellulög pallur til suðurs og nóg af bílastæðum á lóðinni.Nánari lýsing:Anddyri með fataskáp parket á gólfi..Stofan rúmgóð í sameiginlegu rými með borðstofu og eldhúsi. Útgengt á verönd sem er afgirtur að hluta, parketi á gólfiEldhús er með innréttingu sem er rúmgóð, helluborð, bakarofn og vifta. Gráar flísar á gólfi. Hjónaherbergi með  fataskáp sem nær upp í loft og parket á gólfi.Barnaherbergi með fataskáp sem nær upp í loft.Baðherbergi með innréttingu, sturtu, upphengt salerni og flísalagt bæði í hólf og gólf.Þvottahús er rúmgott og er innan íbúðar.Geymsla er innan íbúðarinnar ásamt  2 sérgeymslum í sameign.Sameign er vel við haldið og snyrtileg.Falleg eign í góðu fjölbýli, mjög miðsvæðis.Eignin hefur fengið viðurkenningu Reykjavíkurborgar fyrir lóðarfrágang.Nánari upplýsingar veitir : Inga Reynis í síma 820-1903 eða á tölvunetfanginu inga@gimli.isGimli fasteignasala leggur áherslu á traust, áreiðanleika og góða þjónustu.Það er okkar trú að það skipti öllu máli í fasteignaviðskiptum að viðskiptavinurinn fái trausta og góða þjónustu. Við hjá Gimli höfum stundað fasteignaviðskipti með farsælum hætti í meira en fjóra áratugi. Hjá okkur starfa sérhæfðir og reyndir fasteignasalar sem sinna stórum sem smáum verkefnum af nákvæmni og þekkingu sem skilar árangri.Hvar erum við?Gimli Fasteignasala er staðsett á jarðhæð í Skipholti 35 í Reykjavík en einnig rekum við söluskrifstofu að Eyrarvegi 29. 2 hæð á Selfossi.Við höfum opið frá 10-15 mánudaga til föstudaga. Sláðu á þráðinn eða líttu við hjá okkur í Skipholtinu næst þegar þú átt leið hjá. Við erum alltaf með heitt á könnunni.Gimli gerir betur... \n\nUpplýsingar:\nyear_built: Byggt 2000\nsize: 102,4 m²\nrooms: 3 herb.\nbathrooms: 1 baðherb.\nbedrooms: 2 svefnh.\nlaundry_room: Þvottahús\nentrance: Sameiginl. inngangur\nLyfta\nLaus strax\n",
+    "audience": "everyone",
+    "vibe": ["Calm", "Energetic", "Elegant"],
+    "musicSearch": ["Happy"],
+    "language": "en-US",
+    "profile": "389",
+    "blueprintId": -1,
+    "flowBlueprint": false,
+    "watermark": "",
+    "resultData": null,
+    "trial": false,
+    "suggestMedia": false,
+    "orientation": "landscape",
+    "brandColors": [],
+    "brandColorPalettes": [],
+    "brandFont": "",
+    "visualStorylineConcept": "",
+    "inputTextOptions": [],
+    "mediaSource": "own-media",
+    "agent": 100005,
+    "agentName": "Oliver Ormar",
+    "usingExampleBrand": false,
+    "useImgToVideo": false,
+    "duplicate_and_translate_project": false,
+    "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_4EA61A5A-1525-B110-EE8F-0BDBD0DE4D8E.jpg"
+  },
+  "scenes": [
+    {
+      "sceneTypeId": 300,
+      "sceneGroupId": -1,
+      "typeId": 1,
+      "sceneTypeElements": [
+        {
+          "id": 1725,
+          "elementType": "sceneMedia",
+          "description": "Scene media",
+          "value": [
+            {
+              "id": "zcpme0268",
+              "uiId": "bx142culx",
+              "title": "unknown",
+              "caption": "unknown",
+              "artist": "unknown",
+              "source": "visir.is",
+              "type": "",
+              "mediaIndex": 0,
+              "mediaId": "zcpme0268",
+              "mediaLabel": "",
+              "mediaSource": "visir.is",
+              "mediaType": "image",
+              "src": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_4EA61A5A-1525-B110-EE8F-0BDBD0DE4D8E.jpg",
+              "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_4EA61A5A-1525-B110-EE8F-0BDBD0DE4D8E.jpg",
+              "productTypes": "easyaccess",
+              "clipLength": 0,
+              "sceneLength": 0,
+              "trimStart": 0,
+              "alignment": 50,
+              "posX": 50,
+              "posY": 50,
+              "width": 100,
+              "height": 118.55555555555554,
+              "scale": 100,
+              "rotation": 0,
+              "elementWidth": 720,
+              "elementHeight": 405,
+              "fit": "cover",
+              "versions": [],
+              "versionIndex": 0,
+              "disclosure": null
+            },
+            {
+              "id": "69o391xak",
+              "uiId": "5en7gx1f1",
+              "title": "unknown",
+              "caption": "unknown",
+              "artist": "unknown",
+              "source": "visir.is",
+              "type": "",
+              "mediaIndex": 1,
+              "mediaId": "69o391xak",
+              "mediaLabel": "",
+              "mediaSource": "visir.is",
+              "mediaType": "image",
+              "src": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_F55EAC5C-ABDF-75F6-F979-82948788BAFC.jpg",
+              "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_F55EAC5C-ABDF-75F6-F979-82948788BAFC.jpg",
+              "productTypes": "easyaccess",
+              "clipLength": 0,
+              "sceneLength": 0,
+              "trimStart": 0,
+              "alignment": 50,
+              "posX": 50,
+              "posY": 50,
+              "width": 100,
+              "height": 118.55555555555554,
+              "scale": 100,
+              "rotation": 0,
+              "elementWidth": 720,
+              "elementHeight": 405,
+              "fit": "cover",
+              "versions": [],
+              "versionIndex": 0,
+              "disclosure": null
+            }
+          ],
+          "properties": {
+            "fit": "Cover",
+            "clip": false,
+            "type": 10,
+            "speed": 100,
+            "track": 1,
+            "shadow": "-1",
+            "anim_up": false,
+            "opacity": 100,
+            "texture": "-1",
+            "allowMax": 1,
+            "blurMode": "Stack",
+            "duration": "Null",
+            "products": [],
+            "anim_down": false,
+            "anim_left": false,
+            "animation": "96",
+            "blendMode": "None",
+            "elevation": 1,
+            "needInput": "No",
+            "anim_order": 0,
+            "anim_right": false,
+            "blurRadius": 0,
+            "transition": "-1",
+            "colorFilter": "None",
+            "positioning": "l-x-32\nl-y-18\nl-offsetx-0\nl-offsety-0\ns-x-18\ns-y-18\ns-offsetx-0\ns-offsety-0\np-x-18\np-y-32\np-offsetx-0\np-offsety-0\nsiminn-x-4\nsiminn-y-4\nsiminn-offsetx-0\nsiminn-offsety-0\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": "-1",
+            "borderRadius": 0,
+            "productCount": 1,
+            "syncProperties": true,
+            "colorFilterValue": 0,
+            "enable_animation": false,
+            "enable_imageMove": true,
+            "isProductElement": false,
+            "colorOverlayColor": "-1",
+            "colorOverlayOpacity": 0
+          }
+        },
+        {
+          "id": 1726,
+          "elementType": "voice",
+          "description": "Voice Over",
+          "value": "https://videocreationmedia.blob.core.windows.net/company-103/eleven_labs/11labs_1F668D59-9CF2-31B5-CB44-A27CCE2A95FB-689e1f732bdac.mp3",
+          "properties": {
+            "track": 1,
+            "elevation": 1,
+            "positioning": "l-x-4\nl-y-4\nl-offsetx-0\nl-offsety-0\ns-x-4\ns-y-4\ns-offsetx-0\ns-offsety-0\np-x-4\np-y-4\np-offsetx-0\np-offsety-0\nsiminn-x-4\nsiminn-y-4\nsiminn-offsetx-0\nsiminn-offsety-0\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n"
+          }
+        },
+        {
+          "id": 1724,
+          "elementType": "shape",
+          "description": "shape",
+          "value": "",
+          "properties": {
+            "clip": false,
+            "color": "3",
+            "track": 2,
+            "shadow": -1,
+            "stroke": 0,
+            "anim_up": false,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "duration": "Fill",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "shapeType": 70,
+            "anim_order": 2,
+            "anim_right": true,
+            "transition": -1,
+            "positioning": "l-x-21\nl-y-4\nl-offsetx-13\nl-offsety-1\ns-x-4\ns-y-4\ns-offsetx-0\ns-offsety-0\np-x-4\np-y-4\np-offsetx-0\np-offsety-0\nsiminn-x-4\nsiminn-y-4\nsiminn-offsetx-0\nsiminn-offsety-0\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": -1,
+            "strokeColor": -1,
+            "syncProperties": true,
+            "enable_animation": true
+          }
+        },
+        {
+          "id": 1722,
+          "elementType": "h1TextBox",
+          "description": "Title Box",
+          "value": "",
+          "properties": {
+            "type": 6,
+            "color": "-1",
+            "track": 3,
+            "shadow": "-1",
+            "stroke": 0,
+            "anim_up": false,
+            "opacity": 100,
+            "texture": "-1",
+            "allowMax": 1,
+            "duration": "Fill",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": "-1",
+            "elevation": 3,
+            "needInput": "No",
+            "shapeType": -1,
+            "anim_order": 0,
+            "anim_right": false,
+            "transition": "-1",
+            "positioning": "l-x-17\nl-y-4\nl-offsetx-14\nl-offsety-1\ns-x-13\ns-y-5\ns-offsetx-2\ns-offsety-6\np-x-14\np-y-5\np-offsetx-2\np-offsety-13\nsiminn-x-4\nsiminn-y-4\nsiminn-offsetx-0\nsiminn-offsety-0\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": "-1",
+            "strokeColor": "-1",
+            "syncProperties": true,
+            "enable_animation": false
+          }
+        },
+        {
+          "id": 1723,
+          "elementType": "h1Text",
+          "description": "Title",
+          "value": "Sóltún 7, Reykjavík",
+          "properties": {
+            "clip": false,
+            "font": "-1",
+            "type": 0,
+            "color": "5",
+            "track": 3,
+            "italic": false,
+            "shadow": "-1",
+            "stroke": 0,
+            "weight": "900",
+            "anim_up": false,
+            "maxSize": 8,
+            "opacity": 100,
+            "padding": 2,
+            "allowMax": 1,
+            "duration": "Fill",
+            "products": [],
+            "xPadding": 2,
+            "yPadding": 4,
+            "alignment": "Center",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": "-1",
+            "elevation": 3,
+            "needInput": "No",
+            "textBoxID": 1722,
+            "transform": "None",
+            "anim_order": 2,
+            "anim_right": true,
+            "background": 0,
+            "transition": "-1",
+            "yAlignment": "Center",
+            "positioning": "l-x-17\nl-y-4\nl-offsetx-14\nl-offsety-1\ns-x-13\ns-y-5\ns-offsetx-2\ns-offsety-6\np-x-14\np-y-5\np-offsetx-2\np-offsety-13\nsiminn-x-4\nsiminn-y-4\nsiminn-offsetx-0\nsiminn-offsety-0\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": "-1",
+            "strokeColor": "-1",
+            "exampleValue": "Hello World",
+            "productCount": 1,
+            "syncProperties": true,
+            "backgroundColor": "-1",
+            "enable_animation": true,
+            "isProductElement": false,
+            "positioningRule1": false
+          }
+        }
+      ],
+      "thumbnail": "",
+      "title": "New Scene",
+      "text": "Discover a bright apartment on Sóltún in central Reykjavík, moments from shops and services.",
+      "voiceLength": 5,
+      "audioDuration": 6.765688,
+      "voiceUrl": "https://videocreationmedia.blob.core.windows.net/company-103/eleven_labs/11labs_1F668D59-9CF2-31B5-CB44-A27CCE2A95FB-689e1f732bdac.mp3",
+      "customVoice": false,
+      "customVoiceUrl": "",
+      "speechToSpeechVoice": null,
+      "wordBounderies": [],
+      "wordBounderiesWithoutPunctuation": [],
+      "beats": 6,
+      "intensity": 2,
+      "spaceBeforeVoice": 1,
+      "exampleText": {
+        "1": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "Sóltún 7, Reykjavík",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "script": {
+            "generationName": "Script",
+            "src": "generated",
+            "text": "Feel the future with Electronia, where cutting-edge tech ignites passion and elevates lives.",
+            "voiceOffset": "1"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Electronia",
+            "generationName": "Scene Title"
+          }
+        },
+        "2": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "3": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "4": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "5": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        }
+      },
+      "productIndex": [],
+      "mediaElements": [],
+      "maxMedia": 4,
+      "removeBG": [],
+      "overwriteAnalysis": false,
+      "analysisText": "",
+      "suggestMediaText": "",
+      "aspectTypes": {
+        "landscape": 300,
+        "square": 304,
+        "portrait": 303,
+        "siminn": 228
+      },
+      "sceneDataCache": {
+        "sceneMedia": [],
+        "labeledMedia": [],
+        "logo": [],
+        "person": [],
+        "h1Text": [],
+        "h2Text": [],
+        "bodyText": [],
+        "voice": ""
+      }
+    },
+    {
+      "sceneTypeId": 155,
+      "sceneGroupId": -1,
+      "typeId": 3,
+      "sceneTypeElements": [
+        {
+          "id": 869,
+          "elementType": "sceneMedia",
+          "description": "Scene Media",
+          "value": [
+            {
+              "id": "bzar6kmj8",
+              "uiId": "p91w30x0f",
+              "title": "unknown",
+              "caption": "unknown",
+              "artist": "unknown",
+              "source": "visir.is",
+              "type": "",
+              "mediaIndex": 0,
+              "mediaId": "bzar6kmj8",
+              "mediaLabel": "",
+              "mediaSource": "visir.is",
+              "mediaType": "image",
+              "src": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_46036848-7E79-75AE-D48E-771D7703FDC9.jpg",
+              "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_46036848-7E79-75AE-D48E-771D7703FDC9.jpg",
+              "productTypes": "easyaccess",
+              "clipLength": 0,
+              "sceneLength": 6.469999999999999,
+              "trimStart": 0,
+              "alignment": 50,
+              "posX": 50,
+              "posY": 50,
+              "width": 100,
+              "height": 118.55555555555554,
+              "scale": 100,
+              "rotation": 0,
+              "elementWidth": 720,
+              "elementHeight": 405,
+              "fit": "cover",
+              "versions": [],
+              "versionIndex": 0,
+              "disclosure": null
+            },
+            {
+              "id": "n96l5b7sf",
+              "uiId": "4xhx2luzl",
+              "title": "unknown",
+              "caption": "unknown",
+              "artist": "unknown",
+              "source": "visir.is",
+              "type": "",
+              "mediaIndex": 1,
+              "mediaId": "n96l5b7sf",
+              "mediaLabel": "",
+              "mediaSource": "visir.is",
+              "mediaType": "image",
+              "src": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_4AE9A7E9-D925-B7D4-03BF-87E456D6AC8A.jpg",
+              "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_4AE9A7E9-D925-B7D4-03BF-87E456D6AC8A.jpg",
+              "productTypes": "easyaccess",
+              "clipLength": 0,
+              "sceneLength": 0,
+              "trimStart": 0,
+              "alignment": 50,
+              "posX": 50,
+              "posY": 50,
+              "width": 100,
+              "height": 118.55555555555554,
+              "scale": 100,
+              "rotation": 0,
+              "elementWidth": 720,
+              "elementHeight": 405,
+              "fit": "default",
+              "versions": [],
+              "versionIndex": 0,
+              "disclosure": null
+            }
+          ],
+          "properties": {
+            "fit": "Cover",
+            "clip": false,
+            "speed": 100,
+            "track": 1,
+            "shadow": -1,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "blurMode": "Stack",
+            "duration": "Fill",
+            "products": [],
+            "animation": "96",
+            "blendMode": "None",
+            "elevation": 1,
+            "needInput": "No",
+            "blurRadius": 0,
+            "transition": -1,
+            "colorFilter": "None",
+            "positioning": "l-x-32\nl-y-18\nl-offsetx-0\nl-offsety-0\ns-x-18\ns-y-18\ns-offsetx-0\ns-offsety-0\np-x-18\np-y-32\np-offsetx-0\np-offsety-0\nsiminn-x-18\nsiminn-y-23\nsiminn-offsetx-0\nsiminn-offsety-0\n",
+            "shadowColor": -1,
+            "borderRadius": 0,
+            "productCount": 1,
+            "colorFilterValue": 0,
+            "isProductElement": false,
+            "colorOverlayColor": -1,
+            "colorOverlayOpacity": 0
+          }
+        },
+        {
+          "id": 914,
+          "elementType": "voice",
+          "description": "Voice Over",
+          "value": "https://videocreationmedia.blob.core.windows.net/company-103/eleven_labs/11labs_F28C84DD-1B07-857B-0861-7C8141BE840B-689e1f76b6610.mp3",
+          "properties": {
+            "track": 1,
+            "elevation": 1,
+            "positioning": "l-x-4\nl-y-4\nl-offsetx-0\nl-offsety-0\n"
+          }
+        },
+        {
+          "id": 989,
+          "elementType": "shape",
+          "description": "Bottom Bar",
+          "value": "",
+          "properties": {
+            "clip": false,
+            "color": "1",
+            "track": 2,
+            "shadow": -1,
+            "stroke": 0,
+            "anim_up": true,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "duration": "Fill",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "shapeType": 70,
+            "anim_order": 1,
+            "anim_right": false,
+            "transition": -1,
+            "positioning": "l-x-38\nl-y-5\nl-offsetx-n2\nl-offsety-15\ns-x-28\ns-y-5\ns-offsetx-n5\ns-offsety-15\np-x-27\np-y-7\np-offsetx-n5\np-offsety-28\nsiminn-x-29\nsiminn-y-10\nsiminn-offsetx-n5\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": -1,
+            "strokeColor": -1,
+            "syncProperties": true,
+            "enable_animation": true
+          }
+        },
+        {
+          "id": 870,
+          "elementType": "h1TextBox",
+          "description": "Headline Box",
+          "value": "",
+          "properties": {
+            "color": "1",
+            "track": 3,
+            "shadow": -1,
+            "stroke": 0,
+            "anim_up": false,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "duration": "Fill",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "needInput": "No",
+            "shapeType": -1,
+            "anim_order": 0,
+            "anim_right": false,
+            "transition": -1,
+            "positioning": "l-x-32\nl-y-3\nl-offsetx-0\nl-offsety-15\ns-x-18\ns-y-3\ns-offsetx-0\ns-offsety-15\np-x-16\np-y-4\np-offsetx-1\np-offsety-28\nsiminn-x-18\nsiminn-y-5\nsiminn-offsetx-0\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": "5",
+            "strokeColor": "3",
+            "syncProperties": true,
+            "enable_animation": false
+          }
+        },
+        {
+          "id": 871,
+          "elementType": "h1Text",
+          "description": "Headline",
+          "value": "Bright, open living",
+          "properties": {
+            "clip": false,
+            "font": -1,
+            "color": "5",
+            "track": 3,
+            "italic": false,
+            "shadow": -1,
+            "stroke": 0,
+            "weight": "700",
+            "anim_up": true,
+            "maxSize": 8,
+            "opacity": 100,
+            "padding": 2,
+            "allowMax": 1,
+            "duration": "Fill",
+            "products": [],
+            "xPadding": 4,
+            "yPadding": 4,
+            "alignment": "Center",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "needInput": "No",
+            "textBoxID": 870,
+            "transform": "None",
+            "anim_order": 1,
+            "anim_right": false,
+            "background": 0,
+            "transition": -1,
+            "yAlignment": "Center",
+            "positioning": "l-x-32\nl-y-3\nl-offsetx-0\nl-offsety-15\ns-x-18\ns-y-3\ns-offsetx-0\ns-offsety-15\np-x-16\np-y-4\np-offsetx-1\np-offsety-28\nsiminn-x-18\nsiminn-y-5\nsiminn-offsetx-0\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": -1,
+            "strokeColor": -1,
+            "exampleValue": "Hello World",
+            "productCount": 1,
+            "syncProperties": true,
+            "backgroundColor": -1,
+            "enable_animation": true,
+            "isProductElement": false,
+            "positioningRule1": false
+          }
+        },
+        {
+          "id": 1706,
+          "elementType": "watermark",
+          "description": "Watermark",
+          "value": "",
+          "properties": {
+            "track": 100,
+            "elevation": 3,
+            "positioning": "l-x-4\nl-y-4\nl-offsetx-27\nl-offsety-1\ns-x-4\ns-y-4\ns-offsetx-13\ns-offsety-1\np-x-4\np-y-4\np-offsetx-13\np-offsety-1\nsiminn-x-4\nsiminn-y-4\nsiminn-offsetx-13\nsiminn-offsety-1\n",
+            "positioningCode": "7"
+          }
+        }
+      ],
+      "thumbnail": "",
+      "title": "New Scene",
+      "text": "Step into an open and spacious living area with warm wood floors, and a bright patio accessible directly outside.",
+      "voiceLength": 5,
+      "audioDuration": 8.672625,
+      "voiceUrl": "https://videocreationmedia.blob.core.windows.net/company-103/eleven_labs/11labs_F28C84DD-1B07-857B-0861-7C8141BE840B-689e1f76b6610.mp3",
+      "customVoice": false,
+      "customVoiceUrl": "",
+      "speechToSpeechVoice": null,
+      "wordBounderies": [],
+      "wordBounderiesWithoutPunctuation": [],
+      "beats": 6,
+      "intensity": 2,
+      "spaceBeforeVoice": 1,
+      "exampleText": {
+        "1": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "Bright, open living",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "script": {
+            "generationName": "Script",
+            "src": "generated",
+            "text": "Feel the future with Electronia, where cutting-edge tech ignites passion and elevates lives.",
+            "voiceOffset": "1"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Electronia",
+            "generationName": "Scene Title"
+          }
+        },
+        "2": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "3": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "4": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "5": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        }
+      },
+      "productIndex": [],
+      "mediaElements": [],
+      "maxMedia": 4,
+      "removeBG": [],
+      "overwriteAnalysis": false,
+      "analysisText": "",
+      "suggestMediaText": "",
+      "aspectTypes": {
+        "landscape": 155,
+        "square": 229,
+        "portrait": 306,
+        "siminn": 230
+      },
+      "sceneDataCache": {
+        "sceneMedia": [],
+        "labeledMedia": [],
+        "logo": [],
+        "person": [],
+        "h1Text": [],
+        "h2Text": [],
+        "bodyText": [],
+        "voice": ""
+      }
+    },
+    {
+      "sceneTypeId": 155,
+      "sceneGroupId": -1,
+      "typeId": 3,
+      "sceneTypeElements": [
+        {
+          "id": 869,
+          "elementType": "sceneMedia",
+          "description": "Scene Media",
+          "value": [
+            {
+              "id": "orb2w24yw",
+              "uiId": "kai6devdl",
+              "title": "unknown",
+              "caption": "unknown",
+              "artist": "unknown",
+              "source": "visir.is",
+              "type": "",
+              "mediaIndex": 0,
+              "mediaId": "orb2w24yw",
+              "mediaLabel": "",
+              "mediaSource": "visir.is",
+              "mediaType": "image",
+              "src": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_DEC2867D-4A9B-E3B8-30E5-079F0883BC6D.jpg",
+              "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_DEC2867D-4A9B-E3B8-30E5-079F0883BC6D.jpg",
+              "productTypes": "easyaccess",
+              "clipLength": 0,
+              "sceneLength": 0,
+              "trimStart": 0,
+              "alignment": 50,
+              "posX": 50,
+              "posY": 50,
+              "width": 100,
+              "height": 118.55555555555554,
+              "scale": 100,
+              "rotation": 0,
+              "elementWidth": 720,
+              "elementHeight": 405,
+              "fit": "default",
+              "versions": [],
+              "versionIndex": 0,
+              "disclosure": null
+            },
+            {
+              "id": "sndal3kn7",
+              "uiId": "4xng8ajnt",
+              "title": "unknown",
+              "caption": "unknown",
+              "artist": "unknown",
+              "source": "visir.is",
+              "type": "",
+              "mediaIndex": 1,
+              "mediaId": "sndal3kn7",
+              "mediaLabel": "",
+              "mediaSource": "visir.is",
+              "mediaType": "image",
+              "src": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_36114D89-3BA3-EC0C-7FA3-E16A42057B77.jpg",
+              "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_36114D89-3BA3-EC0C-7FA3-E16A42057B77.jpg",
+              "productTypes": "easyaccess",
+              "clipLength": 0,
+              "sceneLength": 0,
+              "trimStart": 0,
+              "alignment": 50,
+              "posX": 50,
+              "posY": 50,
+              "width": 100,
+              "height": 118.55555555555554,
+              "scale": 100,
+              "rotation": 0,
+              "elementWidth": 720,
+              "elementHeight": 405,
+              "fit": "default",
+              "versions": [],
+              "versionIndex": 0,
+              "disclosure": null
+            }
+          ],
+          "properties": {
+            "fit": "Cover",
+            "clip": false,
+            "speed": 100,
+            "track": 1,
+            "shadow": -1,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "blurMode": "Stack",
+            "duration": "Fill",
+            "products": [],
+            "animation": "96",
+            "blendMode": "None",
+            "elevation": 1,
+            "needInput": "No",
+            "blurRadius": 0,
+            "transition": -1,
+            "colorFilter": "None",
+            "positioning": "l-x-32\nl-y-18\nl-offsetx-0\nl-offsety-0\ns-x-18\ns-y-18\ns-offsetx-0\ns-offsety-0\np-x-18\np-y-32\np-offsetx-0\np-offsety-0\nsiminn-x-18\nsiminn-y-23\nsiminn-offsetx-0\nsiminn-offsety-0\n",
+            "shadowColor": -1,
+            "borderRadius": 0,
+            "productCount": 1,
+            "colorFilterValue": 0,
+            "isProductElement": false,
+            "colorOverlayColor": -1,
+            "colorOverlayOpacity": 0
+          }
+        },
+        {
+          "id": 914,
+          "elementType": "voice",
+          "description": "Voice Over",
+          "value": "https://videocreationmedia.blob.core.windows.net/company-103/eleven_labs/11labs_C3914D38-FBDE-F9A9-AFF8-C4F44CAD4CF2-689e1f79976dc.mp3",
+          "properties": {
+            "track": 1,
+            "elevation": 1,
+            "positioning": "l-x-4\nl-y-4\nl-offsetx-0\nl-offsety-0\n"
+          }
+        },
+        {
+          "id": 989,
+          "elementType": "shape",
+          "description": "Bottom Bar",
+          "value": "",
+          "properties": {
+            "clip": false,
+            "color": "1",
+            "track": 2,
+            "shadow": -1,
+            "stroke": 0,
+            "anim_up": true,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "duration": "Fill",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "shapeType": 70,
+            "anim_order": 1,
+            "anim_right": false,
+            "transition": -1,
+            "positioning": "l-x-38\nl-y-5\nl-offsetx-n2\nl-offsety-15\ns-x-28\ns-y-5\ns-offsetx-n5\ns-offsety-15\np-x-27\np-y-7\np-offsetx-n5\np-offsety-28\nsiminn-x-29\nsiminn-y-10\nsiminn-offsetx-n5\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": -1,
+            "strokeColor": -1,
+            "syncProperties": true,
+            "enable_animation": true
+          }
+        },
+        {
+          "id": 870,
+          "elementType": "h1TextBox",
+          "description": "Headline Box",
+          "value": "",
+          "properties": {
+            "color": "1",
+            "track": 3,
+            "shadow": -1,
+            "stroke": 0,
+            "anim_up": false,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "duration": "Fill",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "needInput": "No",
+            "shapeType": -1,
+            "anim_order": 0,
+            "anim_right": false,
+            "transition": -1,
+            "positioning": "l-x-32\nl-y-3\nl-offsetx-0\nl-offsety-15\ns-x-18\ns-y-3\ns-offsetx-0\ns-offsety-15\np-x-16\np-y-4\np-offsetx-1\np-offsety-28\nsiminn-x-18\nsiminn-y-5\nsiminn-offsetx-0\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": "5",
+            "strokeColor": "3",
+            "syncProperties": true,
+            "enable_animation": false
+          }
+        },
+        {
+          "id": 871,
+          "elementType": "h1Text",
+          "description": "Headline",
+          "value": "Well-appointed kitchen",
+          "properties": {
+            "clip": false,
+            "font": -1,
+            "color": "5",
+            "track": 3,
+            "italic": false,
+            "shadow": -1,
+            "stroke": 0,
+            "weight": "700",
+            "anim_up": true,
+            "maxSize": 8,
+            "opacity": 100,
+            "padding": 2,
+            "allowMax": 1,
+            "duration": "Fill",
+            "products": [],
+            "xPadding": 4,
+            "yPadding": 4,
+            "alignment": "Center",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "needInput": "No",
+            "textBoxID": 870,
+            "transform": "None",
+            "anim_order": 1,
+            "anim_right": false,
+            "background": 0,
+            "transition": -1,
+            "yAlignment": "Center",
+            "positioning": "l-x-32\nl-y-3\nl-offsetx-0\nl-offsety-15\ns-x-18\ns-y-3\ns-offsetx-0\ns-offsety-15\np-x-16\np-y-4\np-offsetx-1\np-offsety-28\nsiminn-x-18\nsiminn-y-5\nsiminn-offsetx-0\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": -1,
+            "strokeColor": -1,
+            "exampleValue": "Hello World",
+            "productCount": 1,
+            "syncProperties": true,
+            "backgroundColor": -1,
+            "enable_animation": true,
+            "isProductElement": false,
+            "positioningRule1": false
+          }
+        },
+        {
+          "id": 1706,
+          "elementType": "watermark",
+          "description": "Watermark",
+          "value": "",
+          "properties": {
+            "track": 100,
+            "elevation": 3,
+            "positioning": "l-x-4\nl-y-4\nl-offsetx-27\nl-offsety-1\ns-x-4\ns-y-4\ns-offsetx-13\ns-offsety-1\np-x-4\np-y-4\np-offsetx-13\np-offsety-1\nsiminn-x-4\nsiminn-y-4\nsiminn-offsetx-13\nsiminn-offsety-1\n",
+            "positioningCode": "7"
+          }
+        }
+      ],
+      "thumbnail": "",
+      "title": "New Scene",
+      "text": "A modern, spacious kitchen features clean white cabinetry and built-in appliances, making meal preparation a breeze.",
+      "voiceLength": 5,
+      "audioDuration": 8.176313,
+      "voiceUrl": "https://videocreationmedia.blob.core.windows.net/company-103/eleven_labs/11labs_C3914D38-FBDE-F9A9-AFF8-C4F44CAD4CF2-689e1f79976dc.mp3",
+      "customVoice": false,
+      "customVoiceUrl": "",
+      "speechToSpeechVoice": null,
+      "wordBounderies": [],
+      "wordBounderiesWithoutPunctuation": [],
+      "beats": 6,
+      "intensity": 2,
+      "spaceBeforeVoice": 1,
+      "exampleText": {
+        "1": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "Well-appointed kitchen",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "script": {
+            "generationName": "Script",
+            "src": "generated",
+            "text": "Feel the future with Electronia, where cutting-edge tech ignites passion and elevates lives.",
+            "voiceOffset": "1"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Electronia",
+            "generationName": "Scene Title"
+          }
+        },
+        "2": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "3": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "4": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "5": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        }
+      },
+      "productIndex": [],
+      "mediaElements": [],
+      "maxMedia": 4,
+      "removeBG": [],
+      "overwriteAnalysis": false,
+      "analysisText": "",
+      "suggestMediaText": "",
+      "aspectTypes": {
+        "landscape": 155,
+        "square": 229,
+        "portrait": 306,
+        "siminn": 230
+      },
+      "sceneDataCache": {
+        "sceneMedia": [],
+        "labeledMedia": [],
+        "logo": [],
+        "person": [],
+        "h1Text": [],
+        "h2Text": [],
+        "bodyText": [],
+        "voice": ""
+      }
+    },
+    {
+      "sceneTypeId": 155,
+      "sceneGroupId": -1,
+      "typeId": 3,
+      "sceneTypeElements": [
+        {
+          "id": 869,
+          "elementType": "sceneMedia",
+          "description": "Scene Media",
+          "value": [
+            {
+              "id": "8hjpx19pc",
+              "uiId": "ge05gpooh",
+              "title": "unknown",
+              "caption": "unknown",
+              "artist": "unknown",
+              "source": "visir.is",
+              "type": "",
+              "mediaIndex": 0,
+              "mediaId": "8hjpx19pc",
+              "mediaLabel": "",
+              "mediaSource": "visir.is",
+              "mediaType": "image",
+              "src": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_684DA422-5D7D-B075-56E7-E6FE40E752C4.jpg",
+              "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_684DA422-5D7D-B075-56E7-E6FE40E752C4.jpg",
+              "productTypes": "easyaccess",
+              "clipLength": 0,
+              "sceneLength": 0,
+              "trimStart": 0,
+              "alignment": 50,
+              "posX": 50,
+              "posY": 50,
+              "width": 100,
+              "height": 118.55555555555554,
+              "scale": 100,
+              "rotation": 0,
+              "elementWidth": 720,
+              "elementHeight": 405,
+              "fit": "default",
+              "versions": [],
+              "versionIndex": 0,
+              "disclosure": null
+            },
+            {
+              "id": "cwzv151cm",
+              "uiId": "hufyuvq9j",
+              "title": "unknown",
+              "caption": "unknown",
+              "artist": "unknown",
+              "source": "visir.is",
+              "type": "",
+              "mediaIndex": 1,
+              "mediaId": "cwzv151cm",
+              "mediaLabel": "",
+              "mediaSource": "visir.is",
+              "mediaType": "image",
+              "src": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_131B5BCD-FF29-C002-D4D1-5B717F739BE6.jpg",
+              "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_131B5BCD-FF29-C002-D4D1-5B717F739BE6.jpg",
+              "productTypes": "easyaccess",
+              "clipLength": 0,
+              "sceneLength": 0,
+              "trimStart": 0,
+              "alignment": 50,
+              "posX": 50,
+              "posY": 50,
+              "width": 100,
+              "height": 118.55555555555554,
+              "scale": 100,
+              "rotation": 0,
+              "elementWidth": 720,
+              "elementHeight": 405,
+              "fit": "default",
+              "versions": [],
+              "versionIndex": 0,
+              "disclosure": null
+            }
+          ],
+          "properties": {
+            "fit": "Cover",
+            "clip": false,
+            "speed": 100,
+            "track": 1,
+            "shadow": -1,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "blurMode": "Stack",
+            "duration": "Fill",
+            "products": [],
+            "animation": "96",
+            "blendMode": "None",
+            "elevation": 1,
+            "needInput": "No",
+            "blurRadius": 0,
+            "transition": -1,
+            "colorFilter": "None",
+            "positioning": "l-x-32\nl-y-18\nl-offsetx-0\nl-offsety-0\ns-x-18\ns-y-18\ns-offsetx-0\ns-offsety-0\np-x-18\np-y-32\np-offsetx-0\np-offsety-0\nsiminn-x-18\nsiminn-y-23\nsiminn-offsetx-0\nsiminn-offsety-0\n",
+            "shadowColor": -1,
+            "borderRadius": 0,
+            "productCount": 1,
+            "colorFilterValue": 0,
+            "isProductElement": false,
+            "colorOverlayColor": -1,
+            "colorOverlayOpacity": 0
+          }
+        },
+        {
+          "id": 914,
+          "elementType": "voice",
+          "description": "Voice Over",
+          "value": "https://videocreationmedia.blob.core.windows.net/company-103/eleven_labs/11labs_828A8512-67AC-84B2-B7C1-6B6D194859DB-689e1f7ce101c.mp3",
+          "properties": {
+            "track": 1,
+            "elevation": 1,
+            "positioning": "l-x-4\nl-y-4\nl-offsetx-0\nl-offsety-0\n"
+          }
+        },
+        {
+          "id": 989,
+          "elementType": "shape",
+          "description": "Bottom Bar",
+          "value": "",
+          "properties": {
+            "clip": false,
+            "color": "1",
+            "track": 2,
+            "shadow": -1,
+            "stroke": 0,
+            "anim_up": true,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "duration": "Fill",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "shapeType": 70,
+            "anim_order": 1,
+            "anim_right": false,
+            "transition": -1,
+            "positioning": "l-x-38\nl-y-5\nl-offsetx-n2\nl-offsety-15\ns-x-28\ns-y-5\ns-offsetx-n5\ns-offsety-15\np-x-27\np-y-7\np-offsetx-n5\np-offsety-28\nsiminn-x-29\nsiminn-y-10\nsiminn-offsetx-n5\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": -1,
+            "strokeColor": -1,
+            "syncProperties": true,
+            "enable_animation": true
+          }
+        },
+        {
+          "id": 870,
+          "elementType": "h1TextBox",
+          "description": "Headline Box",
+          "value": "",
+          "properties": {
+            "color": "1",
+            "track": 3,
+            "shadow": -1,
+            "stroke": 0,
+            "anim_up": false,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "duration": "Fill",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "needInput": "No",
+            "shapeType": -1,
+            "anim_order": 0,
+            "anim_right": false,
+            "transition": -1,
+            "positioning": "l-x-32\nl-y-3\nl-offsetx-0\nl-offsety-15\ns-x-18\ns-y-3\ns-offsetx-0\ns-offsety-15\np-x-16\np-y-4\np-offsetx-1\np-offsety-28\nsiminn-x-18\nsiminn-y-5\nsiminn-offsetx-0\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": "5",
+            "strokeColor": "3",
+            "syncProperties": true,
+            "enable_animation": false
+          }
+        },
+        {
+          "id": 871,
+          "elementType": "h1Text",
+          "description": "Headline",
+          "value": "Two spacious bedrooms",
+          "properties": {
+            "clip": false,
+            "font": -1,
+            "color": "5",
+            "track": 3,
+            "italic": false,
+            "shadow": -1,
+            "stroke": 0,
+            "weight": "700",
+            "anim_up": true,
+            "maxSize": 8,
+            "opacity": 100,
+            "padding": 2,
+            "allowMax": 1,
+            "duration": "Fill",
+            "products": [],
+            "xPadding": 4,
+            "yPadding": 4,
+            "alignment": "Center",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "needInput": "No",
+            "textBoxID": 870,
+            "transform": "None",
+            "anim_order": 1,
+            "anim_right": false,
+            "background": 0,
+            "transition": -1,
+            "yAlignment": "Center",
+            "positioning": "l-x-32\nl-y-3\nl-offsetx-0\nl-offsety-15\ns-x-18\ns-y-3\ns-offsetx-0\ns-offsety-15\np-x-16\np-y-4\np-offsetx-1\np-offsety-28\nsiminn-x-18\nsiminn-y-5\nsiminn-offsetx-0\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": -1,
+            "strokeColor": -1,
+            "exampleValue": "Hello World",
+            "productCount": 1,
+            "syncProperties": true,
+            "backgroundColor": -1,
+            "enable_animation": true,
+            "isProductElement": false,
+            "positioningRule1": false
+          }
+        },
+        {
+          "id": 1706,
+          "elementType": "watermark",
+          "description": "Watermark",
+          "value": "",
+          "properties": {
+            "track": 100,
+            "elevation": 3,
+            "positioning": "l-x-4\nl-y-4\nl-offsetx-27\nl-offsety-1\ns-x-4\ns-y-4\ns-offsetx-13\ns-offsety-1\np-x-4\np-y-4\np-offsetx-13\np-offsety-1\nsiminn-x-4\nsiminn-y-4\nsiminn-offsetx-13\nsiminn-offsety-1\n",
+            "positioningCode": "7"
+          }
+        }
+      ],
+      "thumbnail": "",
+      "title": "New Scene",
+      "text": "This home offers two comfortable bedrooms each with generous, full-height built-in wardrobes, providing ample storage space.",
+      "voiceLength": 5,
+      "audioDuration": 8.80325,
+      "voiceUrl": "https://videocreationmedia.blob.core.windows.net/company-103/eleven_labs/11labs_828A8512-67AC-84B2-B7C1-6B6D194859DB-689e1f7ce101c.mp3",
+      "customVoice": false,
+      "customVoiceUrl": "",
+      "speechToSpeechVoice": null,
+      "wordBounderies": [],
+      "wordBounderiesWithoutPunctuation": [],
+      "beats": 6,
+      "intensity": 2,
+      "spaceBeforeVoice": 1,
+      "exampleText": {
+        "1": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "Two spacious bedrooms",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "script": {
+            "generationName": "Script",
+            "src": "generated",
+            "text": "Feel the future with Electronia, where cutting-edge tech ignites passion and elevates lives.",
+            "voiceOffset": "1"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Electronia",
+            "generationName": "Scene Title"
+          }
+        },
+        "2": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "3": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "4": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "5": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        }
+      },
+      "productIndex": [],
+      "mediaElements": [],
+      "maxMedia": 4,
+      "removeBG": [],
+      "overwriteAnalysis": false,
+      "analysisText": "",
+      "suggestMediaText": "",
+      "aspectTypes": {
+        "landscape": 155,
+        "square": 229,
+        "portrait": 306,
+        "siminn": 230
+      },
+      "sceneDataCache": {
+        "sceneMedia": [],
+        "labeledMedia": [],
+        "logo": [],
+        "person": [],
+        "h1Text": [],
+        "h2Text": [],
+        "bodyText": [],
+        "voice": ""
+      }
+    },
+    {
+      "sceneTypeId": 155,
+      "sceneGroupId": -1,
+      "typeId": 3,
+      "sceneTypeElements": [
+        {
+          "id": 869,
+          "elementType": "sceneMedia",
+          "description": "Scene Media",
+          "value": [
+            {
+              "id": "5wv82q1su",
+              "uiId": "neph4wmul",
+              "title": "unknown",
+              "caption": "unknown",
+              "artist": "unknown",
+              "source": "visir.is",
+              "type": "",
+              "mediaIndex": 0,
+              "mediaId": "5wv82q1su",
+              "mediaLabel": "",
+              "mediaSource": "visir.is",
+              "mediaType": "image",
+              "src": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_F9F0BEFB-88FB-A548-B432-4471E891509E.jpg",
+              "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_F9F0BEFB-88FB-A548-B432-4471E891509E.jpg",
+              "productTypes": "easyaccess",
+              "clipLength": 0,
+              "sceneLength": 0,
+              "trimStart": 0,
+              "alignment": 50,
+              "posX": 50,
+              "posY": 50,
+              "width": 100,
+              "height": 118.55555555555554,
+              "scale": 100,
+              "rotation": 0,
+              "elementWidth": 720,
+              "elementHeight": 405,
+              "fit": "default",
+              "versions": [],
+              "versionIndex": 0,
+              "disclosure": null
+            },
+            {
+              "id": "jbl2tz25j",
+              "uiId": "8kovyuan1",
+              "title": "unknown",
+              "caption": "unknown",
+              "artist": "unknown",
+              "source": "visir.is",
+              "type": "",
+              "mediaIndex": 1,
+              "mediaId": "jbl2tz25j",
+              "mediaLabel": "",
+              "mediaSource": "visir.is",
+              "mediaType": "image",
+              "src": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_417D2CCE-AD6B-FC44-BA66-14DC37B55341.jpg",
+              "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/fasteignir-visir-is/downloaded_file_417D2CCE-AD6B-FC44-BA66-14DC37B55341.jpg",
+              "productTypes": "easyaccess",
+              "clipLength": 0,
+              "sceneLength": 0,
+              "trimStart": 0,
+              "alignment": 50,
+              "posX": 50,
+              "posY": 50,
+              "width": 100,
+              "height": 118.55555555555554,
+              "scale": 100,
+              "rotation": 0,
+              "elementWidth": 720,
+              "elementHeight": 405,
+              "fit": "default",
+              "versions": [],
+              "versionIndex": 0,
+              "disclosure": null
+            }
+          ],
+          "properties": {
+            "fit": "Cover",
+            "clip": false,
+            "speed": 100,
+            "track": 1,
+            "shadow": -1,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "blurMode": "Stack",
+            "duration": "Fill",
+            "products": [],
+            "animation": "96",
+            "blendMode": "None",
+            "elevation": 1,
+            "needInput": "No",
+            "blurRadius": 0,
+            "transition": -1,
+            "colorFilter": "None",
+            "positioning": "l-x-32\nl-y-18\nl-offsetx-0\nl-offsety-0\ns-x-18\ns-y-18\ns-offsetx-0\ns-offsety-0\np-x-18\np-y-32\np-offsetx-0\np-offsety-0\nsiminn-x-18\nsiminn-y-23\nsiminn-offsetx-0\nsiminn-offsety-0\n",
+            "shadowColor": -1,
+            "borderRadius": 0,
+            "productCount": 1,
+            "colorFilterValue": 0,
+            "isProductElement": false,
+            "colorOverlayColor": -1,
+            "colorOverlayOpacity": 0
+          }
+        },
+        {
+          "id": 914,
+          "elementType": "voice",
+          "description": "Voice Over",
+          "value": "https://videocreationmedia.blob.core.windows.net/company-103/eleven_labs/11labs_BE746AE6-48E9-38EA-8724-5F403C0F3819-689e1f7fb4894.mp3",
+          "properties": {
+            "track": 1,
+            "elevation": 1,
+            "positioning": "l-x-4\nl-y-4\nl-offsetx-0\nl-offsety-0\n"
+          }
+        },
+        {
+          "id": 989,
+          "elementType": "shape",
+          "description": "Bottom Bar",
+          "value": "",
+          "properties": {
+            "clip": false,
+            "color": "1",
+            "track": 2,
+            "shadow": -1,
+            "stroke": 0,
+            "anim_up": true,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "duration": "Fill",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "shapeType": 70,
+            "anim_order": 1,
+            "anim_right": false,
+            "transition": -1,
+            "positioning": "l-x-38\nl-y-5\nl-offsetx-n2\nl-offsety-15\ns-x-28\ns-y-5\ns-offsetx-n5\ns-offsety-15\np-x-27\np-y-7\np-offsetx-n5\np-offsety-28\nsiminn-x-29\nsiminn-y-10\nsiminn-offsetx-n5\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": -1,
+            "strokeColor": -1,
+            "syncProperties": true,
+            "enable_animation": true
+          }
+        },
+        {
+          "id": 870,
+          "elementType": "h1TextBox",
+          "description": "Headline Box",
+          "value": "",
+          "properties": {
+            "color": "1",
+            "track": 3,
+            "shadow": -1,
+            "stroke": 0,
+            "anim_up": false,
+            "opacity": 100,
+            "texture": -1,
+            "allowMax": 1,
+            "duration": "Fill",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "needInput": "No",
+            "shapeType": -1,
+            "anim_order": 0,
+            "anim_right": false,
+            "transition": -1,
+            "positioning": "l-x-32\nl-y-3\nl-offsetx-0\nl-offsety-15\ns-x-18\ns-y-3\ns-offsetx-0\ns-offsety-15\np-x-16\np-y-4\np-offsetx-1\np-offsety-28\nsiminn-x-18\nsiminn-y-5\nsiminn-offsetx-0\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": "5",
+            "strokeColor": "3",
+            "syncProperties": true,
+            "enable_animation": false
+          }
+        },
+        {
+          "id": 871,
+          "elementType": "h1Text",
+          "description": "Headline",
+          "value": "Private south patio",
+          "properties": {
+            "clip": false,
+            "font": -1,
+            "color": "5",
+            "track": 3,
+            "italic": false,
+            "shadow": -1,
+            "stroke": 0,
+            "weight": "700",
+            "anim_up": true,
+            "maxSize": 8,
+            "opacity": 100,
+            "padding": 2,
+            "allowMax": 1,
+            "duration": "Fill",
+            "products": [],
+            "xPadding": 4,
+            "yPadding": 4,
+            "alignment": "Center",
+            "anim_down": false,
+            "anim_left": false,
+            "animation": -1,
+            "elevation": 3,
+            "needInput": "No",
+            "textBoxID": 870,
+            "transform": "None",
+            "anim_order": 1,
+            "anim_right": false,
+            "background": 0,
+            "transition": -1,
+            "yAlignment": "Center",
+            "positioning": "l-x-32\nl-y-3\nl-offsetx-0\nl-offsety-15\ns-x-18\ns-y-3\ns-offsetx-0\ns-offsety-15\np-x-16\np-y-4\np-offsetx-1\np-offsety-28\nsiminn-x-18\nsiminn-y-5\nsiminn-offsetx-0\nsiminn-offsety-18\nbillboard1-x-4\nbillboard1-y-4\nbillboard1-offsetx-0\nbillboard1-offsety-0\n",
+            "shadowColor": -1,
+            "strokeColor": -1,
+            "exampleValue": "Hello World",
+            "productCount": 1,
+            "syncProperties": true,
+            "backgroundColor": -1,
+            "enable_animation": true,
+            "isProductElement": false,
+            "positioningRule1": false
+          }
+        },
+        {
+          "id": 1706,
+          "elementType": "watermark",
+          "description": "Watermark",
+          "value": "",
+          "properties": {
+            "track": 100,
+            "elevation": 3,
+            "positioning": "l-x-4\nl-y-4\nl-offsetx-27\nl-offsety-1\ns-x-4\ns-y-4\ns-offsetx-13\ns-offsety-1\np-x-4\np-y-4\np-offsetx-13\np-offsety-1\nsiminn-x-4\nsiminn-y-4\nsiminn-offsetx-13\nsiminn-offsety-1\n",
+            "positioningCode": "7"
+          }
+        }
+      ],
+      "thumbnail": "",
+      "title": "New Scene",
+      "text": "Enjoy the private south-facing patio which provides a quiet outdoor retreat, perfect for relaxation.",
+      "voiceLength": 5,
+      "audioDuration": 7.340375,
+      "voiceUrl": "https://videocreationmedia.blob.core.windows.net/company-103/eleven_labs/11labs_BE746AE6-48E9-38EA-8724-5F403C0F3819-689e1f7fb4894.mp3",
+      "customVoice": false,
+      "customVoiceUrl": "",
+      "speechToSpeechVoice": null,
+      "wordBounderies": [],
+      "wordBounderiesWithoutPunctuation": [],
+      "beats": 6,
+      "intensity": 2,
+      "spaceBeforeVoice": 1,
+      "exampleText": {
+        "1": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "Private south patio",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "script": {
+            "generationName": "Script",
+            "src": "generated",
+            "text": "Feel the future with Electronia, where cutting-edge tech ignites passion and elevates lives.",
+            "voiceOffset": "1"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Electronia",
+            "generationName": "Scene Title"
+          }
+        },
+        "2": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "3": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "4": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        },
+        "5": {
+          "headline": {
+            "needInput": true,
+            "src": "generated",
+            "text": "",
+            "allowMax": 1,
+            "generationName": "headline"
+          },
+          "scene-title": {
+            "src": "generated",
+            "text": "Discover Vergo",
+            "generationName": "Scene Title"
+          }
+        }
+      },
+      "productIndex": [],
+      "mediaElements": [],
+      "maxMedia": 4,
+      "removeBG": [],
+      "overwriteAnalysis": false,
+      "analysisText": "",
+      "suggestMediaText": "",
+      "aspectTypes": {
+        "landscape": 155,
+        "square": 229,
+        "portrait": 306,
+        "siminn": 273
+      },
+      "sceneDataCache": {
+        "sceneMedia": [],
+        "labeledMedia": [],
+        "logo": [],
+        "person": [],
+        "h1Text": [],
+        "h2Text": [],
+        "bodyText": [],
+        "voice": ""
+      }
+    }
+  ],
+  "style": {
+    "animation": {
+      "scenes": {
+        "transitions": {
+          "use": true,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": ["1905"],
+          "transition": "1905"
+        },
+        "animations": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation": []
+        },
+        "animation_in": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation_in": []
+        },
+        "miniPackID": 1911,
+        "speed": "2"
+      },
+      "media": {
+        "transitions": {
+          "use": true,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": ["1124"],
+          "transition": "1124"
+        },
+        "animations": {
+          "use": true,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": ["1718", "1723", "1721", "1720"],
+          "animation": ["1718", "1723", "1721", "1720"]
+        },
+        "animation_in": {
+          "use": true,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": ["1133"],
+          "animation_in": ["1133"]
+        },
+        "miniPackID": "1861",
+        "speed": "2",
+        "imageMoveID": "1800"
+      },
+      "logo": {
+        "transitions": {
+          "use": true,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": ["1394"],
+          "transition": "1394"
+        },
+        "animations": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation": []
+        },
+        "animation_in": {
+          "use": true,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": ["1848"],
+          "animation_in": ["1848"]
+        },
+        "miniPackID": "1869",
+        "speed": "2"
+      },
+      "h1Texts": {
+        "transitions": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "transition": -1
+        },
+        "animations": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation": []
+        },
+        "animation_in": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation_in": []
+        },
+        "miniPackID": "-1",
+        "speed": "2"
+      },
+      "h1TextBoxes": {
+        "transitions": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "transition": -1
+        },
+        "animations": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation": []
+        },
+        "animation_in": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation_in": []
+        },
+        "miniPackID": "-1",
+        "speed": "2"
+      },
+      "bodyTexts": {
+        "transitions": {
+          "use": true,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": ["1396", "1124"],
+          "transition": "1396"
+        },
+        "animations": {
+          "use": true,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": ["1466", "1446", "1447", "1133"],
+          "animation": ["1447", "1466", "1133", "1446"]
+        },
+        "animation_in": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation_in": []
+        }
+      },
+      "bodyTextBoxes": {
+        "transitions": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "transition": -1
+        },
+        "animations": {
+          "use": true,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": ["1466", "1133"],
+          "animation": ["1133", "1466"]
+        },
+        "animation_in": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation_in": []
+        }
+      },
+      "shapes": {
+        "transitions": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "transition": -1
+        },
+        "animations": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation": []
+        },
+        "animation_in": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation_in": []
+        },
+        "miniPackID": "-1",
+        "speed": "2"
+      },
+      "speed": "",
+      "info": {
+        "id": 1716,
+        "name": "Basic",
+        "color": "#bc6767",
+        "category": "✨ Professional"
+      },
+      "image_anims": "ken-burns",
+      "person": {
+        "transitions": {
+          "use": true,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": ["1394"],
+          "transition": "1394"
+        },
+        "animations": {
+          "use": false,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": [],
+          "animation": []
+        },
+        "animation_in": {
+          "use": true,
+          "durationMin": 0,
+          "durationMax": 2,
+          "objects": ["1848"],
+          "animation_in": ["1848"]
+        },
+        "miniPackID": "1869",
+        "speed": "2"
+      }
+    },
+    "background": {
+      "color": ["#FFFFFF", "#cccccc"],
+      "gradientType": "linear",
+      "mediaSrc": {
+        "id": "h0054l6kr",
+        "uiId": "5s75p9ov6",
+        "title": "my media image",
+        "caption": "my media image",
+        "artist": "my media image",
+        "source": "azure",
+        "type": "video",
+        "mediaIndex": 0,
+        "mediaId": "h0054l6kr",
+        "mediaLabel": "unknown",
+        "mediaSource": "azure",
+        "mediaType": "video",
+        "src": "https://videocreationmedia.blob.core.windows.net/quickflick/custom-backgrounds/output/img2.mp4",
+        "thumbnail": "https://videocreationmedia.blob.core.windows.net/quickflick/custom-backgrounds/thumbnails300/img2.png",
+        "productTypes": "easyaccess",
+        "clipLength": 0,
+        "sceneLength": 0,
+        "trimStart": 0,
+        "alignment": 50,
+        "posX": 50,
+        "posY": 50,
+        "width": 100,
+        "height": 100,
+        "scale": 100,
+        "rotation": 0,
+        "elementWidth": 1920,
+        "elementHeight": 1080,
+        "fit": "cover",
+        "versions": [],
+        "versionIndex": 0
+      },
+      "type": "solid",
+      "blendValue": 0,
+      "info": {
+        "id": "h0054l6kr"
+      }
+    },
+    "colors": {
+      "color1": {
+        "gradient": false,
+        "value": "#FFFFFF"
+      },
+      "color2": {
+        "gradient": false,
+        "value": "#137A54"
+      },
+      "color3": {
+        "gradient": false,
+        "value": "#137A54"
+      },
+      "color4": {
+        "gradient": false,
+        "value": "#16543C"
+      },
+      "color5": {
+        "gradient": false,
+        "value": "#222222"
+      },
+      "color6": {
+        "gradient": false,
+        "value": "#FFFFFF"
+      },
+      "color7": {
+        "gradient": false,
+        "value": "#000000"
+      },
+      "color8": {
+        "gradient": false,
+        "value": "#FFFFFF"
+      },
+      "color9": {
+        "gradient": true,
+        "gradientType": "linear",
+        "value": "#FFFFFF"
+      },
+      "color10": {
+        "gradient": true,
+        "gradientType": "linear",
+        "value": "#FFFFFF"
+      },
+      "color11": {
+        "gradient": true,
+        "gradientType": "linear",
+        "value": "#FFFFFF"
+      },
+      "color12": {
+        "gradient": true,
+        "gradientType": "radial",
+        "value": "#FFFFFF"
+      },
+      "color13": {
+        "gradient": true,
+        "gradientType": "radial",
+        "value": "#FFFFFF"
+      },
+      "color14": {
+        "gradient": true,
+        "gradientType": "radial",
+        "value": "#FFFFFF"
+      },
+      "color15": {
+        "gradient": false,
+        "value": ""
+      },
+      "color16": {
+        "gradient": false,
+        "value": "#000000"
+      }
+    },
+    "effects": {
+      "elevation1": {
+        "textures": {},
+        "overlays": {},
+        "filters": {}
+      },
+      "elevation2": {
+        "textures": {},
+        "overlays": {},
+        "filters": {}
+      },
+      "elevation3": {
+        "textures": {},
+        "overlays": {},
+        "filters": {}
+      },
+      "elevation4": {
+        "textures": {},
+        "overlays": {},
+        "filters": {}
+      }
+    },
+    "fonts": {
+      "h1": {
+        "font": "Montserrat",
+        "src": "https://fonts.gstatic.com/s/montserrat/v30/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-Y3tcoqK5.ttf",
+        "fontColor": "color6",
+        "weight": "default",
+        "style": "regular",
+        "stroke": 0,
+        "strokeColor": "color6",
+        "shadowId": -1,
+        "shadowColor": 6,
+        "textureId": -1
+      },
+      "h2": {
+        "font": "Poppins",
+        "src": "https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLEj6V1tvFP-KUEg.ttf",
+        "fontColor": "color6",
+        "weight": "600",
+        "style": "regular",
+        "stroke": 0,
+        "strokeColor": "color6",
+        "shadowId": -1,
+        "shadowColor": 6,
+        "textureId": -1
+      },
+      "body": {
+        "font": "Work Sans",
+        "src": "https://fonts.gstatic.com/s/worksans/v23/QGY_z_wNahGAdqQ43RhVcIgYT2Xz5u32K0nXNigDp6_cOyA.ttf",
+        "fontColor": "color6",
+        "weight": "default",
+        "style": "regular",
+        "stroke": 0,
+        "strokeColor": "color6",
+        "shadowId": -1,
+        "shadowColor": 6,
+        "textureId": -1
+      },
+      "subtitle": {
+        "font": "Rubik",
+        "src": "https://fonts.gstatic.com/s/rubik/v30/iJWZBXyIfDnIV5PNhY1KTN7Z-Yh-B4i1UE80V4bVkA.ttf",
+        "fontColor": "color6",
+        "weight": "default",
+        "style": "regular",
+        "stroke": 0,
+        "strokeColor": "color6",
+        "shadowId": -1,
+        "shadowColor": 6,
+        "textureId": -1
+      }
+    },
+    "logo": {
+      "logoSrc": {
+        "id": "85dl78zf0",
+        "uiId": "clechip1k",
+        "title": "my media image",
+        "caption": "my media image",
+        "artist": "my media image",
+        "source": "azure",
+        "type": "image",
+        "mediaIndex": 0,
+        "mediaId": "85dl78zf0",
+        "mediaLabel": "unknown",
+        "mediaSource": "azure",
+        "mediaType": "image",
+        "src": "https://videocreationmedia.blob.core.windows.net/company-103/images/C4D7AD10-A80A-C171-65DD-220CFC8A0258.png",
+        "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/images/C4D7AD10-A80A-C171-65DD-220CFC8A0258.png",
+        "productTypes": "easyaccess",
+        "clipLength": 0,
+        "sceneLength": 0,
+        "trimStart": 0,
+        "alignment": 50,
+        "posX": 50,
+        "posY": 50,
+        "width": 100,
+        "height": 100,
+        "scale": 100,
+        "rotation": 0,
+        "elementWidth": 100,
+        "elementHeight": 100,
+        "fit": "contain",
+        "versions": [],
+        "versionIndex": 0,
+        "small_image": "https://videocreationmedia.blob.core.windows.net/company-103/images/C4D7AD10-A80A-C171-65DD-220CFC8A0258.png"
+      },
+      "use": true,
+      "placement": 7,
+      "size": "medium",
+      "manualPosition": false,
+      "positioning": "\nl-offsetx-27\nl-offsety-1\nl-x-4\nl-y-4\ns-offsetx-13\ns-offsety-1\ns-x-4\ns-y-4\np-offsetx-13\np-offsety-1\np-x-4\np-y-4\nsiminn-offsetx-13\nsiminn-offsety-1\nsiminn-x-4\nsiminn-y-4\nbillboard1-offsetx-27\nbillboard1-offsety-1\nbillboard1-x-4\nbillboard1-y-4"
+    },
+    "layouts": {
+      "1806": {
+        "6": {
+          "landscape": [300, 155, 155, 155, 155, 297]
+        }
+      }
+    },
+    "styleObjects": {
+      "shapes": 70,
+      "animations": -1,
+      "subtitles": -1,
+      "dropShadow": -1,
+      "transitions": 1124
+    },
+    "textBoxPack": {
+      "h1Box": {
+        "display": true,
+        "color": "custom",
+        "overwriteColor": "#000000",
+        "opacity": 33,
+        "strokeColor": "custom",
+        "overwriteStrokeColor": "#137A54",
+        "strokeWidth": 0,
+        "borderRadius": 0,
+        "texture": -1,
+        "textShadow": -1,
+        "textStrokeColor": "custom",
+        "textStrokeWidth": 0,
+        "textOverwriteStrokeColor": "#ffffff",
+        "font": "Montserrat",
+        "style": "regular",
+        "weight": "default"
+      },
+      "bodyBox": {
+        "display": true,
+        "color": "custom",
+        "overwriteColor": "#000000",
+        "opacity": 33,
+        "strokeColor": "custom",
+        "overwriteStrokeColor": "#137A54",
+        "strokeWidth": 0,
+        "borderRadius": 0,
+        "texture": -1,
+        "textShadow": -1,
+        "textStrokeColor": "custom",
+        "textStrokeWidth": 0,
+        "textOverwriteStrokeColor": "#ffffff",
+        "font": "Montserrat",
+        "style": "regular",
+        "weight": "default"
+      },
+      "shapeBox": {
+        "display": true,
+        "color": "custom",
+        "overwriteColor": "#000000",
+        "opacity": 33,
+        "strokeColor": "custom",
+        "overwriteStrokeColor": "#137A54",
+        "strokeWidth": 0,
+        "borderRadius": 0,
+        "texture": -1,
+        "textShadow": -1,
+        "textStrokeColor": "custom",
+        "textStrokeWidth": 0,
+        "textOverwriteStrokeColor": "#ffffff",
+        "font": "Montserrat",
+        "style": "regular",
+        "weight": "default"
+      },
+      "info": {
+        "id": 813249
+      }
+    }
+  },
+  "audio": {
+    "music": {
+      "tags": ["Popular"],
+      "songId": "49",
+      "songTitle": "Distant Signals",
+      "songBpm": 187.5,
+      "bpm2": 186.0261694785276,
+      "songDuration": 117.984,
+      "songPreviewUrl": "https://videocreationmedia.blob.core.windows.net/quickflick/audio/music_tracks/_istant__ignals.mp3",
+      "songThumbnailUrl": "https://videocreationmedia.blob.core.windows.net/quickflick/audio/music_tracks/_istant__ignals.mp3",
+      "trimStart": 0,
+      "volume": 13,
+      "beatTimes": [
+        0.23, 0.55, 0.89, 1.22, 1.54, 1.86, 2.18, 2.5, 2.82, 3.14, 3.46, 3.8,
+        4.12, 4.44, 4.73, 5.05, 5.38, 5.71, 6.02, 6.35, 6.67, 7, 7.31, 7.63,
+        7.96, 8.29, 8.6, 8.93, 9.25, 9.58, 9.89, 10.22, 10.55, 10.87, 11.18,
+        11.51, 11.83, 12.16, 12.47, 12.79, 13.12, 13.45, 13.76, 14.09, 14.41,
+        14.74, 15.05, 15.37, 15.7, 16.03, 16.35, 16.67, 16.99, 17.31, 17.63,
+        17.95, 18.28, 18.6, 18.92, 19.25, 19.57, 19.89, 20.21, 20.53, 20.86,
+        21.18, 21.5, 21.83, 22.15, 22.47, 22.79, 23.11, 23.45, 23.77, 24.09,
+        24.42, 24.74, 25.07, 25.38, 25.7, 26.03, 26.36, 26.67, 27, 27.32, 27.65,
+        27.96, 28.28, 28.61, 28.93, 29.25, 29.58, 29.9, 30.22, 30.54, 30.86,
+        31.19, 31.51, 31.83, 32.15, 32.49, 32.81, 33.12, 33.44, 33.77, 34.09,
+        34.41, 34.73, 35.06, 35.39, 35.7, 36.01, 36.34, 36.67, 36.99, 37.31,
+        37.64, 37.96, 38.28, 38.59, 38.93, 39.25, 39.57, 39.89, 40.22, 40.54,
+        40.85, 41.18, 41.51, 41.83, 42.15, 42.49, 42.81, 43.14, 43.45, 43.75,
+        44.09, 44.42, 44.74, 45.06, 45.39, 45.72, 46.03, 46.34, 46.66, 47,
+        47.31, 47.64, 47.96, 48.29, 48.6, 48.92, 49.25, 49.58, 49.89, 50.22,
+        50.54, 50.87, 51.18, 51.51, 51.83, 52.16, 52.47, 52.8, 53.12, 53.45,
+        53.76, 54.08, 54.41, 54.74, 55.06, 55.38, 55.7, 56.03, 56.34, 56.66,
+        56.99, 57.32, 57.64, 57.96, 58.28, 58.61, 58.92, 59.23, 59.56, 59.89,
+        60.21, 60.54, 60.86, 61.18, 61.5, 61.82, 62.15, 62.47, 62.79, 63.13,
+        63.45, 63.78, 64.09, 64.42, 64.74, 65.07, 65.38, 65.71, 66.03, 66.36,
+        66.67, 66.99, 67.32, 67.65, 67.96, 68.28, 68.61, 68.93, 69.25, 69.57,
+        69.9, 70.22, 70.54, 70.86, 71.18, 71.51, 71.83, 72.15, 72.48, 72.8,
+        73.12, 73.45, 73.77, 74.09, 74.41, 74.73, 75.06, 75.39, 75.7, 76.02,
+        76.35, 76.67, 76.99, 77.31, 77.64, 77.96, 78.28, 78.6, 78.92, 79.25,
+        79.57, 79.89, 80.22, 80.54, 80.86, 81.18, 81.5, 81.83, 82.15, 82.47,
+        82.79, 83.13, 83.45, 83.78, 84.1, 84.42, 84.73, 85.06, 85.38, 85.71,
+        86.02, 86.35, 86.68, 87, 87.31, 87.63, 87.97, 88.29, 88.6, 88.93, 89.25,
+        89.58, 89.89, 90.21, 90.54, 90.87, 91.18, 91.51, 91.83, 92.15, 92.47,
+        92.79, 93.11, 93.45, 93.76, 94.09, 94.41, 94.74, 95.05, 95.38, 95.7,
+        96.03, 96.34, 96.67, 96.99, 97.32, 97.63, 97.95, 98.28, 98.61, 98.92,
+        99.24, 99.57, 99.9, 100.21, 100.53, 100.86, 101.18, 101.51, 101.83,
+        102.15, 102.49, 102.79, 103.11, 103.45, 103.78, 104.09, 104.42, 104.74,
+        105.07, 105.38, 105.7, 106.03, 106.35, 106.67, 107, 107.33, 107.66,
+        107.96, 108.28, 108.62, 108.94, 109.25, 109.57, 109.9, 110.23, 110.54,
+        110.86, 111.19, 111.51
+      ],
+      "thumbnail": "",
+      "source": "trial",
+      "color": "#42f061"
+    },
+    "voice": {
+      "displayName": "Aria",
+      "gender": "female",
+      "language": "English (United States)",
+      "locale": "en-US",
+      "voice": "9BWtsMINqrJLrRacOk9x",
+      "wpm": 135,
+      "voiceStyle": "",
+      "avatar": "https://videocreationmedia.blob.core.windows.net/quickflick/avatars/female1.png",
+      "isPremium": true,
+      "previewUrl": "https://storage.googleapis.com/eleven-public-prod/premade/voices/9BWtsMINqrJLrRacOk9x/405766b8-1f4e-4d3c-aba1-6f25333823ec.mp3",
+      "source": "elevenlabs",
+      "category": "premade",
+      "lastGeneration": "2025-08-13T11:39:11.014Z",
+      "voiceStyles": []
+    }
+  },
+  "brand": {
+    "id": 389,
+    "company_id": 103,
+    "name": "John Real Estate",
+    "logo_src": "https://videocreationmedia.blob.core.windows.net/company-103/images/C4D7AD10-A80A-C171-65DD-220CFC8A0258.png",
+    "watermark_src": "https://videocreationmedia.blob.core.windows.net/company-103/images/C4D7AD10-A80A-C171-65DD-220CFC8A0258.png",
+    "website": "johnrealestate.com",
+    "company_description": "",
+    "slogan": "",
+    "brand_colors": "#FFFFFF,#137A54,#137A54,#16543C,#222222",
+    "brand_font": "Montserrat",
+    "default_language": "en-US",
+    "default_selection": 0,
+    "record_created": "2025-07-25 11:12:10",
+    "record_modified": "2025-08-14 17:48:37",
+    "logo_url": "https://videocreationmedia.blob.core.windows.net/company-103/images/C4D7AD10-A80A-C171-65DD-220CFC8A0258.png",
+    "watermark_url": "https://videocreationmedia.blob.core.windows.net/company-103/images/C4D7AD10-A80A-C171-65DD-220CFC8A0258.png",
+    "audiences": [],
+    "tones": [],
+    "background_info": {
+      "color": ["#FFFFFF", "#cccccc"],
+      "gradientType": "linear",
+      "mediaSrc": {
+        "id": "h0054l6kr",
+        "uiId": "5s75p9ov6",
+        "title": "my media image",
+        "caption": "my media image",
+        "artist": "my media image",
+        "source": "azure",
+        "type": "video",
+        "mediaIndex": 0,
+        "mediaId": "h0054l6kr",
+        "mediaLabel": "unknown",
+        "mediaSource": "azure",
+        "mediaType": "video",
+        "src": "https://videocreationmedia.blob.core.windows.net/quickflick/custom-backgrounds/output/img2.mp4",
+        "thumbnail": "https://videocreationmedia.blob.core.windows.net/quickflick/custom-backgrounds/thumbnails300/img2.png",
+        "productTypes": "easyaccess",
+        "clipLength": 0,
+        "sceneLength": 0,
+        "trimStart": 0,
+        "alignment": 50,
+        "posX": 50,
+        "posY": 50,
+        "width": 100,
+        "height": 100,
+        "scale": 100,
+        "rotation": 0,
+        "elementWidth": 1920,
+        "elementHeight": 1080,
+        "fit": "cover",
+        "versions": [],
+        "versionIndex": 0
+      },
+      "type": "solid",
+      "blendValue": 0,
+      "info": {
+        "id": "h0054l6kr"
+      }
+    },
+    "logo_info": {
+      "logoSrc": {
+        "id": "85dl78zf0",
+        "uiId": "clechip1k",
+        "title": "my media image",
+        "caption": "my media image",
+        "artist": "my media image",
+        "source": "azure",
+        "type": "image",
+        "mediaIndex": 0,
+        "mediaId": "85dl78zf0",
+        "mediaLabel": "unknown",
+        "mediaSource": "azure",
+        "mediaType": "image",
+        "src": "https://videocreationmedia.blob.core.windows.net/company-103/images/C4D7AD10-A80A-C171-65DD-220CFC8A0258.png",
+        "thumbnail": "https://videocreationmedia.blob.core.windows.net/company-103/images/C4D7AD10-A80A-C171-65DD-220CFC8A0258.png",
+        "productTypes": "easyaccess",
+        "clipLength": 0,
+        "sceneLength": 0,
+        "trimStart": 0,
+        "alignment": 50,
+        "posX": 50,
+        "posY": 50,
+        "width": 100,
+        "height": 100,
+        "scale": 100,
+        "rotation": 0,
+        "elementWidth": 100,
+        "elementHeight": 100,
+        "fit": "contain",
+        "versions": [],
+        "versionIndex": 0,
+        "small_image": "https://videocreationmedia.blob.core.windows.net/company-103/images/C4D7AD10-A80A-C171-65DD-220CFC8A0258.png"
+      },
+      "use": true,
+      "placement": 7,
+      "size": "medium",
+      "manualPosition": false,
+      "positioning": "\nl-offsetx-27\nl-offsety-1\nl-x-4\nl-y-4\ns-offsetx-13\ns-offsety-1\ns-x-4\ns-y-4\np-offsetx-13\np-offsety-1\np-x-4\np-y-4\nsiminn-offsetx-13\nsiminn-offsety-1\nsiminn-x-4\nsiminn-y-4\nbillboard1-offsetx-27\nbillboard1-offsety-1\nbillboard1-x-4\nbillboard1-y-4"
+    },
+    "text_info": {
+      "fontInfo": {
+        "h1": {
+          "font": "Montserrat",
+          "src": "https://fonts.gstatic.com/s/montserrat/v30/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Ew-Y3tcoqK5.ttf",
+          "fontColor": "color6",
+          "weight": "default",
+          "style": "regular",
+          "stroke": 0,
+          "strokeColor": "color6",
+          "shadowId": -1,
+          "shadowColor": 6,
+          "textureId": -1
+        },
+        "h2": {
+          "font": "Poppins",
+          "src": "https://fonts.gstatic.com/s/poppins/v23/pxiByp8kv8JHgFVrLEj6V1tvFP-KUEg.ttf",
+          "fontColor": "color6",
+          "weight": "600",
+          "style": "regular",
+          "stroke": 0,
+          "strokeColor": "color6",
+          "shadowId": -1,
+          "shadowColor": 6,
+          "textureId": -1
+        },
+        "body": {
+          "font": "Work Sans",
+          "src": "https://fonts.gstatic.com/s/worksans/v23/QGY_z_wNahGAdqQ43RhVcIgYT2Xz5u32K0nXNigDp6_cOyA.ttf",
+          "fontColor": "color6",
+          "weight": "default",
+          "style": "regular",
+          "stroke": 0,
+          "strokeColor": "color6",
+          "shadowId": -1,
+          "shadowColor": 6,
+          "textureId": -1
+        },
+        "subtitle": {
+          "font": "Rubik",
+          "src": "https://fonts.gstatic.com/s/rubik/v30/iJWZBXyIfDnIV5PNhY1KTN7Z-Yh-B4i1UE80V4bVkA.ttf",
+          "fontColor": "color6",
+          "weight": "default",
+          "style": "regular",
+          "stroke": 0,
+          "strokeColor": "color6",
+          "shadowId": -1,
+          "shadowColor": 6,
+          "textureId": -1
+        }
+      },
+      "textboxInfo": {
+        "h1Box": {
+          "display": true,
+          "color": "custom",
+          "overwriteColor": "#000000",
+          "opacity": 33,
+          "strokeColor": "custom",
+          "overwriteStrokeColor": "#137A54",
+          "strokeWidth": 0,
+          "borderRadius": 0,
+          "texture": -1,
+          "textShadow": -1,
+          "textStrokeColor": "custom",
+          "textStrokeWidth": 0,
+          "textOverwriteStrokeColor": "#ffffff",
+          "font": "Montserrat",
+          "style": "regular",
+          "weight": "default"
+        },
+        "bodyBox": {
+          "display": true,
+          "color": "custom",
+          "overwriteColor": "#000000",
+          "opacity": 33,
+          "strokeColor": "custom",
+          "overwriteStrokeColor": "#137A54",
+          "strokeWidth": 0,
+          "borderRadius": 0,
+          "texture": -1,
+          "textShadow": -1,
+          "textStrokeColor": "custom",
+          "textStrokeWidth": 0,
+          "textOverwriteStrokeColor": "#ffffff",
+          "font": "Montserrat",
+          "style": "regular",
+          "weight": "default"
+        },
+        "shapeBox": {
+          "display": true,
+          "color": "custom",
+          "overwriteColor": "#000000",
+          "opacity": 33,
+          "strokeColor": "custom",
+          "overwriteStrokeColor": "#137A54",
+          "strokeWidth": 0,
+          "borderRadius": 0,
+          "texture": -1,
+          "textShadow": -1,
+          "textStrokeColor": "custom",
+          "textStrokeWidth": 0,
+          "textOverwriteStrokeColor": "#ffffff",
+          "font": "Montserrat",
+          "style": "regular",
+          "weight": "default"
+        },
+        "info": {
+          "id": 813249
+        }
+      }
+    },
+    "banner_id": "12",
+    "outro_id": "12",
+    "is_trial": false,
+    "logo_banner_positioning": {
+      "landscape": {
+        "width": 12.5961,
+        "height": 9.265,
+        "x": 89.0144,
+        "y": 87.3642,
+        "rotation": 0
+      }
+    },
+    "logo_outro_positioning": {
+      "landscape": {
+        "width": 17.677,
+        "height": 16.7256,
+        "x": 15.7801,
+        "y": 83.3039,
+        "rotation": 0
+      }
+    }
+  }
+}
