@@ -25,9 +25,7 @@ export class WebAudioMusicManager {
   private duckingFadeInDuration: number = 1500; // 1.5s fade when voice starts
   private duckingFadeOutDuration: number = 2000; // 2s fade when voice ends
 
-  constructor() {
-    console.log("🎵 WebAudioMusicManager initialized");
-  }
+  constructor() {}
 
   /**
    * Load background music from project data
@@ -37,12 +35,6 @@ export class WebAudioMusicManager {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _totalDuration: number,
   ): Promise<void> {
-    console.log(`🎵 Loading background music: ${musicConfig.songTitle}`);
-    console.log(`🎵 Music URL: ${musicConfig.songPreviewUrl}`);
-    console.log(`🎵 Music volume: ${musicConfig.volume}%`);
-    console.log(`🎵 Music trimStart: ${musicConfig.trimStart}s`);
-    console.log(`🎵 Music duration: ${musicConfig.songDuration}s`);
-
     this.musicConfig = musicConfig;
 
     // Use volume from JSON (0-100) normalized to 0.0-1.0
@@ -65,26 +57,14 @@ export class WebAudioMusicManager {
       soundInstance: undefined,
     };
 
-    try {
-      // Load music using Web Audio API
-      this.audioBuffer = await webAudioManager.loadAudioBuffer(
-        musicConfig.songPreviewUrl,
-      );
+    // Load music using Web Audio API
+    this.audioBuffer = await webAudioManager.loadAudioBuffer(
+      musicConfig.songPreviewUrl,
+    );
 
-      // Update state after loading
-      this.musicState.isLoaded = true;
-      this.musicState.duration = this.audioBuffer.duration * 1000; // Convert to ms
-
-      console.log(
-        `✅ Background music loaded: ${musicConfig.songTitle} (${this.musicState.duration}ms, Web Audio API)`,
-      );
-    } catch (error) {
-      console.error(
-        `Failed to load background music: ${musicConfig.songTitle}`,
-        error,
-      );
-      throw error;
-    }
+    // Update state after loading
+    this.musicState.isLoaded = true;
+    this.musicState.duration = this.audioBuffer.duration * 1000; // Convert to ms
   }
 
   /**
@@ -92,30 +72,16 @@ export class WebAudioMusicManager {
    */
   async startPlayback(startTime: number = 0): Promise<void> {
     if (!this.musicState || !this.musicState.isLoaded || !this.audioBuffer) {
-      console.warn("🎵 Cannot start music: not loaded");
-      console.warn("🎵 Music state:", this.musicState);
       return;
     }
-
-    console.log(`🎵 Starting background music at ${startTime}ms`);
-    console.log(`🎵 Music config:`, this.musicConfig);
-    console.log(`🎵 Music state:`, this.musicState);
 
     try {
       // Resume audio context if suspended
       await webAudioManager.resumeContext();
 
       // Stop any existing playback
-      console.log(
-        "🔍 startPlaybook() - checking existing source:",
-        !!this.audioSource,
-      );
       if (this.audioSource) {
-        console.log(
-          "🛑 Stopping existing audio source before starting new one",
-        );
         await this.stopPlayback();
-        console.log("✅ Existing audio source stopped");
       }
 
       // Calculate start time including trimStart offset
@@ -135,10 +101,6 @@ export class WebAudioMusicManager {
           ((playStartTime - trimStartSeconds) % effectiveMusicDuration);
       }
 
-      console.log(
-        `🎵 Music playback: startTime=${startTime}ms, trimStart=${trimStartSeconds}s, finalPlayTime=${playStartTime.toFixed(2)}s`,
-      );
-
       // Create and start audio source
       this.audioSource = webAudioManager.createAudioSource(
         this.audioBuffer,
@@ -154,41 +116,20 @@ export class WebAudioMusicManager {
         this.startTimeOffset = webAudioManager.getCurrentTime() - playStartTime;
         this.pausedAt = 0;
 
-        console.log("✅ Music state updated after source creation:");
-        console.log("  musicState.isPlaying:", this.musicState.isPlaying);
-        console.log("  isActuallyPlaying:", this.isActuallyPlaying);
-        console.log("  startTimeOffset:", this.startTimeOffset);
-        console.log("  playStartTime:", playStartTime);
-
         // Handle source end (for non-looping music)
         this.audioSource.onended = () => {
-          console.log(
-            "🎵 Audio source ended - loop config:",
-            this.musicConfig?.loop,
-          );
           if (!this.musicConfig?.loop) {
-            console.log(
-              "🛑 Setting isPlaying to false - music ended (non-looping)",
-            );
             this.musicState!.isPlaying = false;
             this.isActuallyPlaying = false;
             this.audioSource = null;
-            console.log("🎵 Background music ended");
           }
         };
 
         // Fade in music
         this.fadeToVolume(this.currentTargetVolume, this.getFadeInDuration());
-
-        console.log(
-          `🎵 Background music started successfully with Web Audio API`,
-        );
-        console.log(`🎵 Target volume:`, this.currentTargetVolume);
-      } else {
-        console.error("🎵 Failed to create audio source for background music");
       }
-    } catch (error) {
-      console.error("Failed to start background music:", error);
+    } catch {
+      // Failed to start background music
     }
   }
 
@@ -196,36 +137,20 @@ export class WebAudioMusicManager {
    * Pause music playback
    */
   pausePlayback(): void {
-    console.log("🔍 pausePlayback() called - debugging state:");
-    console.log("  musicState exists:", !!this.musicState);
-    console.log("  musicState.isPlaying:", this.musicState?.isPlaying);
-    console.log("  audioSource exists:", !!this.audioSource);
-    console.log("  isActuallyPlaying:", this.isActuallyPlaying);
-    console.log("  trimStart:", this.musicConfig?.trimStart);
-
     if (
       !this.musicState ||
       !this.musicState.isPlaying ||
       !this.audioSource ||
       !this.isActuallyPlaying
     ) {
-      console.log(
-        "🚫 pausePlayback() early return - one of the conditions failed",
-      );
       return;
     }
-
-    console.log("🎵 Pausing background music");
 
     // Calculate where we paused (subtract trimStart to get timeline position)
     const currentTime = webAudioManager.getCurrentTime();
     const audioFilePosition = currentTime - this.startTimeOffset;
     const trimStartSeconds = this.musicConfig?.trimStart || 0;
     this.pausedAt = Math.max(0, audioFilePosition - trimStartSeconds);
-
-    console.log(
-      `🎵 Paused at audioPosition=${audioFilePosition.toFixed(2)}s, trimStart=${trimStartSeconds}s, timelinePosition=${this.pausedAt.toFixed(2)}s`,
-    );
 
     // Stop the current source
     webAudioManager.stopAudioSource(this.audioSource);
@@ -242,8 +167,6 @@ export class WebAudioMusicManager {
     if (!this.musicState || !this.audioSource) {
       return;
     }
-
-    console.log("🎵 Stopping background music");
 
     // Fade out then stop
     if (this.isActuallyPlaying) {
@@ -283,10 +206,6 @@ export class WebAudioMusicManager {
       : this.duckingFadeOutDuration / 1000; // 2s to come back up (when voice ends)
 
     this.fadeToVolume(targetVolume, fadeDuration);
-
-    console.log(
-      `🎵 Music volume ${isDucking ? "ducking" : "restoring"} to ${Math.round(targetVolume * 100)}% over ${fadeDuration}s`,
-    );
   }
 
   /**
@@ -354,9 +273,7 @@ export class WebAudioMusicManager {
 
       this.musicState.currentTime = timeMs;
     } else {
-      console.warn(
-        `⚠️ Cannot seek music to ${timeMs}ms, duration is ${this.musicState.duration}ms`,
-      );
+      // Cannot seek music beyond duration
     }
   }
 
@@ -389,8 +306,7 @@ export class WebAudioMusicManager {
 
     // If drift is significant, correct it
     if (drift > syncThreshold) {
-      console.log(`🔧 Music sync correction: drift ${Math.round(drift)}ms`);
-      this.seekToTime(expectedTimeMs).catch(console.error);
+      this.seekToTime(expectedTimeMs).catch(() => {});
     }
 
     // Update internal state
@@ -404,8 +320,6 @@ export class WebAudioMusicManager {
     if (!this.musicState || this.isActuallyPlaying || this.pausedAt === 0) {
       return;
     }
-
-    console.log("🎵 Resuming background music");
 
     await this.startPlayback(this.pausedAt * 1000);
   }
@@ -448,16 +362,7 @@ export class WebAudioMusicManager {
    * Check if music is currently playing
    */
   isPlaying(): boolean {
-    const result = this.musicState?.isPlaying || false;
-    console.log(
-      "🔍 isPlaying() called - result:",
-      result,
-      "musicState.isPlaying:",
-      this.musicState?.isPlaying,
-      "isActuallyPlaying:",
-      this.isActuallyPlaying,
-    );
-    return result;
+    return this.musicState?.isPlaying || false;
   }
 
   /**
@@ -485,8 +390,6 @@ export class WebAudioMusicManager {
    * Clean up music resources
    */
   destroy(): void {
-    console.log("🗑️ WebAudioMusicManager cleanup");
-
     if (this.audioSource) {
       webAudioManager.stopAudioSource(this.audioSource);
       this.audioSource = null;

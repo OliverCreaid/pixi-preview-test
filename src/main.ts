@@ -79,7 +79,7 @@ class VideoPreviewApp {
   }
 
   async initialize(): Promise<void> {
-    console.log(window.location);
+    //console.log(window.location);
 
     // Initialize PixiJS scene
     await this.sceneManager.initialize();
@@ -87,7 +87,7 @@ class VideoPreviewApp {
     if (this.isInIframe) {
       // When in iframe, wait for project data via postMessage
       this.loadingProgress.setStatus("Waiting for project data...");
-      console.log("🖼️ Running in iframe mode - waiting for project data");
+      //console.log("🖼️ Running in iframe mode - waiting for project data");
 
       // Notify parent that we're ready to receive data
       this.postMessageToParent("READY");
@@ -96,7 +96,7 @@ class VideoPreviewApp {
       await this.loadAndPreloadTestProject();
     }
 
-    console.log("Video Preview App initialized");
+    //console.log("Video Preview App initialized");
   }
 
   /**
@@ -116,9 +116,9 @@ class VideoPreviewApp {
       this.totalDuration = totalDuration;
       this.timelineState.totalDuration = totalDuration;
 
-      console.log(
-        `Loaded project with ${scenes.length} scenes, duration: ${totalDuration}ms`,
-      );
+      //console.log(
+      //   `Loaded project with ${scenes.length} scenes, duration: ${totalDuration}ms`
+      // );
 
       // Start preloading all assets
       this.loadingProgress.setStatus("Preloading assets...");
@@ -128,9 +128,9 @@ class VideoPreviewApp {
       // Store preloaded assets for distribution to scene renderers
       this.preloadedSprites = sprites;
       this.preloadedAudio = audio;
-      console.log(
-        `📦 Preloaded ${sprites.size} sprites and ${audio.size} audio files`,
-      );
+      //console.log(
+      //   `📦 Preloaded ${sprites.size} sprites and ${audio.size} audio files`
+      // );
 
       // Load background music if available
       if (projectData.audio?.music) {
@@ -139,9 +139,9 @@ class VideoPreviewApp {
           projectData.audio.music,
           totalDuration,
         );
-        console.log(
-          `🎵 Background music loaded: ${projectData.audio.music.songTitle}`,
-        );
+        //console.log(
+        //   `🎵 Background music loaded: ${projectData.audio.music.songTitle}`
+        // );
       }
 
       // Hide loading screen
@@ -199,7 +199,7 @@ class VideoPreviewApp {
     });
 
     this.preloader.onComplete(() => {
-      console.log("🎉 All assets preloaded successfully!");
+      //console.log("🎉 All assets preloaded successfully!");
     });
   }
 
@@ -242,13 +242,13 @@ class VideoPreviewApp {
 
     // Display media assets with scene relative time
     if (scene.mediaAssets.length > 0) {
-      console.log(
-        `🎬 Loading ${scene.mediaAssets.length} media assets for scene ${sceneIndex}, sceneRelativeTime: ${sceneRelativeTime}ms`,
-      );
-      console.log(
-        `📦 Preloaded sprites available:`,
-        this.preloadedSprites.size,
-      );
+      //console.log(
+      //   `🎬 Loading ${scene.mediaAssets.length} media assets for scene ${sceneIndex}, sceneRelativeTime: ${sceneRelativeTime}ms`
+      // );
+      //console.log(
+      //   `📦 Preloaded sprites available:`,
+      //   this.preloadedSprites.size
+      // );
 
       await sceneContainer.mediaRenderer.displayMedia(
         scene.mediaAssets,
@@ -256,11 +256,11 @@ class VideoPreviewApp {
       );
 
       // Debug: Check if container has children after loading
-      const mediaLayerChildren =
-        sceneContainer.container.children[0]?.children?.length || 0;
-      console.log(`📊 Media layer children count: ${mediaLayerChildren}`);
+      //const mediaLayerChildren =
+      //  sceneContainer.container.children[0]?.children?.length || 0;
+      //console.log(`📊 Media layer children count: ${mediaLayerChildren}`);
     } else {
-      console.log(`⚠️  No media assets for scene ${sceneIndex}`);
+      //console.log(`⚠️  No media assets for scene ${sceneIndex}`);
     }
 
     // Display text overlays
@@ -270,9 +270,9 @@ class VideoPreviewApp {
 
     // Load and prepare audio if scene has voice element
     if (scene.voiceElement && sceneContainer.audioRenderer) {
-      console.log(
-        `🎵 Loading audio for scene ${sceneIndex}: ${scene.voiceElement.value}`,
-      );
+      //console.log(
+      //   `🎵 Loading audio for scene ${sceneIndex}: ${scene.voiceElement.value}`
+      // );
       await sceneContainer.audioRenderer.loadVoiceElement(scene.voiceElement);
 
       // If timeline is playing, start audio at the correct time
@@ -292,9 +292,9 @@ class VideoPreviewApp {
       forceInstant || isFirstScene,
     );
 
-    console.log(
-      `🎬 Displayed scene ${sceneIndex}: ${scene.textElements.map((t) => t.value).join(", ")} (${scene.mediaAssets.length} media items)`,
-    );
+    //console.log(
+    //   `🎬 Displayed scene ${sceneIndex}: ${scene.textElements.map((t) => t.value).join(", ")} (${scene.mediaAssets.length} media items)`
+    // );
   }
 
   /**
@@ -577,6 +577,7 @@ class VideoPreviewApp {
    * Pause background music
    */
   private pauseBackgroundMusic(): void {
+    //console.log("Pause BG Music", this.musicManager.isPlaying());
     if (this.musicManager.isPlaying()) {
       this.musicManager.pausePlayback();
     }
@@ -612,7 +613,7 @@ class VideoPreviewApp {
       this.isScrubbing = true;
       this.wasPlayingBeforeScrub = this.timelineState.isPlaying;
 
-      console.log("🎵 Pausing audio for timeline scrubbing");
+      //console.log("🎵 Pausing audio for timeline scrubbing");
 
       // Pause all audio
       this.pauseAllAudio();
@@ -622,7 +623,7 @@ class VideoPreviewApp {
       this.isScrubbing = false;
 
       if (this.wasPlayingBeforeScrub && this.timelineState.isPlaying) {
-        console.log("🎵 Resuming audio after timeline scrubbing");
+        //console.log("🎵 Resuming audio after timeline scrubbing");
 
         // Resume audio for current scene and background music
         this.startCurrentSceneAudio();
@@ -650,7 +651,7 @@ class VideoPreviewApp {
    * Setup iframe messaging system
    */
   private setupIframeMessaging(): void {
-    console.log("🔗 Setting up iframe messaging");
+    //console.log("🔗 Setting up iframe messaging");
 
     window.addEventListener("message", (event) => {
       // Basic security check - in production you'd want to check event.origin
@@ -674,7 +675,7 @@ class VideoPreviewApp {
     projectData: ProjectData,
   ): Promise<void> {
     try {
-      console.log("📥 Received project data from parent");
+      //console.log("📥 Received project data from parent");
 
       // Process the project data (same logic as loadAndPreloadTestProject)
       await this.loadAndPreloadProjectData(projectData);
@@ -712,9 +713,9 @@ class VideoPreviewApp {
       this.totalDuration = totalDuration;
       this.timelineState.totalDuration = totalDuration;
 
-      console.log(
-        `Loaded project with ${scenes.length} scenes, duration: ${totalDuration}ms`,
-      );
+      //console.log(
+      //   `Loaded project with ${scenes.length} scenes, duration: ${totalDuration}ms`
+      // );
 
       // Start preloading all assets
       this.loadingProgress.setStatus("Preloading assets...");
@@ -724,9 +725,9 @@ class VideoPreviewApp {
       // Store preloaded assets for distribution to scene renderers
       this.preloadedSprites = sprites;
       this.preloadedAudio = audio;
-      console.log(
-        `📦 Preloaded ${sprites.size} sprites and ${audio.size} audio files`,
-      );
+      //console.log(
+      //   `📦 Preloaded ${sprites.size} sprites and ${audio.size} audio files`
+      // );
 
       // Load background music if available
       if (projectData.audio?.music) {
@@ -735,9 +736,9 @@ class VideoPreviewApp {
           projectData.audio.music,
           totalDuration,
         );
-        console.log(
-          `🎵 Background music loaded: ${projectData.audio.music.songTitle}`,
-        );
+        //console.log(
+        //   `🎵 Background music loaded: ${projectData.audio.music.songTitle}`
+        // );
       }
 
       // Hide loading screen

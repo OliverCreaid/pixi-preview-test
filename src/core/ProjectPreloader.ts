@@ -45,7 +45,7 @@ export class ProjectPreloader {
     sprites: Map<string, Sprite>;
     audio: Map<string, HTMLAudioElement>;
   }> {
-    console.log("🚀 Starting global asset preloading (images + audio)...");
+    //console.log("🚀 Starting global asset preloading (images + audio)...");
 
     // Parse project to get all scenes and assets
     const { scenes } = ProjectParser.parseProject(projectData);
@@ -55,9 +55,9 @@ export class ProjectPreloader {
     const allAudioAssets = this.collectAllAudioAssets(scenes);
     this.totalAssets = allMediaAssets.length + allAudioAssets.length;
 
-    console.log(
-      `📦 Found ${allMediaAssets.length} media assets and ${allAudioAssets.length} audio assets to preload`,
-    );
+    //console.log(
+    //   `📦 Found ${allMediaAssets.length} media assets and ${allAudioAssets.length} audio assets to preload`,
+    // );
 
     // Load media assets
     await this.loadAllAssets(allMediaAssets);
@@ -65,7 +65,7 @@ export class ProjectPreloader {
     // Load audio assets
     await this.loadAllAudioAssets(allAudioAssets);
 
-    console.log("✅ Global asset preloading complete (images + audio)!");
+    //console.log("✅ Global asset preloading complete (images + audio)!");
 
     if (this.onCompleteCallback) {
       this.onCompleteCallback();
@@ -148,7 +148,7 @@ export class ProjectPreloader {
    */
   private async loadAllAudioAssets(audioAssets: VoiceElement[]): Promise<void> {
     if (audioAssets.length === 0) {
-      console.log("🎵 No audio assets to load");
+      //console.log("🎵 No audio assets to load");
       return;
     }
 
@@ -182,7 +182,7 @@ export class ProjectPreloader {
       }
     }
 
-    console.log(`🎵 Loaded ${loadedCount} audio assets`);
+    //console.log(`🎵 Loaded ${loadedCount} audio assets`);
   }
 
   /**
@@ -214,7 +214,7 @@ export class ProjectPreloader {
 
     // Store preloaded audio
     this.preloadedAudio.set(voiceElement.value, audio);
-    console.log(`✅ Audio loaded: ${voiceElement.value} (${audio.duration}s)`);
+    //console.log(`✅ Audio loaded: ${voiceElement.value} (${audio.duration}s)`);
   }
 
   /**

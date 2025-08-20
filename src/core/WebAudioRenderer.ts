@@ -24,8 +24,6 @@ export class WebAudioRenderer {
       crossfadeDuration: 300,
       ...config,
     };
-
-    console.log("🎵 WebAudioRenderer initialized with config:", this.config);
   }
 
   /**
@@ -33,11 +31,8 @@ export class WebAudioRenderer {
    */
   async loadVoiceElement(voiceElement: VoiceElement): Promise<void> {
     if (!this.config.enabled) {
-      console.log("🔇 Audio disabled, skipping voice element load");
       return;
     }
-
-    console.log(`🎵 Loading voice element: ${voiceElement.value}`);
 
     // Create audio state
     this.audioState = {
@@ -52,26 +47,14 @@ export class WebAudioRenderer {
 
     this.currentVoiceElement = voiceElement;
 
-    try {
-      // Load audio buffer using Web Audio API
-      this.audioBuffer = await webAudioManager.loadAudioBuffer(
-        voiceElement.value,
-      );
+    // Load audio buffer using Web Audio API
+    this.audioBuffer = await webAudioManager.loadAudioBuffer(
+      voiceElement.value,
+    );
 
-      // Update state after loading
-      this.audioState.isLoaded = true;
-      this.audioState.duration = this.audioBuffer.duration * 1000; // Convert to ms
-
-      console.log(
-        `✅ Voice element loaded: ${voiceElement.value} (${this.audioState.duration}ms)`,
-      );
-    } catch (error) {
-      console.error(
-        `Failed to load voice element: ${voiceElement.value}`,
-        error,
-      );
-      throw error;
-    }
+    // Update state after loading
+    this.audioState.isLoaded = true;
+    this.audioState.duration = this.audioBuffer.duration * 1000; // Convert to ms
   }
 
   /**
@@ -86,8 +69,6 @@ export class WebAudioRenderer {
     ) {
       return;
     }
-
-    console.log(`▶️ Starting audio playback at ${startTime}ms`);
 
     try {
       // Resume audio context if suspended (handles autoplay policies and tab switching)
@@ -119,18 +100,13 @@ export class WebAudioRenderer {
           this.audioState!.isPlaying = false;
           this.isActuallyPlaying = false;
           this.audioSource = null;
-          console.log("🎵 Voice audio ended");
         };
 
         // Fade in
         this.fadeIn();
-
-        console.log(
-          `🎵 Audio playback started successfully with Web Audio API`,
-        );
       }
-    } catch (error) {
-      console.error("Failed to start audio playback:", error);
+    } catch {
+      // Failed to start audio playback
     }
   }
 
@@ -141,8 +117,6 @@ export class WebAudioRenderer {
     if (!this.audioState || !this.audioSource || !this.isActuallyPlaying) {
       return;
     }
-
-    console.log("⏸️ Pausing audio playback");
 
     // Calculate where we paused
     const currentTime = webAudioManager.getCurrentTime();
@@ -162,8 +136,6 @@ export class WebAudioRenderer {
     if (!this.audioState || !this.audioSource) {
       return;
     }
-
-    console.log("⏹️ Stopping audio playback");
 
     // Fade out then stop
     if (this.isActuallyPlaying) {
@@ -232,9 +204,7 @@ export class WebAudioRenderer {
 
       this.audioState.currentTime = timeMs;
     } else {
-      console.warn(
-        `⚠️ Cannot seek to ${timeMs}ms, audio duration is ${this.audioState.duration}ms`,
-      );
+      // Cannot seek beyond audio duration
     }
   }
 
@@ -259,8 +229,7 @@ export class WebAudioRenderer {
 
     // If drift is significant, correct it
     if (drift > syncThreshold) {
-      console.log(`🔧 Audio sync correction: drift ${Math.round(drift)}ms`);
-      this.seekToTime(expectedTimeMs).catch(console.error);
+      this.seekToTime(expectedTimeMs).catch(() => {});
     }
 
     // Update internal state
@@ -274,8 +243,6 @@ export class WebAudioRenderer {
     if (!this.audioState || this.isActuallyPlaying || this.pausedAt === 0) {
       return;
     }
-
-    console.log("▶️ Resuming audio playback");
 
     await this.startPlayback(this.pausedAt * 1000);
   }
@@ -334,8 +301,6 @@ export class WebAudioRenderer {
         webAudioManager.setSourceVolume(this.audioSource, this.config.volume);
       }
     }
-
-    console.log(`🔊 Audio volume set to ${this.config.volume}`);
   }
 
   /**
@@ -371,15 +336,12 @@ export class WebAudioRenderer {
    */
   updateConfig(newConfig: Partial<AudioConfig>): void {
     this.config = { ...this.config, ...newConfig };
-    console.log("🔧 Audio config updated:", this.config);
   }
 
   /**
    * Clean up audio resources
    */
   destroy(): void {
-    console.log("🗑️ WebAudioRenderer cleanup");
-
     if (this.audioSource) {
       webAudioManager.stopAudioSource(this.audioSource);
       this.audioSource = null;

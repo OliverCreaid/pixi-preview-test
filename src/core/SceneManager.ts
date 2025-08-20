@@ -133,9 +133,9 @@ export class SceneManager {
     let audioRenderer: WebAudioRenderer | undefined;
     if (voiceElement) {
       audioRenderer = new WebAudioRenderer();
-      console.log(
-        `🎵 Created WebAudioRenderer for scene ${sceneIndex} with voice: ${voiceElement.value}`,
-      );
+      //console.log(
+      //   `🎵 Created WebAudioRenderer for scene ${sceneIndex} with voice: ${voiceElement.value}`,
+      // );
     }
 
     // Create scene container object
@@ -153,9 +153,9 @@ export class SceneManager {
     this.sceneContainers.set(sceneIndex, sceneContainerObj);
     this.transitionManager.registerSceneContainer(sceneContainerObj);
 
-    console.log(
-      `🎬 Created scene container ${sceneIndex}${voiceElement ? " with audio" : ""}`,
-    );
+    //console.log(
+    //   `🎬 Created scene container ${sceneIndex}${voiceElement ? " with audio" : ""}`,
+    // );
     return sceneContainerObj;
   }
 
@@ -298,9 +298,9 @@ export class SceneManager {
     this.mainContainer.x = (newWidth - designWidth * scale) / 2;
     this.mainContainer.y = (newHeight - designHeight * scale) / 2;
 
-    console.log(
-      `🔄 Resized canvas to ${newWidth}x${newHeight}, content scale: ${scale.toFixed(3)}`,
-    );
+    //console.log(
+    //   `🔄 Resized canvas to ${newWidth}x${newHeight}, content scale: ${scale.toFixed(3)}`,
+    // );
   }
 
   /**

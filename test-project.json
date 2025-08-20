@@ -2357,7 +2357,7 @@
       "songDuration": 117.984,
       "songPreviewUrl": "https://videocreationmedia.blob.core.windows.net/quickflick/audio/music_tracks/_istant__ignals.mp3",
       "songThumbnailUrl": "https://videocreationmedia.blob.core.windows.net/quickflick/audio/music_tracks/_istant__ignals.mp3",
-      "trimStart": 20,
+      "trimStart": 0,
       "volume": 13,
       "beatTimes": [
         0.23, 0.55, 0.89, 1.22, 1.54, 1.86, 2.18, 2.5, 2.82, 3.14, 3.46, 3.8,
@@ -2398,7 +2398,8 @@
       ],
       "thumbnail": "",
       "source": "trial",
-      "color": "#42f061"
+      "color": "#42f061",
+      "loop": true
     },
     "voice": {
       "displayName": "Aria",

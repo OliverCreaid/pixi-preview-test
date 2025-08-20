@@ -28,9 +28,8 @@ export class WebAudioManager {
       this.gainNode.connect(this.audioContext.destination);
 
       this.isInitialized = true;
-      console.log("🎵 Web Audio Context initialized");
-    } catch (error) {
-      console.error("Failed to initialize Web Audio Context:", error);
+    } catch {
+      // Failed to initialize Web Audio Context
     }
   }
 
@@ -58,12 +57,10 @@ export class WebAudioManager {
     if (!this.audioContext) return;
 
     if (this.audioContext.state === "suspended") {
-      console.log("🎵 Resuming suspended Audio Context");
       try {
         await this.audioContext.resume();
-        console.log("🎵 Audio Context resumed successfully");
-      } catch (error) {
-        console.error("Failed to resume Audio Context:", error);
+      } catch {
+        // Failed to resume Audio Context
       }
     }
   }
@@ -76,19 +73,10 @@ export class WebAudioManager {
       throw new Error("Audio context not initialized");
     }
 
-    try {
-      const response = await fetch(url);
-      const arrayBuffer = await response.arrayBuffer();
-      const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-
-      console.log(
-        `🎵 Loaded audio buffer: ${url} (${audioBuffer.duration.toFixed(2)}s)`,
-      );
-      return audioBuffer;
-    } catch (error) {
-      console.error(`Failed to load audio from ${url}:`, error);
-      throw error;
-    }
+    const response = await fetch(url);
+    const arrayBuffer = await response.arrayBuffer();
+    const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+    return audioBuffer;
   }
 
   /**
@@ -101,7 +89,6 @@ export class WebAudioManager {
     loop: boolean = false,
   ): AudioBufferSourceNode | null {
     if (!this.audioContext || !this.gainNode) {
-      console.warn("Audio context not available");
       return null;
     }
 
@@ -115,9 +102,6 @@ export class WebAudioManager {
       if (loop && startTime > 0) {
         source.loopStart = startTime;
         source.loopEnd = audioBuffer.duration;
-        console.log(
-          `🔄 Set loop points: start=${startTime.toFixed(2)}s, end=${audioBuffer.duration.toFixed(2)}s`,
-        );
       }
 
       // Create gain node for this source
@@ -134,16 +118,11 @@ export class WebAudioManager {
 
       source.start(when, offset);
 
-      console.log(
-        `🎵 Started audio source at offset ${offset.toFixed(2)}s, volume ${volume}`,
-      );
-
       // Store gain node reference for volume control
       (source as AudioBufferSourceNode & { __gainNode: GainNode }).__gainNode =
         sourceGain;
       return source;
-    } catch (error) {
-      console.error("Failed to create audio source:", error);
+    } catch {
       return null;
     }
   }
@@ -155,9 +134,8 @@ export class WebAudioManager {
     try {
       source.stop();
       source.disconnect();
-    } catch (error) {
+    } catch {
       // Source might already be stopped
-      console.warn("Error stopping audio source:", error);
     }
   }
 
@@ -214,7 +192,6 @@ export class WebAudioManager {
       this.audioContext = null;
       this.gainNode = null;
       this.isInitialized = false;
-      console.log("🗑️ Web Audio Context destroyed");
     }
   }
 }
