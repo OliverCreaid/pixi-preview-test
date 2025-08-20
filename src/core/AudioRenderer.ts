@@ -267,8 +267,24 @@ export class AudioRenderer {
 
     this.lastSyncTime = currentTime;
 
+    // Check if sound instance is actually playing (handles tab switching)
+    const soundInstance = this.audioState.soundInstance;
+    if (soundInstance.paused) {
+      // Audio was paused by browser (likely due to tab switching)
+      console.log("🔧 Voice audio was paused by browser - resuming");
+      try {
+        soundInstance.paused = false;
+      } catch (error) {
+        console.warn(
+          "Failed to resume voice audio after browser pause:",
+          error,
+        );
+        return;
+      }
+    }
+
     // PIXI Sound instances track their progress (0-1), convert to time
-    const progress = this.audioState.soundInstance.progress || 0;
+    const progress = soundInstance.progress || 0;
     const actualTimeMs = progress * this.audioState.duration;
     const drift = Math.abs(expectedTimeMs - actualTimeMs);
 

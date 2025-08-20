@@ -3,7 +3,7 @@ import { ProjectParser } from "./core/ProjectParser";
 import { Timeline } from "./components/Timeline";
 import { ProjectPreloader } from "./core/ProjectPreloader";
 import { LoadingProgress } from "./components/LoadingProgress";
-import { GlobalMusicManager } from "./core/GlobalMusicManager";
+import { WebAudioMusicManager } from "./core/WebAudioMusicManager";
 import {
   ProjectData,
   SceneInfo,
@@ -20,7 +20,7 @@ class VideoPreviewApp {
   private timeline: Timeline;
   private preloader: ProjectPreloader;
   private loadingProgress: LoadingProgress;
-  private musicManager: GlobalMusicManager;
+  private musicManager: WebAudioMusicManager;
 
   // Transition configuration
   private transitionConfig: TransitionConfig = {
@@ -67,7 +67,7 @@ class VideoPreviewApp {
     this.loadingProgress = new LoadingProgress(appContainer);
 
     // Initialize music manager
-    this.musicManager = new GlobalMusicManager();
+    this.musicManager = new WebAudioMusicManager();
 
     this.setupEventListeners();
     this.setupPreloaderCallbacks();

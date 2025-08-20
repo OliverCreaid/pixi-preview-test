@@ -2,7 +2,7 @@ import { Application, Container } from "pixi.js";
 import { TransitionManager } from "./TransitionManager";
 import { MediaRenderer } from "./MediaRenderer";
 import { TextRenderer } from "./TextRenderer";
-import { AudioRenderer } from "./AudioRenderer";
+import { WebAudioRenderer } from "./WebAudioRenderer";
 import { SceneContainer, TransitionConfig, VoiceElement } from "../types";
 
 /**
@@ -130,11 +130,11 @@ export class SceneManager {
     const textRenderer = new TextRenderer(textLayer);
 
     // Create audio renderer if scene has voice element
-    let audioRenderer: AudioRenderer | undefined;
+    let audioRenderer: WebAudioRenderer | undefined;
     if (voiceElement) {
-      audioRenderer = new AudioRenderer();
+      audioRenderer = new WebAudioRenderer();
       console.log(
-        `🎵 Created AudioRenderer for scene ${sceneIndex} with voice: ${voiceElement.value}`,
+        `🎵 Created WebAudioRenderer for scene ${sceneIndex} with voice: ${voiceElement.value}`,
       );
     }
 

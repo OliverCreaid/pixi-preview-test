@@ -204,7 +204,7 @@ export interface SceneContainer {
   container: import("pixi.js").Container;
   mediaRenderer: import("./core/MediaRenderer").MediaRenderer;
   textRenderer: import("./core/TextRenderer").TextRenderer;
-  audioRenderer?: import("./core/AudioRenderer").AudioRenderer;
+  audioRenderer?: import("./core/WebAudioRenderer").WebAudioRenderer;
   isActive: boolean;
   alpha: number;
 }

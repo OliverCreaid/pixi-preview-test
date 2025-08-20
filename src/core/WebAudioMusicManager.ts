@@ -1,0 +1,424 @@
+import { webAudioManager } from "./WebAudioManager";
+import { BackgroundMusic, BackgroundMusicState } from "../types";
+
+/**
+ * Web Audio API-based music manager for background music
+ * Replaces PIXI Sound for better tab switching and timing control
+ */
+export class WebAudioMusicManager {
+  private musicConfig: BackgroundMusic | null = null;
+  private musicState: BackgroundMusicState | null = null;
+  private audioBuffer: AudioBuffer | null = null;
+  private audioSource: AudioBufferSourceNode | null = null;
+  private startTimeOffset: number = 0;
+  private pausedAt: number = 0;
+  private isActuallyPlaying: boolean = false;
+
+  // Volume configuration
+  private baseVolume: number = 0.3;
+  private duckingVolume: number = 0.1;
+  private currentTargetVolume: number = 0.3;
+
+  // Fade configuration
+  private defaultFadeInDuration: number = 1000;
+  private defaultFadeOutDuration: number = 1000;
+
+  constructor() {
+    console.log("🎵 WebAudioMusicManager initialized");
+  }
+
+  /**
+   * Load background music from project data
+   */
+  async loadMusic(
+    musicConfig: BackgroundMusic,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    _totalDuration: number,
+  ): Promise<void> {
+    console.log(`🎵 Loading background music: ${musicConfig.songTitle}`);
+    console.log(`🎵 Music URL: ${musicConfig.songPreviewUrl}`);
+    console.log(`🎵 Music volume: ${musicConfig.volume}`);
+    console.log(`🎵 Music duration: ${musicConfig.songDuration}s`);
+
+    this.musicConfig = musicConfig;
+
+    // Normalize volume from JSON format (0-100) to 0.0-1.0
+    this.baseVolume = (musicConfig.volume || 30) / 100;
+    this.duckingVolume = musicConfig.duckingVolume || this.baseVolume * 0.3;
+    this.currentTargetVolume = this.baseVolume;
+
+    // Create music state
+    this.musicState = {
+      isLoaded: false,
+      isPlaying: false,
+      isPaused: false,
+      currentTime: 0,
+      duration: 0,
+      volume: this.baseVolume,
+      isDucking: false,
+      soundName: `bg_music_${Date.now()}`,
+      soundInstance: undefined,
+    };
+
+    try {
+      // Load music using Web Audio API
+      this.audioBuffer = await webAudioManager.loadAudioBuffer(
+        musicConfig.songPreviewUrl,
+      );
+
+      // Update state after loading
+      this.musicState.isLoaded = true;
+      this.musicState.duration = this.audioBuffer.duration * 1000; // Convert to ms
+
+      console.log(
+        `✅ Background music loaded: ${musicConfig.songTitle} (${this.musicState.duration}ms, Web Audio API)`,
+      );
+    } catch (error) {
+      console.error(
+        `Failed to load background music: ${musicConfig.songTitle}`,
+        error,
+      );
+      throw error;
+    }
+  }
+
+  /**
+   * Start music playback with fade in using Web Audio API
+   */
+  async startPlayback(startTime: number = 0): Promise<void> {
+    if (!this.musicState || !this.musicState.isLoaded || !this.audioBuffer) {
+      console.warn("🎵 Cannot start music: not loaded");
+      console.warn("🎵 Music state:", this.musicState);
+      return;
+    }
+
+    console.log(`🎵 Starting background music at ${startTime}ms`);
+    console.log(`🎵 Music config:`, this.musicConfig);
+    console.log(`🎵 Music state:`, this.musicState);
+
+    try {
+      // Resume audio context if suspended
+      await webAudioManager.resumeContext();
+
+      // Stop any existing playback
+      if (this.audioSource) {
+        this.stopPlayback();
+      }
+
+      // Calculate loop position if music is shorter than video
+      const musicDuration = this.musicState.duration / 1000; // Convert to seconds
+      let playStartTime = Math.max(0, startTime / 1000);
+
+      // Handle looping for shorter music
+      if (musicDuration > 0 && playStartTime > musicDuration) {
+        playStartTime = playStartTime % musicDuration;
+      }
+
+      // Create and start audio source
+      this.audioSource = webAudioManager.createAudioSource(
+        this.audioBuffer,
+        playStartTime,
+        0, // Start muted for fade in
+        this.musicConfig?.loop !== false, // Default to loop
+      );
+
+      if (this.audioSource) {
+        this.musicState.isPlaying = true;
+        this.musicState.isPaused = false;
+        this.isActuallyPlaying = true;
+        this.startTimeOffset = webAudioManager.getCurrentTime() - playStartTime;
+        this.pausedAt = 0;
+
+        // Handle source end (for non-looping music)
+        this.audioSource.onended = () => {
+          if (!this.musicConfig?.loop) {
+            this.musicState!.isPlaying = false;
+            this.isActuallyPlaying = false;
+            this.audioSource = null;
+            console.log("🎵 Background music ended");
+          }
+        };
+
+        // Fade in music
+        this.fadeToVolume(this.currentTargetVolume, this.getFadeInDuration());
+
+        console.log(
+          `🎵 Background music started successfully with Web Audio API`,
+        );
+        console.log(`🎵 Target volume:`, this.currentTargetVolume);
+      } else {
+        console.error("🎵 Failed to create audio source for background music");
+      }
+    } catch (error) {
+      console.error("Failed to start background music:", error);
+    }
+  }
+
+  /**
+   * Pause music playback
+   */
+  pausePlayback(): void {
+    if (
+      !this.musicState ||
+      !this.musicState.isPlaying ||
+      !this.audioSource ||
+      !this.isActuallyPlaying
+    ) {
+      return;
+    }
+
+    console.log("🎵 Pausing background music");
+
+    // Calculate where we paused
+    const currentTime = webAudioManager.getCurrentTime();
+    this.pausedAt = currentTime - this.startTimeOffset;
+
+    // Stop the current source
+    webAudioManager.stopAudioSource(this.audioSource);
+    this.audioSource = null;
+    this.musicState.isPlaying = false;
+    this.musicState.isPaused = true;
+    this.isActuallyPlaying = false;
+  }
+
+  /**
+   * Stop music playback with fade out
+   */
+  async stopPlayback(): Promise<void> {
+    if (!this.musicState || !this.audioSource) {
+      return;
+    }
+
+    console.log("🎵 Stopping background music");
+
+    // Fade out then stop
+    if (this.isActuallyPlaying) {
+      await this.fadeToVolume(0, this.getFadeOutDuration());
+    }
+
+    if (this.audioSource) {
+      webAudioManager.stopAudioSource(this.audioSource);
+      this.audioSource = null;
+    }
+
+    this.musicState.isPlaying = false;
+    this.musicState.isPaused = false;
+    this.isActuallyPlaying = false;
+    this.pausedAt = 0;
+  }
+
+  /**
+   * Duck music volume when voice over is playing
+   */
+  duckVolume(isDucking: boolean): void {
+    if (!this.musicState || !this.musicState.isPlaying || !this.audioSource) {
+      return;
+    }
+
+    const targetVolume = isDucking ? this.duckingVolume : this.baseVolume;
+    this.currentTargetVolume = targetVolume;
+    this.musicState.isDucking = isDucking;
+
+    // Quick crossfade to new volume (300ms)
+    this.fadeToVolume(targetVolume, 0.3); // 300ms in seconds
+
+    console.log(
+      `🎵 Music volume ${isDucking ? "ducked" : "restored"} to ${Math.round(targetVolume * 100)}%`,
+    );
+  }
+
+  /**
+   * Seek music to specific time position
+   */
+  async seekToTime(timeMs: number): Promise<void> {
+    if (!this.musicState || !this.musicState.isLoaded || !this.audioBuffer) {
+      return;
+    }
+
+    const timeSeconds = Math.max(0, timeMs / 1000);
+    const musicDuration = this.musicState.duration / 1000;
+
+    // Handle looping for music shorter than video
+    let seekTime = timeSeconds;
+    if (this.musicConfig?.loop !== false && musicDuration > 0) {
+      seekTime = timeSeconds % musicDuration;
+    }
+
+    if (seekTime <= musicDuration) {
+      const wasPlaying = this.musicState.isPlaying;
+      const currentVolume = this.getCurrentVolume();
+
+      // Stop current source
+      if (this.audioSource) {
+        webAudioManager.stopAudioSource(this.audioSource);
+        this.audioSource = null;
+      }
+
+      this.musicState.isPlaying = false;
+      this.isActuallyPlaying = false;
+
+      // Start new source from the desired position if was playing
+      if (wasPlaying) {
+        await webAudioManager.resumeContext();
+
+        this.audioSource = webAudioManager.createAudioSource(
+          this.audioBuffer,
+          seekTime,
+          currentVolume,
+          this.musicConfig?.loop !== false,
+        );
+
+        if (this.audioSource) {
+          this.musicState.isPlaying = true;
+          this.isActuallyPlaying = true;
+          this.startTimeOffset = webAudioManager.getCurrentTime() - seekTime;
+          this.pausedAt = 0;
+
+          // Handle source end
+          this.audioSource.onended = () => {
+            if (!this.musicConfig?.loop) {
+              this.musicState!.isPlaying = false;
+              this.isActuallyPlaying = false;
+              this.audioSource = null;
+            }
+          };
+        }
+      }
+
+      this.musicState.currentTime = timeMs;
+    } else {
+      console.warn(
+        `⚠️ Cannot seek music to ${timeMs}ms, duration is ${this.musicState.duration}ms`,
+      );
+    }
+  }
+
+  /**
+   * Sync music with timeline
+   */
+  syncWithTimeline(expectedTimeMs: number): void {
+    if (
+      !this.musicState ||
+      !this.musicState.isPlaying ||
+      !this.audioSource ||
+      !this.isActuallyPlaying
+    ) {
+      return;
+    }
+
+    // Calculate actual playback time
+    const currentTime = webAudioManager.getCurrentTime();
+    const actualTimeMs = (currentTime - this.startTimeOffset) * 1000;
+    const musicDuration = this.musicState.duration;
+
+    // For looping music, calculate expected position within loop
+    let expectedLoopTime = expectedTimeMs;
+    if (this.musicConfig?.loop !== false && musicDuration > 0) {
+      expectedLoopTime = expectedTimeMs % musicDuration;
+    }
+
+    const drift = Math.abs(expectedLoopTime - actualTimeMs);
+    const syncThreshold = 2000; // 2 second tolerance for background music
+
+    // If drift is significant, correct it
+    if (drift > syncThreshold) {
+      console.log(`🔧 Music sync correction: drift ${Math.round(drift)}ms`);
+      this.seekToTime(expectedTimeMs).catch(console.error);
+    }
+
+    // Update internal state
+    this.musicState.currentTime = actualTimeMs;
+  }
+
+  /**
+   * Resume playback after pause
+   */
+  async resumePlayback(): Promise<void> {
+    if (!this.musicState || this.isActuallyPlaying || this.pausedAt === 0) {
+      return;
+    }
+
+    console.log("🎵 Resuming background music");
+
+    await this.startPlayback(this.pausedAt * 1000);
+  }
+
+  /**
+   * Fade to target volume
+   */
+  private fadeToVolume(targetVolume: number, duration: number): void {
+    if (!this.audioSource) return;
+
+    webAudioManager.fadeSourceVolume(this.audioSource, targetVolume, duration);
+  }
+
+  /**
+   * Get current volume
+   */
+  private getCurrentVolume(): number {
+    return this.currentTargetVolume;
+  }
+
+  /**
+   * Get fade in duration from config or default
+   */
+  private getFadeInDuration(): number {
+    return (
+      (this.musicConfig?.fadeInDuration || this.defaultFadeInDuration) / 1000
+    ); // Convert to seconds
+  }
+
+  /**
+   * Get fade out duration from config or default
+   */
+  private getFadeOutDuration(): number {
+    return (
+      (this.musicConfig?.fadeOutDuration || this.defaultFadeOutDuration) / 1000
+    ); // Convert to seconds
+  }
+
+  /**
+   * Check if music is currently playing
+   */
+  isPlaying(): boolean {
+    return this.musicState?.isPlaying || false;
+  }
+
+  /**
+   * Check if music is loaded and ready
+   */
+  isReady(): boolean {
+    return this.musicState?.isLoaded || false;
+  }
+
+  /**
+   * Get current music state
+   */
+  getMusicState(): BackgroundMusicState | null {
+    return this.musicState;
+  }
+
+  /**
+   * Get current music config
+   */
+  getMusicConfig(): BackgroundMusic | null {
+    return this.musicConfig;
+  }
+
+  /**
+   * Clean up music resources
+   */
+  destroy(): void {
+    console.log("🗑️ WebAudioMusicManager cleanup");
+
+    if (this.audioSource) {
+      webAudioManager.stopAudioSource(this.audioSource);
+      this.audioSource = null;
+    }
+
+    this.musicState = null;
+    this.musicConfig = null;
+    this.audioBuffer = null;
+    this.isActuallyPlaying = false;
+  }
+}

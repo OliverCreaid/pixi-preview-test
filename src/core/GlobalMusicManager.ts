@@ -38,6 +38,9 @@ export class GlobalMusicManager {
     _totalDuration: number, // Future use for end-of-video fade out
   ): Promise<void> {
     console.log(`🎵 Loading background music: ${musicConfig.songTitle}`);
+    console.log(`🎵 Music URL: ${musicConfig.songPreviewUrl}`);
+    console.log(`🎵 Music volume: ${musicConfig.volume}`);
+    console.log(`🎵 Music duration: ${musicConfig.songDuration}s`);
 
     this.musicConfig = musicConfig;
 
@@ -110,10 +113,13 @@ export class GlobalMusicManager {
   async startPlayback(startTime: number = 0): Promise<void> {
     if (!this.musicState || !this.musicState.isLoaded) {
       console.warn("🎵 Cannot start music: not loaded");
+      console.warn("🎵 Music state:", this.musicState);
       return;
     }
 
     console.log(`🎵 Starting background music at ${startTime}ms`);
+    console.log(`🎵 Music config:`, this.musicConfig);
+    console.log(`🎵 Music state:`, this.musicState);
 
     try {
       // Calculate loop position if music is shorter than video
@@ -143,6 +149,10 @@ export class GlobalMusicManager {
         this.fadeToVolume(this.currentTargetVolume, this.getFadeInDuration());
 
         console.log(`🎵 Background music started successfully with PIXI Sound`);
+        console.log(`🎵 Sound instance:`, soundInstance);
+        console.log(`🎵 Target volume:`, this.currentTargetVolume);
+      } else {
+        console.error("🎵 Failed to get sound instance from PIXI Sound");
       }
     } catch (error) {
       console.error("Failed to start background music:", error);
@@ -273,8 +283,21 @@ export class GlobalMusicManager {
 
     this.lastSyncTime = currentTime;
 
+    // Check if sound instance is actually playing (handles tab switching)
+    const soundInstance = this.musicState.soundInstance;
+    if (soundInstance.paused) {
+      // Audio was paused by browser (likely due to tab switching)
+      console.log("🔧 Music was paused by browser - resuming");
+      try {
+        soundInstance.paused = false;
+      } catch (error) {
+        console.warn("Failed to resume music after browser pause:", error);
+        return;
+      }
+    }
+
     // PIXI Sound instances track their progress (0-1), convert to time
-    const progress = this.musicState.soundInstance.progress || 0;
+    const progress = soundInstance.progress || 0;
     const actualTimeMs = progress * this.musicState.duration;
     const musicDuration = this.musicState.duration;
 
@@ -285,7 +308,7 @@ export class GlobalMusicManager {
     }
 
     const drift = Math.abs(expectedLoopTime - actualTimeMs);
-    const syncThreshold = 1000; // 1 second tolerance for background music
+    const syncThreshold = 2000; // 2 second tolerance for background music (increased for tab switching)
 
     // If drift is significant, correct it
     if (drift > syncThreshold) {
