@@ -186,9 +186,15 @@ export class WebAudioMusicManager {
 
     console.log("🎵 Pausing background music");
 
-    // Calculate where we paused
+    // Calculate where we paused (subtract trimStart to get timeline position)
     const currentTime = webAudioManager.getCurrentTime();
-    this.pausedAt = currentTime - this.startTimeOffset;
+    const audioFilePosition = currentTime - this.startTimeOffset;
+    const trimStartSeconds = this.musicConfig?.trimStart || 0;
+    this.pausedAt = Math.max(0, audioFilePosition - trimStartSeconds);
+
+    console.log(
+      `🎵 Paused at audioPosition=${audioFilePosition.toFixed(2)}s, trimStart=${trimStartSeconds}s, timelinePosition=${this.pausedAt.toFixed(2)}s`,
+    );
 
     // Stop the current source
     webAudioManager.stopAudioSource(this.audioSource);
