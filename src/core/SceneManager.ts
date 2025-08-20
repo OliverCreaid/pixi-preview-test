@@ -21,6 +21,7 @@ export class SceneManager {
   private uiLayer: Container;
   private transitionManager: TransitionManager;
   private sceneContainers: Map<number, SceneContainer> = new Map();
+  private projectFonts: ProjectFonts | null = null;
 
   // Legacy layer references for backward compatibility
   private mediaLayer: Container; // Points to active scene's media layer
@@ -134,6 +135,11 @@ export class SceneManager {
     const mediaRenderer = new MediaRenderer(mediaLayer);
     const textRenderer = new TextRenderer(textLayer);
 
+    // Apply project fonts if available
+    if (this.projectFonts) {
+      textRenderer.setProjectFonts(this.projectFonts);
+    }
+
     // Create audio renderer if scene has voice element
     let audioRenderer: WebAudioRenderer | undefined;
     if (voiceElement) {
@@ -237,9 +243,12 @@ export class SceneManager {
   }
 
   /**
-   * Set project fonts for all text renderers
+   * Set project fonts for all text renderers (existing and future)
    */
   setProjectFonts(fonts: ProjectFonts | null): void {
+    // Store fonts for future scene containers
+    this.projectFonts = fonts;
+
     // Update all existing scene text renderers
     for (const sceneContainer of this.sceneContainers.values()) {
       sceneContainer.textRenderer.setProjectFonts(fonts);

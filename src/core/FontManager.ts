@@ -31,7 +31,7 @@ export class FontManager {
    * Load a single font
    */
   private async loadFont(
-    fontType: string,
+    _fontType: string,
     fontDef: FontDefinition,
   ): Promise<void> {
     try {
