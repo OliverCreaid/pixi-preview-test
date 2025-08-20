@@ -3,6 +3,7 @@
 export interface ProjectData {
   head: ProjectHead;
   scenes: Scene[];
+  style?: ProjectStyle;
   audio?: ProjectAudio;
 }
 
@@ -79,6 +80,32 @@ export interface TextProperties {
   y?: number;
   width?: number;
   height?: number;
+}
+
+// Font system types
+export interface FontDefinition {
+  font: string; // Font family name
+  src: string; // URL to font file
+  fontColor: string; // Color reference
+  weight: string; // Font weight
+  style: string; // Font style (regular, italic, etc.)
+  stroke: number; // Stroke width
+  strokeColor: string; // Stroke color reference
+  shadowId: number; // Shadow ID
+  shadowColor: number; // Shadow color
+  textureId: number; // Texture ID
+}
+
+export interface ProjectFonts {
+  h1: FontDefinition;
+  h2: FontDefinition;
+  body: FontDefinition;
+  subtitle: FontDefinition;
+}
+
+export interface ProjectStyle {
+  fonts: ProjectFonts;
+  // Other style properties can be added later
 }
 
 // Audio-specific types

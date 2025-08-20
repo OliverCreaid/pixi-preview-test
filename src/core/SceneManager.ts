@@ -3,7 +3,12 @@ import { TransitionManager } from "./TransitionManager";
 import { MediaRenderer } from "./MediaRenderer";
 import { TextRenderer } from "./TextRenderer";
 import { WebAudioRenderer } from "./WebAudioRenderer";
-import { SceneContainer, TransitionConfig, VoiceElement } from "../types";
+import {
+  SceneContainer,
+  TransitionConfig,
+  VoiceElement,
+  ProjectFonts,
+} from "../types";
 
 /**
  * Enhanced SceneManager with multi-container support for smooth scene transitions
@@ -229,6 +234,16 @@ export class SceneManager {
    */
   getTransitionManager(): TransitionManager {
     return this.transitionManager;
+  }
+
+  /**
+   * Set project fonts for all text renderers
+   */
+  setProjectFonts(fonts: ProjectFonts | null): void {
+    // Update all existing scene text renderers
+    for (const sceneContainer of this.sceneContainers.values()) {
+      sceneContainer.textRenderer.setProjectFonts(fonts);
+    }
   }
 
   /**

@@ -43,7 +43,7 @@ export class MediaRenderer {
    */
   async displayMedia(
     assets: MediaAsset[],
-    sceneRelativeTime: number = 0
+    sceneRelativeTime: number = 0,
   ): Promise<void> {
     // Find which media asset should be playing at the current scene time
     const activeAsset = this.getActiveMediaAsset(assets, sceneRelativeTime);
@@ -66,12 +66,12 @@ export class MediaRenderer {
 
     if (!newSprite) {
       console.warn(
-        `⚠️  Preloaded sprite not found for asset: ${activeAsset.id}`
+        `⚠️  Preloaded sprite not found for asset: ${activeAsset.id}`,
       );
       //console.log(`🔍 Looking for alternatives in preloaded sprites...`);
-      for (const [key] of this.globalPreloadedSprites) {
-        //console.log(`  - Available: ${key}`);
-      }
+      //for (const [key] of this.globalPreloadedSprites) {
+      //  console.log(`  - Available: ${key}`);
+      //}
       return;
     }
 
@@ -128,7 +128,7 @@ export class MediaRenderer {
     // Calculate progress (0 to 1) based on asset relative time
     const progress = Math.min(
       assetRelativeTime / this.kenBurnsConfig.duration,
-      1
+      1,
     );
     this.applyKenBurnsTransform(progress);
   }
@@ -170,7 +170,7 @@ export class MediaRenderer {
    */
   private getActiveMediaAsset(
     assets: MediaAsset[],
-    sceneRelativeTime: number
+    sceneRelativeTime: number,
   ): MediaAsset | null {
     for (const asset of assets) {
       if (

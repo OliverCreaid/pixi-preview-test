@@ -4,6 +4,7 @@ import { Timeline } from "./components/Timeline";
 import { ProjectPreloader } from "./core/ProjectPreloader";
 import { LoadingProgress } from "./components/LoadingProgress";
 import { WebAudioMusicManager } from "./core/WebAudioMusicManager";
+import { fontManager } from "./core/FontManager";
 import {
   ProjectData,
   SceneInfo,
@@ -119,6 +120,15 @@ class VideoPreviewApp {
       //console.log(
       //   `Loaded project with ${scenes.length} scenes, duration: ${totalDuration}ms`
       // );
+
+      // Load fonts if available in project data
+      if (projectData.style?.fonts) {
+        this.loadingProgress.setStatus("Loading fonts...");
+        await fontManager.loadProjectFonts(projectData.style.fonts);
+
+        // Set project fonts on scene manager
+        this.sceneManager.setProjectFonts(projectData.style.fonts);
+      }
 
       // Start preloading all assets
       this.loadingProgress.setStatus("Preloading assets...");
@@ -716,6 +726,15 @@ class VideoPreviewApp {
       //console.log(
       //   `Loaded project with ${scenes.length} scenes, duration: ${totalDuration}ms`
       // );
+
+      // Load fonts if available in project data
+      if (projectData.style?.fonts) {
+        this.loadingProgress.setStatus("Loading fonts...");
+        await fontManager.loadProjectFonts(projectData.style.fonts);
+
+        // Set project fonts on scene manager
+        this.sceneManager.setProjectFonts(projectData.style.fonts);
+      }
 
       // Start preloading all assets
       this.loadingProgress.setStatus("Preloading assets...");

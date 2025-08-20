@@ -33,7 +33,7 @@ export class WebAudioMusicManager {
   async loadMusic(
     musicConfig: BackgroundMusic,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _totalDuration: number
+    _totalDuration: number,
   ): Promise<void> {
     this.musicConfig = musicConfig;
 
@@ -59,7 +59,7 @@ export class WebAudioMusicManager {
 
     // Load music using Web Audio API
     this.audioBuffer = await webAudioManager.loadAudioBuffer(
-      musicConfig.songPreviewUrl
+      musicConfig.songPreviewUrl,
     );
 
     // Update state after loading
@@ -106,7 +106,7 @@ export class WebAudioMusicManager {
         this.audioBuffer,
         playStartTime,
         0, // Start muted for fade in
-        this.musicConfig?.loop !== false // Default to loop
+        this.musicConfig?.loop !== false, // Default to loop
       );
 
       if (this.audioSource) {
@@ -173,7 +173,7 @@ export class WebAudioMusicManager {
       this.fadeToVolume(0, this.getFadeOutDuration());
       // Wait for fade to complete before stopping
       await new Promise((resolve) =>
-        setTimeout(resolve, this.getFadeOutDuration())
+        setTimeout(resolve, this.getFadeOutDuration()),
       );
     }
 
@@ -251,7 +251,7 @@ export class WebAudioMusicManager {
           this.audioBuffer,
           seekTime,
           currentVolume,
-          this.musicConfig?.loop !== false
+          this.musicConfig?.loop !== false,
         );
 
         if (this.audioSource) {

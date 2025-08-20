@@ -78,7 +78,7 @@ export class TransitionManager {
     // Apply easing function
     this.currentTransition.progress = this.applyEasing(
       rawProgress,
-      this.config.easing
+      this.config.easing,
     );
 
     // Update container alphas based on transition type
@@ -98,7 +98,7 @@ export class TransitionManager {
    */
   private setupTransitionContainers(
     fromSceneIndex: number,
-    toSceneIndex: number
+    toSceneIndex: number,
   ): void {
     const fromContainer = this.sceneContainers.get(fromSceneIndex);
     const toContainer = this.sceneContainers.get(toSceneIndex);
@@ -124,10 +124,10 @@ export class TransitionManager {
     if (!this.currentTransition) return;
 
     const fromContainer = this.sceneContainers.get(
-      this.currentTransition.fromSceneIndex
+      this.currentTransition.fromSceneIndex,
     );
     const toContainer = this.sceneContainers.get(
-      this.currentTransition.toSceneIndex
+      this.currentTransition.toSceneIndex,
     );
 
     switch (this.config.type) {
@@ -192,10 +192,10 @@ export class TransitionManager {
     if (!this.currentTransition) return;
 
     const fromContainer = this.sceneContainers.get(
-      this.currentTransition.fromSceneIndex
+      this.currentTransition.fromSceneIndex,
     );
     const toContainer = this.sceneContainers.get(
-      this.currentTransition.toSceneIndex
+      this.currentTransition.toSceneIndex,
     );
 
     // Finalize container states
@@ -242,7 +242,7 @@ export class TransitionManager {
    */
   private applyEasing(
     progress: number,
-    easing: TransitionConfig["easing"]
+    easing: TransitionConfig["easing"],
   ): number {
     switch (easing) {
       case "linear":

@@ -1,5 +1,6 @@
 import { Text, TextStyle, Container } from "pixi.js";
-import { TextElement } from "../types";
+import { TextElement, ProjectFonts, FontDefinition } from "../types";
+import { fontManager } from "./FontManager";
 
 /**
  * Handles rendering of text overlays on scenes
@@ -8,9 +9,17 @@ import { TextElement } from "../types";
 export class TextRenderer {
   private container: Container;
   private currentTexts = new Map<number, Text>();
+  private projectFonts: ProjectFonts | null = null;
 
   constructor(container: Container) {
     this.container = container;
+  }
+
+  /**
+   * Set project fonts for text rendering
+   */
+  setProjectFonts(fonts: ProjectFonts | null): void {
+    this.projectFonts = fonts;
   }
 
   /**
@@ -34,14 +43,17 @@ export class TextRenderer {
       return; // Skip empty text
     }
 
-    // Create basic text style (no custom styling for MVP)
+    // Get font configuration from project fonts
+    const fontConfig = this.getFontConfigForElement(textElement);
+
+    // Create text style using project fonts or fallback
     const style = new TextStyle({
-      fontFamily: "Arial, sans-serif",
-      fontSize: 32,
-      fill: "#ffffff",
+      fontFamily: fontConfig.fontFamily,
+      fontSize: fontConfig.fontSize,
+      fill: fontConfig.color,
       stroke: {
-        color: "#000000",
-        width: 2,
+        color: fontConfig.strokeColor,
+        width: fontConfig.strokeWidth,
       },
       dropShadow: {
         color: "#000000",
@@ -63,6 +75,51 @@ export class TextRenderer {
     // Add to container and track
     this.container.addChild(textObject);
     this.currentTexts.set(textElement.id, textObject);
+  }
+
+  /**
+   * Get font configuration for a text element
+   */
+  private getFontConfigForElement(textElement: TextElement): {
+    fontFamily: string;
+    fontSize: number;
+    color: string;
+    strokeColor: string;
+    strokeWidth: number;
+  } {
+    // Default fallback configuration
+    const defaultConfig = {
+      fontFamily: "Arial, sans-serif",
+      fontSize: 32,
+      color: "#ffffff",
+      strokeColor: "#000000",
+      strokeWidth: 2,
+    };
+
+    // If no project fonts available, use defaults
+    if (!this.projectFonts) {
+      return defaultConfig;
+    }
+
+    // Determine which font type to use based on element type
+    let fontDef: FontDefinition | null = null;
+    if (textElement.elementType === "h1Text") {
+      fontDef = fontManager.getFontDefinition(this.projectFonts, "h1");
+    }
+
+    // If no font definition found, use defaults
+    if (!fontDef) {
+      return defaultConfig;
+    }
+
+    // Return configuration using project font
+    return {
+      fontFamily: fontManager.getFontFamily(fontDef.font),
+      fontSize: 32, // TODO: Get from font definition or element properties
+      color: "#ffffff", // TODO: Map color reference to actual color
+      strokeColor: fontDef.stroke > 0 ? "#000000" : "transparent", // TODO: Map strokeColor reference
+      strokeWidth: fontDef.stroke,
+    };
   }
 
   /**
