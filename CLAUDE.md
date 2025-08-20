@@ -43,10 +43,11 @@ src/
     ProjectParser.ts        - Creatomate JSON parsing
     MediaRenderer.ts        - Image/video rendering with Ken Burns
     TextRenderer.ts         - Text overlay rendering
-    AudioRenderer.ts        - Voice-over audio management
+    WebAudioManager.ts      - Web Audio API context management
+    WebAudioRenderer.ts     - Voice-over audio using Web Audio API
+    WebAudioMusicManager.ts - Background music using Web Audio API
     TransitionManager.ts    - Scene transition animations
     ProjectPreloader.ts     - Asset preloading system
-    GlobalMusicManager.ts   - Background music management
   components/
     Timeline.ts             - Interactive timeline controls
     LoadingProgress.ts      - Loading screen component
@@ -88,26 +89,52 @@ The main application (`src/main.ts`) supports both standalone and iframe modes:
 
 ## Key Features Implemented
 
+### Core Rendering & Media
 - **Scene-based Video Preview**: Real estate ads rendered with PixiJS at 1280x720 (16:9)
 - **Sequential Media Playback**: Multiple images per scene play sequentially (dividing scene duration)
 - **Ken Burns Effect**: Subtle zoom/pan animations on images (1.0x to 1.05x scale)
 - **Global Asset Preloading**: Eliminates loading flicker with batched preloading and progress tracking
 - **Smooth Scene Transitions**: Cross-fade transitions between scenes (500ms default, configurable)
-- **Interactive Timeline**: Play/pause/seek controls with smooth scrubbing
 - **Multi-Container Architecture**: Each scene has its own PixiJS container for seamless transitions
+
+### Audio System (Web Audio API)
+- **Advanced Audio Management**: Complete Web Audio API implementation replacing PIXI Sound
+- **Tab Switching Resilience**: Audio continues playing seamlessly when switching tabs/windows
+- **Background Music with Looping**: Supports trimStart, volume control, and seamless looping
+- **Voice Over Integration**: Scene-based voice audio with precise timing synchronization
+- **Audio Ducking**: Background music automatically ducks down when voice plays (gradual fade)
+- **Timeline Synchronization**: Audio stays in sync with video timeline during scrubbing
+- **Pause/Resume Support**: Proper pause/resume functionality even with trimStart offsets
+- **Loop Point Management**: Handles complex looping scenarios with start offsets correctly
+
+### User Interface & Controls
+- **Interactive Timeline**: Play/pause/seek controls with smooth scrubbing
+- **Responsive Scaling**: Content scales proportionally to any container size
+
+### SDK & Integration
 - **Embeddable SDK**: VideoPreviewSDK class for iframe-based integration
 - **PostMessage Communication**: Secure parent-iframe messaging for project data
-- **Responsive Scaling**: Content scales proportionally to any container size
 - **Dual Build System**: Separate builds for development/staging and production
 
 ## Development Notes
 
+### Technical Implementation Details
 - The project uses module-based imports (`type: "module"` in package.json)
 - Assets are served from the `public/` directory
 - The application automatically resizes with the window
 - PixiJS devtools are included for debugging (`@pixi/devtools`)
 - **Transition System**: Uses hardware-accelerated alpha blending for smooth fades
 - **Smart Scrubbing**: Transitions complete instantly during timeline seeking
+
+### Audio Architecture Details
+- **Web Audio API Migration**: Completely replaced PIXI Sound with Web Audio API for better control
+- **Tab Switching Fix**: Audio context resumption handles browser autoplay policies and tab changes
+- **Loop Point Fix**: Explicit loopStart/loopEnd settings prevent premature source ending with start offsets  
+- **Timeline Sync Fix**: TrimStart properly accounted for in drift calculation and sync logic
+- **Volume Mapping**: JSON volume values (0-100) correctly normalized to Web Audio API range (0.0-1.0)
+- **Gradual Ducking**: Background music fades gradually (1.5s down, 2s up) when voice starts/stops
+
+### Development Workflow
 - you don't have to run "npm run dev" I already have it running when we are working
 - you don't need to do any git operations
 

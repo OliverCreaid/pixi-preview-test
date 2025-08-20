@@ -33,7 +33,7 @@ export class WebAudioMusicManager {
   async loadMusic(
     musicConfig: BackgroundMusic,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _totalDuration: number,
+    _totalDuration: number
   ): Promise<void> {
     this.musicConfig = musicConfig;
 
@@ -59,7 +59,7 @@ export class WebAudioMusicManager {
 
     // Load music using Web Audio API
     this.audioBuffer = await webAudioManager.loadAudioBuffer(
-      musicConfig.songPreviewUrl,
+      musicConfig.songPreviewUrl
     );
 
     // Update state after loading
@@ -106,7 +106,7 @@ export class WebAudioMusicManager {
         this.audioBuffer,
         playStartTime,
         0, // Start muted for fade in
-        this.musicConfig?.loop !== false, // Default to loop
+        this.musicConfig?.loop !== false // Default to loop
       );
 
       if (this.audioSource) {
@@ -173,7 +173,7 @@ export class WebAudioMusicManager {
       this.fadeToVolume(0, this.getFadeOutDuration());
       // Wait for fade to complete before stopping
       await new Promise((resolve) =>
-        setTimeout(resolve, this.getFadeOutDuration()),
+        setTimeout(resolve, this.getFadeOutDuration())
       );
     }
 
@@ -251,7 +251,7 @@ export class WebAudioMusicManager {
           this.audioBuffer,
           seekTime,
           currentVolume,
-          this.musicConfig?.loop !== false,
+          this.musicConfig?.loop !== false
         );
 
         if (this.audioSource) {
@@ -285,20 +285,28 @@ export class WebAudioMusicManager {
       !this.musicState ||
       !this.musicState.isPlaying ||
       !this.audioSource ||
-      !this.isActuallyPlaying
+      !this.isActuallyPlaying ||
+      !this.musicConfig
     ) {
       return;
     }
 
+    // console.log("Sync with timeline", expectedTimeMs);
+
     // Calculate actual playback time
+    const trimStart = (this.musicConfig.trimStart || 0) * 1000;
     const currentTime = webAudioManager.getCurrentTime();
     const actualTimeMs = (currentTime - this.startTimeOffset) * 1000;
     const musicDuration = this.musicState.duration;
 
-    // For looping music, calculate expected position within loop
-    let expectedLoopTime = expectedTimeMs;
+    // For looping music, calculate expected position within loop (accounting for trimStart)
+    let expectedLoopTime = expectedTimeMs + trimStart;
     if (this.musicConfig?.loop !== false && musicDuration > 0) {
-      expectedLoopTime = expectedTimeMs % musicDuration;
+      const effectiveMusicDuration = musicDuration - trimStart;
+      if (effectiveMusicDuration > 0) {
+        expectedLoopTime =
+          trimStart + (expectedTimeMs % effectiveMusicDuration);
+      }
     }
 
     const drift = Math.abs(expectedLoopTime - actualTimeMs);

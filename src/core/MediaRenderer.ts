@@ -34,7 +34,7 @@ export class MediaRenderer {
    */
   setPreloadedSprites(sprites: Map<string, Sprite>): void {
     this.globalPreloadedSprites = sprites;
-    console.log(`📦 MediaRenderer loaded ${sprites.size} preloaded sprites`);
+    //console.log(`📦 MediaRenderer loaded ${sprites.size} preloaded sprites`);
   }
 
   /**
@@ -43,7 +43,7 @@ export class MediaRenderer {
    */
   async displayMedia(
     assets: MediaAsset[],
-    sceneRelativeTime: number = 0,
+    sceneRelativeTime: number = 0
   ): Promise<void> {
     // Find which media asset should be playing at the current scene time
     const activeAsset = this.getActiveMediaAsset(assets, sceneRelativeTime);
@@ -60,17 +60,17 @@ export class MediaRenderer {
    * Switch to display a specific asset instantly (using preloaded sprites)
    */
   private switchToAssetInstant(activeAsset: MediaAsset): void {
-    console.log(`🔄 Switching to asset: ${activeAsset.id}`);
+    //console.log(`🔄 Switching to asset: ${activeAsset.id}`);
 
     const newSprite = this.globalPreloadedSprites.get(activeAsset.id);
 
     if (!newSprite) {
       console.warn(
-        `⚠️  Preloaded sprite not found for asset: ${activeAsset.id}`,
+        `⚠️  Preloaded sprite not found for asset: ${activeAsset.id}`
       );
-      console.log(`🔍 Looking for alternatives in preloaded sprites...`);
+      //console.log(`🔍 Looking for alternatives in preloaded sprites...`);
       for (const [key] of this.globalPreloadedSprites) {
-        console.log(`  - Available: ${key}`);
+        //console.log(`  - Available: ${key}`);
       }
       return;
     }
@@ -128,7 +128,7 @@ export class MediaRenderer {
     // Calculate progress (0 to 1) based on asset relative time
     const progress = Math.min(
       assetRelativeTime / this.kenBurnsConfig.duration,
-      1,
+      1
     );
     this.applyKenBurnsTransform(progress);
   }
@@ -170,7 +170,7 @@ export class MediaRenderer {
    */
   private getActiveMediaAsset(
     assets: MediaAsset[],
-    sceneRelativeTime: number,
+    sceneRelativeTime: number
   ): MediaAsset | null {
     for (const asset of assets) {
       if (

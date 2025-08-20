@@ -25,7 +25,7 @@ export class TransitionManager {
    */
   registerSceneContainer(sceneContainer: SceneContainer): void {
     this.sceneContainers.set(sceneContainer.index, sceneContainer);
-    console.log(`📋 Registered scene container ${sceneContainer.index}`);
+    //console.log(`📋 Registered scene container ${sceneContainer.index}`);
   }
 
   /**
@@ -55,9 +55,9 @@ export class TransitionManager {
       progress: 0,
     };
 
-    console.log(
-      `🎬 Starting ${this.config.type} transition: Scene ${fromSceneIndex} → Scene ${toSceneIndex} (${this.config.duration}ms)`,
-    );
+    //console.log(
+    //   `🎬 Starting ${this.config.type} transition: Scene ${fromSceneIndex} → Scene ${toSceneIndex} (${this.config.duration}ms)`,
+    // );
 
     // Initialize transition state
     this.setupTransitionContainers(fromSceneIndex, toSceneIndex);
@@ -78,7 +78,7 @@ export class TransitionManager {
     // Apply easing function
     this.currentTransition.progress = this.applyEasing(
       rawProgress,
-      this.config.easing,
+      this.config.easing
     );
 
     // Update container alphas based on transition type
@@ -98,7 +98,7 @@ export class TransitionManager {
    */
   private setupTransitionContainers(
     fromSceneIndex: number,
-    toSceneIndex: number,
+    toSceneIndex: number
   ): void {
     const fromContainer = this.sceneContainers.get(fromSceneIndex);
     const toContainer = this.sceneContainers.get(toSceneIndex);
@@ -124,10 +124,10 @@ export class TransitionManager {
     if (!this.currentTransition) return;
 
     const fromContainer = this.sceneContainers.get(
-      this.currentTransition.fromSceneIndex,
+      this.currentTransition.fromSceneIndex
     );
     const toContainer = this.sceneContainers.get(
-      this.currentTransition.toSceneIndex,
+      this.currentTransition.toSceneIndex
     );
 
     switch (this.config.type) {
@@ -192,10 +192,10 @@ export class TransitionManager {
     if (!this.currentTransition) return;
 
     const fromContainer = this.sceneContainers.get(
-      this.currentTransition.fromSceneIndex,
+      this.currentTransition.fromSceneIndex
     );
     const toContainer = this.sceneContainers.get(
-      this.currentTransition.toSceneIndex,
+      this.currentTransition.toSceneIndex
     );
 
     // Finalize container states
@@ -213,9 +213,9 @@ export class TransitionManager {
       toContainer.container.visible = true;
     }
 
-    console.log(
-      `✅ Transition completed: Scene ${this.currentTransition.fromSceneIndex} → Scene ${this.currentTransition.toSceneIndex}`,
-    );
+    //console.log(
+    //   `✅ Transition completed: Scene ${this.currentTransition.fromSceneIndex} → Scene ${this.currentTransition.toSceneIndex}`,
+    // );
 
     this.currentTransition = null;
   }
@@ -232,9 +232,9 @@ export class TransitionManager {
       sceneContainer.container.visible = sceneContainer.isActive;
     }
 
-    console.log(
-      `⚡ Instant switch: Scene ${fromSceneIndex} → Scene ${toSceneIndex}`,
-    );
+    //console.log(
+    //   `⚡ Instant switch: Scene ${fromSceneIndex} → Scene ${toSceneIndex}`,
+    // );
   }
 
   /**
@@ -242,7 +242,7 @@ export class TransitionManager {
    */
   private applyEasing(
     progress: number,
-    easing: TransitionConfig["easing"],
+    easing: TransitionConfig["easing"]
   ): number {
     switch (easing) {
       case "linear":
@@ -283,7 +283,7 @@ export class TransitionManager {
    */
   updateConfig(newConfig: Partial<TransitionConfig>): void {
     this.config = { ...this.config, ...newConfig };
-    console.log("🔧 Transition config updated:", this.config);
+    //console.log("🔧 Transition config updated:", this.config);
   }
 
   /**
@@ -315,6 +315,6 @@ export class TransitionManager {
   destroy(): void {
     this.currentTransition = null;
     this.sceneContainers.clear();
-    console.log("🗑️ TransitionManager destroyed");
+    //console.log("🗑️ TransitionManager destroyed");
   }
 }
