@@ -16,12 +16,14 @@ export class WebAudioMusicManager {
 
   // Volume configuration
   private baseVolume: number = 0.3;
-  private duckingVolume: number = 0.1;
+  private duckingVolume: number = 0.15; // Less extreme ducking - 15% instead of 10%
   private currentTargetVolume: number = 0.3;
 
   // Fade configuration
   private defaultFadeInDuration: number = 1000;
   private defaultFadeOutDuration: number = 1000;
+  private duckingFadeInDuration: number = 1500; // 1.5s fade when voice starts
+  private duckingFadeOutDuration: number = 2000; // 2s fade when voice ends
 
   constructor() {
     console.log("🎵 WebAudioMusicManager initialized");
@@ -44,7 +46,9 @@ export class WebAudioMusicManager {
 
     // Normalize volume from JSON format (0-100) to 0.0-1.0
     this.baseVolume = (musicConfig.volume || 30) / 100;
-    this.duckingVolume = musicConfig.duckingVolume || this.baseVolume * 0.3;
+    // Better ducking volume calculation - 50% of base volume with a minimum of 0.1
+    this.duckingVolume =
+      musicConfig.duckingVolume || Math.max(0.1, this.baseVolume * 0.5);
     this.currentTargetVolume = this.baseVolume;
 
     // Create music state
@@ -219,11 +223,15 @@ export class WebAudioMusicManager {
     this.currentTargetVolume = targetVolume;
     this.musicState.isDucking = isDucking;
 
-    // Quick crossfade to new volume (300ms)
-    this.fadeToVolume(targetVolume, 0.3); // 300ms in seconds
+    // Use different fade durations for ducking vs unducking
+    const fadeDuration = isDucking
+      ? this.duckingFadeInDuration / 1000 // 1.5s to duck down (when voice starts)
+      : this.duckingFadeOutDuration / 1000; // 2s to come back up (when voice ends)
+
+    this.fadeToVolume(targetVolume, fadeDuration);
 
     console.log(
-      `🎵 Music volume ${isDucking ? "ducked" : "restored"} to ${Math.round(targetVolume * 100)}%`,
+      `🎵 Music volume ${isDucking ? "ducking" : "restoring"} to ${Math.round(targetVolume * 100)}% over ${fadeDuration}s`,
     );
   }
 
