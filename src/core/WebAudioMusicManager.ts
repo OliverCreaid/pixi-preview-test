@@ -39,13 +39,14 @@ export class WebAudioMusicManager {
   ): Promise<void> {
     console.log(`🎵 Loading background music: ${musicConfig.songTitle}`);
     console.log(`🎵 Music URL: ${musicConfig.songPreviewUrl}`);
-    console.log(`🎵 Music volume: ${musicConfig.volume}`);
+    console.log(`🎵 Music volume: ${musicConfig.volume}%`);
+    console.log(`🎵 Music trimStart: ${musicConfig.trimStart}s`);
     console.log(`🎵 Music duration: ${musicConfig.songDuration}s`);
 
     this.musicConfig = musicConfig;
 
-    // Normalize volume from JSON format (0-100) to 0.0-1.0
-    this.baseVolume = (musicConfig.volume || 30) / 100;
+    // Use volume from JSON (0-100) normalized to 0.0-1.0
+    this.baseVolume = Math.max(0, Math.min(1, musicConfig.volume / 100));
     // Better ducking volume calculation - 50% of base volume with a minimum of 0.1
     this.duckingVolume =
       musicConfig.duckingVolume || Math.max(0.1, this.baseVolume * 0.5);
@@ -109,14 +110,26 @@ export class WebAudioMusicManager {
         this.stopPlayback();
       }
 
-      // Calculate loop position if music is shorter than video
+      // Calculate start time including trimStart offset
       const musicDuration = this.musicState.duration / 1000; // Convert to seconds
-      let playStartTime = Math.max(0, startTime / 1000);
+      const trimStartSeconds = this.musicConfig?.trimStart || 0;
+      let playStartTime = Math.max(0, startTime / 1000) + trimStartSeconds;
 
-      // Handle looping for shorter music
-      if (musicDuration > 0 && playStartTime > musicDuration) {
-        playStartTime = playStartTime % musicDuration;
+      // Handle looping for shorter music (accounting for trim)
+      const effectiveMusicDuration = musicDuration - trimStartSeconds;
+      if (
+        effectiveMusicDuration > 0 &&
+        playStartTime - trimStartSeconds > effectiveMusicDuration
+      ) {
+        // Loop within the trimmed portion
+        playStartTime =
+          trimStartSeconds +
+          ((playStartTime - trimStartSeconds) % effectiveMusicDuration);
       }
+
+      console.log(
+        `🎵 Music playback: startTime=${startTime}ms, trimStart=${trimStartSeconds}s, finalPlayTime=${playStartTime.toFixed(2)}s`,
+      );
 
       // Create and start audio source
       this.audioSource = webAudioManager.createAudioSource(
@@ -197,7 +210,11 @@ export class WebAudioMusicManager {
 
     // Fade out then stop
     if (this.isActuallyPlaying) {
-      await this.fadeToVolume(0, this.getFadeOutDuration());
+      this.fadeToVolume(0, this.getFadeOutDuration());
+      // Wait for fade to complete before stopping
+      await new Promise((resolve) =>
+        setTimeout(resolve, this.getFadeOutDuration()),
+      );
     }
 
     if (this.audioSource) {
@@ -245,11 +262,16 @@ export class WebAudioMusicManager {
 
     const timeSeconds = Math.max(0, timeMs / 1000);
     const musicDuration = this.musicState.duration / 1000;
+    const trimStartSeconds = this.musicConfig?.trimStart || 0;
 
-    // Handle looping for music shorter than video
-    let seekTime = timeSeconds;
-    if (this.musicConfig?.loop !== false && musicDuration > 0) {
-      seekTime = timeSeconds % musicDuration;
+    // Handle looping for music shorter than video (accounting for trim)
+    let seekTime = timeSeconds + trimStartSeconds;
+    const effectiveMusicDuration = musicDuration - trimStartSeconds;
+    if (this.musicConfig?.loop !== false && effectiveMusicDuration > 0) {
+      if (timeSeconds > effectiveMusicDuration) {
+        // Loop within the trimmed portion
+        seekTime = trimStartSeconds + (timeSeconds % effectiveMusicDuration);
+      }
     }
 
     if (seekTime <= musicDuration) {
