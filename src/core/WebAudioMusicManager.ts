@@ -106,8 +106,16 @@ export class WebAudioMusicManager {
       await webAudioManager.resumeContext();
 
       // Stop any existing playback
+      console.log(
+        "🔍 startPlaybook() - checking existing source:",
+        !!this.audioSource,
+      );
       if (this.audioSource) {
-        this.stopPlayback();
+        console.log(
+          "🛑 Stopping existing audio source before starting new one",
+        );
+        await this.stopPlayback();
+        console.log("✅ Existing audio source stopped");
       }
 
       // Calculate start time including trimStart offset
@@ -146,6 +154,12 @@ export class WebAudioMusicManager {
         this.startTimeOffset = webAudioManager.getCurrentTime() - playStartTime;
         this.pausedAt = 0;
 
+        console.log("✅ Music state updated after source creation:");
+        console.log("  musicState.isPlaying:", this.musicState.isPlaying);
+        console.log("  isActuallyPlaying:", this.isActuallyPlaying);
+        console.log("  startTimeOffset:", this.startTimeOffset);
+        console.log("  playStartTime:", playStartTime);
+
         // Handle source end (for non-looping music)
         this.audioSource.onended = () => {
           if (!this.musicConfig?.loop) {
@@ -175,12 +189,22 @@ export class WebAudioMusicManager {
    * Pause music playback
    */
   pausePlayback(): void {
+    console.log("🔍 pausePlayback() called - debugging state:");
+    console.log("  musicState exists:", !!this.musicState);
+    console.log("  musicState.isPlaying:", this.musicState?.isPlaying);
+    console.log("  audioSource exists:", !!this.audioSource);
+    console.log("  isActuallyPlaying:", this.isActuallyPlaying);
+    console.log("  trimStart:", this.musicConfig?.trimStart);
+
     if (
       !this.musicState ||
       !this.musicState.isPlaying ||
       !this.audioSource ||
       !this.isActuallyPlaying
     ) {
+      console.log(
+        "🚫 pausePlayback() early return - one of the conditions failed",
+      );
       return;
     }
 
