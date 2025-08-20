@@ -162,7 +162,14 @@ export class WebAudioMusicManager {
 
         // Handle source end (for non-looping music)
         this.audioSource.onended = () => {
+          console.log(
+            "🎵 Audio source ended - loop config:",
+            this.musicConfig?.loop,
+          );
           if (!this.musicConfig?.loop) {
+            console.log(
+              "🛑 Setting isPlaying to false - music ended (non-looping)",
+            );
             this.musicState!.isPlaying = false;
             this.isActuallyPlaying = false;
             this.audioSource = null;
@@ -441,7 +448,16 @@ export class WebAudioMusicManager {
    * Check if music is currently playing
    */
   isPlaying(): boolean {
-    return this.musicState?.isPlaying || false;
+    const result = this.musicState?.isPlaying || false;
+    console.log(
+      "🔍 isPlaying() called - result:",
+      result,
+      "musicState.isPlaying:",
+      this.musicState?.isPlaying,
+      "isActuallyPlaying:",
+      this.isActuallyPlaying,
+    );
+    return result;
   }
 
   /**

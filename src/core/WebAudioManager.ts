@@ -111,6 +111,15 @@ export class WebAudioManager {
       source.buffer = audioBuffer;
       source.loop = loop;
 
+      // Fix looping with start offset - set loop points correctly
+      if (loop && startTime > 0) {
+        source.loopStart = startTime;
+        source.loopEnd = audioBuffer.duration;
+        console.log(
+          `🔄 Set loop points: start=${startTime.toFixed(2)}s, end=${audioBuffer.duration.toFixed(2)}s`,
+        );
+      }
+
       // Create gain node for this source
       const sourceGain = this.audioContext.createGain();
       sourceGain.gain.value = volume;
