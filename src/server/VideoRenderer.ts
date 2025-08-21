@@ -100,10 +100,10 @@ export class VideoRenderer {
         console.error(`[Browser Error] ${error.message}`);
       });
 
-      // Navigate to the simple test page for debugging
+      // Navigate to the simple test page that we know works
       const renderUrl = `http://localhost:8080/test-render.html?render=true&jobId=${job.id}`;
 
-      console.log(`Starting SIMPLE render test for job ${job.id}`);
+      console.log(`Starting simple render test for job ${job.id}`);
       console.log(`Navigating to: ${renderUrl}`);
       
       await page.goto(renderUrl, { 

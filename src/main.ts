@@ -777,6 +777,11 @@ class VideoPreviewApp {
       (window as unknown as { renderStatus: RenderStatus }).renderStatus.started = true;
 
       const canvas = this.sceneManager.getCanvas();
+      console.log("🎥 Canvas info:", {
+        width: canvas.width,
+        height: canvas.height,
+        hasContent: canvas.getContext('2d') ? true : false
+      });
       const canvasStream = canvas.captureStream(30); // 30fps
 
       // Get audio stream from Web Audio API - make optional
@@ -801,9 +806,9 @@ class VideoPreviewApp {
           .forEach((track) => combinedStream.addTrack(track));
       }
 
-      // Setup MediaRecorder
-      const options = { mimeType: "video/webm;codecs=vp8,opus" };
-      this.mediaRecorder = new MediaRecorder(combinedStream, options);
+      // Setup MediaRecorder - try without audio first for debugging
+      const options = { mimeType: "video/webm;codecs=vp8" };
+      this.mediaRecorder = new MediaRecorder(canvasStream, options);
 
       this.recordedChunks = [];
 
@@ -900,6 +905,9 @@ class VideoPreviewApp {
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
+
+      // Store blob on window for server access
+      (window as unknown as { renderBlob: Blob }).renderBlob = blob;
 
       // Mark as complete
       (
