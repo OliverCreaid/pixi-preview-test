@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Render Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #app {
+            width: 1280px;
+            height: 720px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+        }
+        canvas {
+            border: 2px solid white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Render Test</h1>
+    <div id="app">
+        <div>Test Video Content</div>
+    </div>
+
+    <script>
+        console.log('🎬 Simple render test starting...');
+
+        // Check URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const isRenderMode = urlParams.has('render') && urlParams.get('render') === 'true';
+        const jobId = urlParams.get('jobId');
+
+        console.log('🎬 Render mode:', isRenderMode, 'Job ID:', jobId);
+
+        if (isRenderMode) {
+            // Set up render status
+            window.renderStatus = {
+                started: false,
+                progress: 0,
+                completed: false,
+                fileReady: false
+            };
+
+            // Listen for project data
+            window.addEventListener('message', (event) => {
+                if (event.data.type === 'RENDER_PROJECT_DATA') {
+                    console.log('📥 Received project data:', event.data.projectData);
+                    startSimpleRender();
+                }
+            });
+        }
+
+        function startSimpleRender() {
+            console.log('🎥 Starting simple render...');
+            
+            try {
+                // Mark as started
+                window.renderStatus.started = true;
+                console.log('✅ Render started');
+
+                // Create a simple canvas for recording
+                const canvas = document.createElement('canvas');
+                canvas.width = 1280;
+                canvas.height = 720;
+                document.body.appendChild(canvas);
+
+                const ctx = canvas.getContext('2d');
+                
+                // Simple animation
+                let frame = 0;
+                const totalFrames = 300; // 10 seconds at 30fps
+                
+                function drawFrame() {
+                    const progress = frame / totalFrames;
+                    
+                    // Clear canvas
+                    ctx.fillStyle = `hsl(${frame * 2}, 70%, 50%)`;
+                    ctx.fillRect(0, 0, 1280, 720);
+                    
+                    // Draw text
+                    ctx.fillStyle = 'white';
+                    ctx.font = '48px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('Test Render', 640, 300);
+                    ctx.fillText(`Frame: ${frame}`, 640, 400);
+                    ctx.fillText(`Progress: ${Math.round(progress * 100)}%`, 640, 500);
+                    
+                    // Update progress
+                    window.renderStatus.progress = progress * 100;
+                    
+                    frame++;
+                    
+                    if (frame < totalFrames) {
+                        requestAnimationFrame(drawFrame);
+                    } else {
+                        // Stop the recorder when animation is complete
+                        console.log('🎬 Animation complete, stopping recorder...');
+                        recorder.stop();
+                    }
+                }
+
+                // Start MediaRecorder
+                const stream = canvas.captureStream(30);
+                const recorder = new MediaRecorder(stream, {
+                    mimeType: 'video/webm;codecs=vp8'
+                });
+                
+                const chunks = [];
+                recorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        chunks.push(event.data);
+                    }
+                };
+                
+                recorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'video/webm' });
+                    console.log('📹 MediaRecorder stopped, blob size:', blob.size);
+                    
+                    // Store blob on window for server access
+                    window.renderBlob = blob;
+                    
+                    // Mark as complete
+                    window.renderStatus.completed = true;
+                    window.renderStatus.fileReady = true;
+                    
+                    console.log('🎉 Simple render complete!');
+                };
+                
+                recorder.start();
+                drawFrame();
+                
+            } catch (error) {
+                console.error('❌ Simple render failed:', error);
+                window.postMessage({
+                    type: 'RENDER_ERROR',
+                    error: error.message
+                }, '*');
+            }
+        }
+
+
+        console.log('🎬 Simple render test initialized');
+    </script>
+</body>
+</html>

@@ -12,6 +12,13 @@ import {
   TransitionConfig,
 } from "./types";
 
+interface RenderStatus {
+  started: boolean;
+  progress: number;
+  completed: boolean;
+  fileReady: boolean;
+}
+
 /**
  * Main application class for the Real Estate Video Preview
  * Orchestrates all components and manages playback state
@@ -52,12 +59,30 @@ class VideoPreviewApp {
   // SDK/iframe integration state
   private isInIframe: boolean = false;
 
+  // Render mode state
+  private isRenderMode: boolean = false;
+  private renderJobId: string | null = null;
+  private mediaRecorder: MediaRecorder | null = null;
+  private recordedChunks: Blob[] = [];
+
   constructor() {
     const timelineContainer = document.getElementById("timeline-container")!;
     const appContainer = document.getElementById("app")!;
 
     // Check if we're running inside an iframe
     this.isInIframe = window.self !== window.top;
+
+    // Check if we're in render mode
+    const urlParams = new URLSearchParams(window.location.search);
+    this.isRenderMode =
+      urlParams.has("render") && urlParams.get("render") === "true";
+    this.renderJobId = urlParams.get("jobId");
+    
+    console.log("🎬 Render mode check:", {
+      isRenderMode: this.isRenderMode,
+      renderJobId: this.renderJobId,
+      urlParams: urlParams.toString()
+    });
 
     // Initialize core components with transition support
     this.sceneManager = new SceneManager(this.transitionConfig);
@@ -76,6 +101,11 @@ class VideoPreviewApp {
     // Setup iframe communication if needed
     if (this.isInIframe) {
       this.setupIframeMessaging();
+    }
+
+    // Setup render mode if needed
+    if (this.isRenderMode) {
+      this.setupRenderMode();
     }
   }
 
@@ -342,6 +372,11 @@ class VideoPreviewApp {
     // Timeline scrubbing callback - pause audio during scrubbing
     this.timeline.onScrubbingCallback((isScrubbing: boolean) => {
       this.handleScrubbing(isScrubbing);
+    });
+
+    // Timeline render callback
+    this.timeline.onRenderCallback(() => {
+      this.handleRenderRequest();
     });
   }
 
@@ -642,6 +677,333 @@ class VideoPreviewApp {
 
       this.wasPlayingBeforeScrub = false;
     }
+  }
+
+  /**
+   * Setup render mode functionality
+   */
+  private setupRenderMode(): void {
+    console.log("🎬 Setting up render mode for job:", this.renderJobId);
+    console.log("🎬 URL params:", window.location.search);
+
+    // Add global render status for server communication
+    (window as unknown as { renderStatus: RenderStatus }).renderStatus = {
+      started: false,
+      progress: 0,
+      completed: false,
+      fileReady: false,
+    };
+
+    // Listen for project data from server
+    window.addEventListener("message", (event) => {
+      if (event.data.type === "RENDER_PROJECT_DATA") {
+        this.handleRenderProjectData(event.data.projectData);
+      }
+    });
+  }
+
+  /**
+   * Create a render-compatible version of the project data
+   */
+  private createRenderCompatibleProject(projectData: ProjectData): ProjectData {
+    const renderProject = JSON.parse(JSON.stringify(projectData)); // Deep clone
+
+    // Remove external audio that might fail to load in headless mode
+    if (renderProject.audio?.music) {
+      console.log("🎵 Removing external music for headless rendering");
+      delete renderProject.audio.music;
+    }
+
+    // Remove voice-over elements that might fail
+    if (renderProject.scenes) {
+      renderProject.scenes.forEach((scene: any) => {
+        if (scene.elements) {
+          scene.elements = scene.elements.filter((element: any) => {
+            if (element.type === 'audio' && element.value?.includes('blob.core.windows.net')) {
+              console.log("🎵 Removing external audio element for headless rendering");
+              return false;
+            }
+            return true;
+          });
+        }
+      });
+    }
+
+    return renderProject;
+  }
+
+  /**
+   * Handle project data for rendering
+   */
+  private async handleRenderProjectData(
+    projectData: ProjectData,
+  ): Promise<void> {
+    try {
+      console.log("📥 Received project data for rendering");
+      console.log("📥 Project data keys:", Object.keys(projectData));
+
+      // For render mode, create a simplified project that will work in headless mode
+      const renderProjectData = this.createRenderCompatibleProject(projectData);
+
+      // Load and setup project
+      await this.loadAndPreloadProjectData(renderProjectData);
+
+      // Start recording after everything is loaded
+      await this.startVideoRecording();
+    } catch (error) {
+      console.error("Failed to setup project for rendering:", error);
+      
+      // Still mark as started so the server doesn't wait forever
+      (window as unknown as { renderStatus: RenderStatus }).renderStatus.started = true;
+      
+      window.postMessage(
+        {
+          type: "RENDER_ERROR",
+          error: error instanceof Error ? error.message : String(error),
+        },
+        "*",
+      );
+    }
+  }
+
+  /**
+   * Start video recording using MediaRecorder
+   */
+  private async startVideoRecording(): Promise<void> {
+    try {
+      console.log("🎥 Starting video recording...");
+
+      // Mark as started first so server doesn't timeout
+      (window as unknown as { renderStatus: RenderStatus }).renderStatus.started = true;
+
+      const canvas = this.sceneManager.getCanvas();
+      const canvasStream = canvas.captureStream(30); // 30fps
+
+      // Get audio stream from Web Audio API - make optional
+      let audioStream: MediaStream | null = null;
+      try {
+        if (this.musicManager.isReady()) {
+          audioStream = this.musicManager.getAudioStream();
+        }
+      } catch (audioError) {
+        console.warn("Could not get audio stream, continuing with video only:", audioError);
+      }
+
+      // Combine video and audio streams
+      const combinedStream = new MediaStream();
+      canvasStream
+        .getVideoTracks()
+        .forEach((track) => combinedStream.addTrack(track));
+
+      if (audioStream) {
+        audioStream
+          .getAudioTracks()
+          .forEach((track) => combinedStream.addTrack(track));
+      }
+
+      // Setup MediaRecorder
+      const options = { mimeType: "video/webm;codecs=vp8,opus" };
+      this.mediaRecorder = new MediaRecorder(combinedStream, options);
+
+      this.recordedChunks = [];
+
+      this.mediaRecorder.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          this.recordedChunks.push(event.data);
+        }
+      };
+
+      this.mediaRecorder.onstop = () => {
+        this.handleRecordingComplete();
+      };
+
+      // Start recording
+      this.mediaRecorder.start();
+
+      console.log("🎬 Recording started");
+
+      // Start playback from beginning
+      this.seekToTime(0);
+      this.timelineState.isPlaying = true;
+      this.timeline.setPlayState(true);
+      this.startPlayback();
+
+      // Monitor playback completion
+      this.monitorRecordingProgress();
+    } catch (error) {
+      console.error("Failed to start video recording:", error);
+      window.postMessage(
+        {
+          type: "RENDER_ERROR",
+          error: error instanceof Error ? error.message : String(error),
+        },
+        "*",
+      );
+    }
+  }
+
+  /**
+   * Monitor recording progress
+   */
+  private monitorRecordingProgress(): void {
+    const checkProgress = () => {
+      const progress =
+        (this.timelineState.currentTime / this.totalDuration) * 100;
+      (
+        window as unknown as { renderStatus: RenderStatus }
+      ).renderStatus.progress = progress;
+
+      window.postMessage(
+        {
+          type: "RENDER_PROGRESS",
+          progress,
+        },
+        "*",
+      );
+
+      // Check if recording is complete
+      if (
+        this.timelineState.currentTime >= this.totalDuration ||
+        !this.timelineState.isPlaying
+      ) {
+        console.log("🎬 Recording playback complete, stopping recorder...");
+        if (this.mediaRecorder && this.mediaRecorder.state === "recording") {
+          this.mediaRecorder.stop();
+        }
+        return;
+      }
+
+      // Continue monitoring
+      setTimeout(checkProgress, 100);
+    };
+
+    checkProgress();
+  }
+
+  /**
+   * Handle recording completion
+   */
+  private handleRecordingComplete(): void {
+    try {
+      console.log("🎬 Recording complete, processing video...");
+
+      // Create video blob
+      const blob = new Blob(this.recordedChunks, { type: "video/webm" });
+
+      // Create download URL
+      const url = URL.createObjectURL(blob);
+
+      // Create download link and trigger download
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `render-${this.renderJobId || "video"}.webm`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      // Mark as complete
+      (
+        window as unknown as { renderStatus: RenderStatus }
+      ).renderStatus.completed = true;
+      (
+        window as unknown as { renderStatus: RenderStatus }
+      ).renderStatus.fileReady = true;
+
+      window.postMessage(
+        {
+          type: "RENDER_COMPLETE",
+          videoBlob: blob,
+        },
+        "*",
+      );
+
+      console.log("🎉 Render complete and file ready for download");
+    } catch (error) {
+      console.error("Failed to complete recording:", error);
+      window.postMessage(
+        {
+          type: "RENDER_ERROR",
+          error: error instanceof Error ? error.message : String(error),
+        },
+        "*",
+      );
+    }
+  }
+
+  /**
+   * Handle render request from UI
+   */
+  private async handleRenderRequest(): Promise<void> {
+    try {
+      console.log("🎬 Starting render request...");
+
+      // Get the current project data - need to fetch it since we don't store it
+      const response = await fetch("/test-project.json");
+      const projectData: ProjectData = await response.json();
+
+      // Send render request to server
+      const renderResponse = await fetch("http://localhost:3002/api/render", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          projectData,
+          outputFormat: "webm",
+          quality: "medium",
+        }),
+      });
+
+      if (!renderResponse.ok) {
+        throw new Error(`Render request failed: ${renderResponse.statusText}`);
+      }
+
+      const { jobId } = await renderResponse.json();
+      console.log(`🎬 Render job created: ${jobId}`);
+
+      // Start polling for status
+      this.pollRenderStatus(jobId);
+    } catch (error) {
+      console.error("Failed to start render:", error);
+      alert(
+        `Failed to start render: ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+  }
+
+  /**
+   * Poll render job status
+   */
+  private async pollRenderStatus(jobId: string): Promise<void> {
+    const checkStatus = async () => {
+      try {
+        const response = await fetch(`http://localhost:3002/api/render/${jobId}/status`);
+        const status = await response.json();
+
+        console.log(
+          `🎬 Render status: ${status.status} (${status.progress || 0}%)`,
+        );
+
+        if (status.status === "completed") {
+          console.log("🎉 Render completed! Opening download...");
+          // Open download link
+          window.open(`http://localhost:3002/api/render/${jobId}/download`, "_blank");
+        } else if (status.status === "failed") {
+          console.error("Render failed:", status.error);
+          alert(`Render failed: ${status.error || "Unknown error"}`);
+        } else {
+          // Still processing, check again in 2 seconds
+          setTimeout(checkStatus, 2000);
+        }
+      } catch (error) {
+        console.error("Failed to check render status:", error);
+        alert(
+          `Failed to check render status: ${error instanceof Error ? error.message : String(error)}`,
+        );
+      }
+    };
+
+    checkStatus();
   }
 
   /**

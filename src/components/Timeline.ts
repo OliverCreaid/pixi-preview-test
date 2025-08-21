@@ -7,6 +7,7 @@ export class Timeline {
   private progressBar!: HTMLElement;
   private progressFill!: HTMLElement;
   private playButton!: HTMLElement;
+  private renderButton!: HTMLElement;
   private timeDisplay!: HTMLElement;
 
   private totalDuration: number = 0;
@@ -18,6 +19,7 @@ export class Timeline {
   private onPlayPause?: (isPlaying: boolean) => void;
   private onSeek?: (time: number) => void;
   private onScrubbing?: (isScrubbing: boolean) => void;
+  private onRender?: () => void;
 
   constructor(container: HTMLElement) {
     this.container = container;
@@ -42,11 +44,17 @@ export class Timeline {
         <div class="timeline-time-display">
           <span class="current-time">00:00</span> / <span class="total-time">00:00</span>
         </div>
+        <button class="timeline-render-button" aria-label="Export Video">
+          🎬 Export Video
+        </button>
       </div>
     `;
 
     // Get references to elements
     this.playButton = this.container.querySelector(".timeline-play-button")!;
+    this.renderButton = this.container.querySelector(
+      ".timeline-render-button",
+    )!;
     this.progressBar = this.container.querySelector(".timeline-progress-bar")!;
     this.progressFill = this.container.querySelector(
       ".timeline-progress-fill",
@@ -149,6 +157,13 @@ export class Timeline {
     // Play/pause button
     this.playButton.addEventListener("click", () => {
       this.togglePlayPause();
+    });
+
+    // Render button
+    this.renderButton.addEventListener("click", () => {
+      if (this.onRender) {
+        this.onRender();
+      }
     });
 
     // Progress bar clicking and dragging
@@ -319,6 +334,13 @@ export class Timeline {
    */
   onScrubbingCallback(callback: (isScrubbing: boolean) => void): void {
     this.onScrubbing = callback;
+  }
+
+  /**
+   * Set callback for render events
+   */
+  onRenderCallback(callback: () => void): void {
+    this.onRender = callback;
   }
 
   /**

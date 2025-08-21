@@ -8,6 +8,8 @@
     "build": "npm run lint && tsc && vite build",
     "lint": "eslint .",
     "dev": "vite",
+    "server": "node dist/server/render-server.js",
+    "dev:server": "npx tsc -p tsconfig.server.json && node dist/server/render-server.js",
     "build:sdk:local": "npm run lint && tsc && VITE_USE_LOCALHOST=true vite build --config vite.config.sdk.js --mode sdk-staging",
     "build:sdk:staging": "npm run lint && tsc && vite build --config vite.config.sdk.js --mode sdk-staging",
     "build:sdk:prod": "npm run lint && tsc && vite build --config vite.config.sdk.js --mode sdk-prod",
@@ -16,10 +18,16 @@
   "dependencies": {
     "@pixi/devtools": "^2.0.1",
     "@pixi/sound": "^6.0.1",
-    "pixi.js": "^8.8.1"
+    "express": "^4.18.0",
+    "pixi.js": "^8.8.1",
+    "puppeteer": "^21.11.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/express": "^4.17.0",
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
     "eslint": "^9.21.0",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-prettier": "^5.2.6",

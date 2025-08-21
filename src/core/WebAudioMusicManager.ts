@@ -395,6 +395,31 @@ export class WebAudioMusicManager {
   }
 
   /**
+   * Get audio stream for recording (MediaRecorder compatibility)
+   */
+  getAudioStream(): MediaStream | null {
+    try {
+      const audioContext = webAudioManager.getAudioContext();
+      if (!audioContext) {
+        return null;
+      }
+
+      // Create a MediaStreamDestination node to capture audio output
+      const destination = audioContext.createMediaStreamDestination();
+
+      // Connect the current audio source to the destination
+      if (this.audioSource) {
+        this.audioSource.connect(destination);
+      }
+
+      return destination.stream;
+    } catch (error) {
+      console.error("Failed to create audio stream:", error);
+      return null;
+    }
+  }
+
+  /**
    * Clean up music resources
    */
   destroy(): void {
