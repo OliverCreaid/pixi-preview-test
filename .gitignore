@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 .claude
 /renders
+/frames
+/audio
+/debug-frames
+/.cache

@@ -1,120 +1,120 @@
 body {
-  margin: 0;
-  padding: 0;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #000000;
-  font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #000000;
+    font-family: Arial, sans-serif;
 }
 
 #app {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
-  box-sizing: border-box;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 /* When in iframe (detected by smaller height), optimize layout */
 @media (max-height: 600px) {
-  #app {
-    height: 100vh;
-    padding: 10px;
-    gap: 10px;
-  }
+    #app {
+        height: 100vh;
+        padding: 10px;
+        gap: 10px;
+    }
 }
 
 #pixi-container {
-  border: 2px solid #333;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-  /* Ensure container constrains the canvas size */
-  width: 100%;
-  max-width: 100%;
-  /* Maintain aspect ratio constraint */
-  aspect-ratio: 16 / 9;
+    border: 2px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    /* Ensure container constrains the canvas size */
+    width: 100%;
+    max-width: 100%;
+    /* Maintain aspect ratio constraint */
+    aspect-ratio: 16 / 9;
 }
 
 /* Canvas should fill the container */
 #pixi-container canvas {
-  margin: 0px auto;
-  display: block;
+    margin: 0px auto;
+    display: block;
 }
 
 #timeline-container {
-  width: 100%;
-  max-width: 800px;
+    width: 100%;
+    max-width: 800px;
 }
 
 .timeline-container {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
 }
 
 .timeline-play-button,
 .timeline-render-button {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 14px;
-  white-space: nowrap;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    white-space: nowrap;
 }
 
 .timeline-play-button:hover,
 .timeline-render-button:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
 }
 
 .timeline-render-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .timeline-render-button:hover {
-  background: linear-gradient(135deg, #7c8ef0 0%, #8458b8 100%);
+    background: linear-gradient(135deg, #7c8ef0 0%, #8458b8 100%);
 }
 
 .timeline-progress-container {
-  flex: 1;
-  height: 6px;
-  border-radius: 3px;
-  cursor: pointer;
-  position: relative;
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
 }
 
 .timeline-progress-bar {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  border-radius: 3px;
-  overflow: hidden;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
 }
 
 .timeline-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-  width: 0%;
-  transition: width 0.1s ease-out;
-  border-radius: 3px;
+    height: 100%;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    width: 0%;
+    /* transition: width 0.1s ease-out; */
+    border-radius: 3px;
 }
 
 .timeline-time-display {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
-  font-family: "Courier New", monospace;
-  white-space: nowrap;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Courier New', monospace;
+    white-space: nowrap;
 }

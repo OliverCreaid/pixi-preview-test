@@ -1,4 +1,4 @@
-import { webAudioManager } from "./WebAudioManager";
+import { webAudioManager } from "./WebAudioManager.js";
 import { VoiceElement, AudioConfig, AudioState } from "../types";
 
 /**

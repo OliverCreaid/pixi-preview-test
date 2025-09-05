@@ -47,6 +47,9 @@ class VideoPreviewApp {
     private preloadedSprites: Map<string, import('pixi.js').Sprite> = new Map();
     private preloadedAudio: Map<string, HTMLAudioElement> = new Map();
 
+    // Frame extraction mode support
+    private isFastFrameMode: boolean = false;
+
     // Scrubbing state for audio pause/resume
     private isScrubbing: boolean = false;
     private wasPlayingBeforeScrub: boolean = false;
@@ -57,6 +60,7 @@ class VideoPreviewApp {
     // Render mode state
     private isRenderMode: boolean = false;
     private renderJobId: string | null = null;
+    private isFrameExtractMode: boolean = false;
     private mediaRecorder: MediaRecorder | null = null;
     private recordedChunks: Blob[] = [];
 
@@ -70,10 +74,14 @@ class VideoPreviewApp {
         // Check if we're in render mode
         const urlParams = new URLSearchParams(window.location.search);
         this.isRenderMode = urlParams.has('render') && urlParams.get('render') === 'true';
+        this.isFrameExtractMode = urlParams.has('frameExtract') && urlParams.get('frameExtract') === 'true';
+        this.isFastFrameMode = urlParams.has('fastFrame') && urlParams.get('fastFrame') === 'true';
         this.renderJobId = urlParams.get('jobId');
 
         console.log('🎬 Render mode check:', {
             isRenderMode: this.isRenderMode,
+            isFrameExtractMode: this.isFrameExtractMode,
+            isFastFrameMode: this.isFastFrameMode,
             renderJobId: this.renderJobId,
             urlParams: urlParams.toString(),
         });
@@ -100,6 +108,16 @@ class VideoPreviewApp {
         // Setup render mode if needed
         if (this.isRenderMode) {
             this.setupRenderMode();
+        }
+
+        // Setup frame extract mode if needed
+        if (this.isFrameExtractMode) {
+            this.setupFrameExtractMode();
+        }
+
+        // Setup fast frame mode if needed
+        if (this.isFastFrameMode) {
+            this.setupFastFrameMode();
         }
     }
 
@@ -614,6 +632,133 @@ class VideoPreviewApp {
     }
 
     /**
+     * Setup frame extract mode functionality
+     */
+    private setupFrameExtractMode(): void {
+        console.log('🖼️ Setting up frame extract mode for job:', this.renderJobId);
+
+        // Expose app instance and methods for Puppeteer frame extraction
+        (window as any).videoPreviewApp = this;
+        (window as any).totalDuration = 0;
+        (window as any).projectLoaded = false;
+
+        // Listen for project data from Puppeteer
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'RENDER_PROJECT_DATA') {
+                this.handleFrameExtractProjectData(event.data.projectData);
+            }
+        });
+    }
+
+    /**
+     * Setup fast frame mode functionality (optimized frame extraction)
+     */
+    private setupFastFrameMode(): void {
+        console.log('⚡ Setting up fast frame mode for job:', this.renderJobId);
+
+        // Expose app instance and methods for optimized frame extraction
+        (window as any).videoPreviewApp = this;
+        (window as any).totalDuration = 0;
+        (window as any).frameExtractionReady = false;
+
+        // Listen for project data from Puppeteer
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'RENDER_PROJECT_DATA') {
+                this.handleFastFrameProjectData(event.data.projectData);
+            }
+        });
+    }
+
+    /**
+     * Handle project data for fast frame extraction
+     */
+    private async handleFastFrameProjectData(projectData: ProjectData): Promise<void> {
+        try {
+            console.log('📥 Received project data for fast frame extraction');
+
+            // Load the project data (same as normal loading)
+            await this.loadAndPreloadProjectData(projectData);
+
+            // Set up for frame extraction
+            (window as any).totalDuration = this.totalDuration;
+            (window as any).frameExtractionReady = true;
+
+            console.log('✅ Fast frame extraction ready, duration:', this.totalDuration);
+        } catch (error) {
+            console.error('❌ Error preparing fast frame extraction:', error);
+            (window as any).frameExtractionReady = false;
+        }
+    }
+
+    /**
+     * Start optimized frame extraction using timeline playback
+     */
+    public startFrameExtraction(): void {
+        console.log('⚡ Starting optimized frame extraction playback');
+
+        // Reset to start
+        this.timelineState.currentTime = 0;
+        this.timelineState.isPlaying = true;
+
+        // Start the render loop for frame extraction
+        this.lastFrameTime = performance.now();
+        this.animationId = requestAnimationFrame(() => this.playbackLoop());
+    }
+
+    /**
+     * Stop frame extraction
+     */
+    public stopFrameExtraction(): void {
+        console.log('⚡ Stopping frame extraction');
+        this.timelineState.isPlaying = false;
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = undefined;
+        }
+    }
+
+    /**
+     * Handle project data for frame extraction
+     */
+    private async handleFrameExtractProjectData(projectData: ProjectData): Promise<void> {
+        try {
+            console.log('📥 Received project data for frame extraction');
+
+            // Load the project data (same as normal loading)
+            await this.loadAndPreloadProjectData(projectData);
+
+            // Set global variables for Puppeteer
+            (window as any).totalDuration = this.totalDuration;
+            (window as any).projectLoaded = true;
+
+            console.log('✅ Project loaded for frame extraction, duration:', this.totalDuration);
+        } catch (error) {
+            console.error('Failed to load project for frame extraction:', error);
+            (window as any).projectLoaded = false;
+        }
+    }
+
+    /**
+     * Public method for Puppeteer to seek to specific time
+     */
+    public seekToTime(time: number): void {
+        this.timelineState.currentTime = time;
+
+        // Force complete any ongoing transitions
+        if (this.sceneManager.isTransitioning()) {
+            this.sceneManager.getTransitionManager().forceCompleteTransition();
+        }
+
+        // Update scene without transitions (instant)
+        const currentScene = ProjectParser.getSceneAtTime(this.scenes, time);
+        if (currentScene && currentScene.index !== this.timelineState.currentSceneIndex) {
+            this.displayScene(currentScene.index, true); // Force instant
+        } else if (currentScene) {
+            this.updateCurrentScene();
+        }
+    }
+
+    /**
      * Setup render mode functionality
      */
     private setupRenderMode(): void {
@@ -875,7 +1020,7 @@ class VideoPreviewApp {
                 },
                 body: JSON.stringify({
                     projectData,
-                    outputFormat: 'webm',
+                    outputFormat: 'mp4',
                     quality: 'medium',
                 }),
             });

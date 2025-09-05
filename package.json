@@ -1,39 +1,44 @@
 {
-  "name": "pixi-test-project",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "start": "npm run dev",
-    "build": "npm run lint && tsc && vite build",
-    "lint": "eslint .",
-    "dev": "vite",
-    "server": "node dist/server/render-server.js",
-    "dev:server": "npx tsc -p tsconfig.server.json && node dist/server/render-server.js",
-    "build:sdk:local": "npm run lint && tsc && VITE_USE_LOCALHOST=true vite build --config vite.config.sdk.js --mode sdk-staging",
-    "build:sdk:staging": "npm run lint && tsc && vite build --config vite.config.sdk.js --mode sdk-staging",
-    "build:sdk:prod": "npm run lint && tsc && vite build --config vite.config.sdk.js --mode sdk-prod",
-    "build:sdk:all": "npm run build:sdk:staging && npm run build:sdk:prod"
-  },
-  "dependencies": {
-    "@pixi/devtools": "^2.0.1",
-    "@pixi/sound": "^6.0.1",
-    "express": "^4.18.0",
-    "pixi.js": "^8.8.1",
-    "puppeteer": "^21.11.0",
-    "uuid": "^9.0.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "@types/express": "^4.17.0",
-    "@types/node": "^20.0.0",
-    "@types/uuid": "^9.0.0",
-    "eslint": "^9.21.0",
-    "eslint-config-prettier": "^10.1.2",
-    "eslint-plugin-prettier": "^5.2.6",
-    "prettier": "^3.5.3",
-    "typescript": "~5.7.3",
-    "typescript-eslint": "^8.25.0",
-    "vite": "^6.2.0"
-  }
+    "name": "pixi-test-project",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "start": "npm run dev",
+        "build": "export PATH=\"$(brew --prefix node@18)/bin:$PATH\" && npm run lint && tsc && vite build",
+        "lint": "eslint .",
+        "dev": "export PATH=\"$(brew --prefix node@18)/bin:$PATH\" && vite",
+        "server": "export PATH=\"$(brew --prefix node@18)/bin:$PATH\" && node dist/server/render-server.js",
+        "dev:server": "export PATH=\"$(brew --prefix node@18)/bin:$PATH\" && npx tsc -p tsconfig.server.json && node dist/server/render-server.js",
+        "build:sdk:local": "export PATH=\"$(brew --prefix node@18)/bin:$PATH\" && npm run lint && tsc && VITE_USE_LOCALHOST=true vite build --config vite.config.sdk.js --mode sdk-staging",
+        "build:sdk:staging": "export PATH=\"$(brew --prefix node@18)/bin:$PATH\" && npm run lint && tsc && vite build --config vite.config.sdk.js --mode sdk-staging",
+        "build:sdk:prod": "export PATH=\"$(brew --prefix node@18)/bin:$PATH\" && npm run lint && tsc && vite build --config vite.config.sdk.js --mode sdk-prod",
+        "build:sdk:all": "export PATH=\"$(brew --prefix node@18)/bin:$PATH\" && npm run build:sdk:staging && npm run build:sdk:prod"
+    },
+    "dependencies": {
+        "@pixi/devtools": "^2.0.1",
+        "@pixi/node": "^7.3.0",
+        "@pixi/sound": "^6.0.1",
+        "canvas": "^3.2.0",
+        "express": "^4.18.0",
+        "gl": "^8.1.6",
+        "pixi.js": "^8.8.1",
+        "uuid": "^9.0.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.21.0",
+        "@types/express": "^4.17.0",
+        "@types/node": "^20.0.0",
+        "@types/uuid": "^9.0.0",
+        "eslint": "^9.21.0",
+        "eslint-config-prettier": "^10.1.2",
+        "eslint-plugin-prettier": "^5.2.6",
+        "prettier": "^3.5.3",
+        "typescript": "~5.7.3",
+        "typescript-eslint": "^8.25.0",
+        "vite": "^6.2.0"
+    },
+    "volta": {
+        "node": "18.20.8"
+    }
 }

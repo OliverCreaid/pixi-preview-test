@@ -1,8 +1,8 @@
 import { Application, Container } from "pixi.js";
-import { TransitionManager } from "./TransitionManager";
-import { MediaRenderer } from "./MediaRenderer";
-import { TextRenderer } from "./TextRenderer";
-import { WebAudioRenderer } from "./WebAudioRenderer";
+import { TransitionManager } from "./TransitionManager.js";
+import { MediaRenderer } from "./MediaRenderer.js";
+import { TextRenderer } from "./TextRenderer.js";
+import { WebAudioRenderer } from "./WebAudioRenderer.js";
 import {
   SceneContainer,
   TransitionConfig,

@@ -14,6 +14,6 @@ export default tseslint.config(
       ecmaVersion: "latest",
       sourceType: "module",
     },
-    rules: { "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": false, "fixToUnknown": false, "allowCommentedAny": true }], },
+    rules: { "@typescript-eslint/no-explicit-any": ["error", { "ignoreRestArgs": false, "fixToUnknown": false }], },
   },
 );

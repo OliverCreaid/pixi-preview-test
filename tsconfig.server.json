@@ -1,20 +1,34 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "lib": ["ES2020", "DOM"],
-    "outDir": "dist",
-    "rootDir": "src",
-    "strict": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false
-  },
-  "include": ["src/server/**/*", "src/types.ts"],
-  "exclude": ["src/main.ts", "src/core/**/*", "src/components/**/*"]
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "ESNext",
+        "lib": ["ES2020", "DOM"],
+        "outDir": "dist",
+        "rootDir": "src",
+        "strict": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "noImplicitAny": false
+    },
+    "include": [
+        "src/server/render-server.ts",
+        "src/server/VideoRenderer.ts",
+        "src/server/FrameBasedVideoRenderer.ts",
+        "src/server/types.ts",
+        "src/server/AudioRenderer.ts",
+        "src/server/FFmpegRenderer.ts",
+        "src/server/FrameRenderer.ts",
+        "src/server/HeadlessPixiRenderer.ts",
+        "src/server/SimpleAudioRenderer.ts",
+        "src/server/SimpleFrameRenderer.ts",
+        "src/core/**/*",
+        "src/types.ts"
+    ],
+    "exclude": ["src/main.ts", "src/components/**/*"]
 }

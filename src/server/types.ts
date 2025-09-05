@@ -1,6 +1,8 @@
+import { ProjectData } from '../types.js';
+
 export interface RenderJob {
   id: string;
-  projectData: Record<string, unknown>;
+  projectData: ProjectData;
   status: "queued" | "processing" | "completed" | "failed";
   progress?: number;
   filePath?: string;
@@ -10,7 +12,7 @@ export interface RenderJob {
 }
 
 export interface RenderRequest {
-  projectData: Record<string, unknown>;
+  projectData: ProjectData;
   outputFormat?: "webm" | "mp4";
   quality?: "low" | "medium" | "high";
 }

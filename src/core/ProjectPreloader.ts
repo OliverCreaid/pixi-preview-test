@@ -1,6 +1,6 @@
 import { Assets, Texture, Sprite } from "pixi.js";
 import { ProjectData, MediaAsset, SceneInfo, VoiceElement } from "../types";
-import { ProjectParser } from "./ProjectParser";
+import { ProjectParser } from "./ProjectParser.js";
 
 /**
  * Handles preloading of all project assets at startup
