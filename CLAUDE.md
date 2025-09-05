@@ -362,7 +362,7 @@ The NodeVideoRenderer automatically saves **5 strategically selected frames** du
 
 ### Debug Frame Locations
 ```bash
-debug-frames/{jobId}/
+renders/debug_frames/{jobId}/
 ├── debug-frame-000000-time-0ms.png          # Video start
 ├── debug-frame-000177-time-5900ms.png       # ~20% through
 ├── debug-frame-000354-time-11800ms.png      # ~40% through  
@@ -398,11 +398,50 @@ The Node.js renderer now successfully:
 ### Usage
 1. Start render job via API: `POST /api/render`
 2. Wait for completion or monitor progress
-3. Check `debug-frames/{jobId}/` directory  
+3. Check `renders/debug_frames/{jobId}/` directory  
 4. Open PNG files to inspect visual output at key moments
 5. Verify scene transitions, asset loading, text rendering
 
 This provides **complete coverage** without generating excessive debug files.
+
+## Debug Frame Testing Methodology
+
+### Overview
+**CRITICAL FOR FUTURE SESSIONS**: When testing renders, always use the debug frame extraction method to verify output quality. Claude should analyze the generated debug frames to confirm the renderer is working correctly.
+
+### Testing Process
+1. **Trigger Render**: Start a render job via the API
+2. **Extract Debug Frames**: The NodeVideoRenderer automatically saves 5 frames at strategic points:
+   - Frame 0 (video start) 
+   - 3 evenly distributed middle frames (20%, 40%, 60%)
+   - Final frame (video end)
+3. **Frame Analysis**: Claude analyzes the PNG files to verify:
+   - ✅ Images are loading correctly (not blank/mock data)
+   - ✅ Proper scaling and Ken Burns effects
+   - ✅ Text overlays are rendered with correct fonts
+   - ✅ Scene transitions work smoothly
+   - ✅ Visual output matches browser preview
+
+### Debug Frame Storage Location
+**IMPORTANT**: Debug frames are saved in `renders/debug_frames/{jobId}/` directory, NOT the old `debug-frames/` location.
+
+### Example Analysis
+```
+🔍 Debug frame saved: frame 0 (0ms) -> debug-frame-000000-time-0ms.png
+📸 ANALYSIS: Frame shows 1600x1067 real estate image properly scaled to 1280x720
+✅ Ken Burns effect applied: slight zoom from 1.0x to 1.05x
+✅ Text overlay "Luxury Estate" rendered with custom font
+✅ Image is real data, not mock/placeholder content
+```
+
+### When to Use Debug Frame Testing
+- **Always** when implementing new rendering features
+- **Always** when debugging render output issues  
+- **Always** when verifying server output matches browser preview
+- After any changes to NodePixiFactory, NodeRenderer, or CoreApplication
+- When troubleshooting texture loading or sprite rendering problems
+
+This methodology ensures pixel-perfect consistency between preview and server rendering.
 
 - node for now has to run on Node 18, you can start the terminal with node 18 to start the server with: export PATH="$(brew --prefix node@18)/bin:$PATH"
 

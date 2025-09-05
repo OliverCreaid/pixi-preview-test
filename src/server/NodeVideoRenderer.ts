@@ -64,7 +64,9 @@ export class NodeVideoRenderer {
     };
 
     console.log(`🎬 Starting Node.js render for job ${jobId}`);
-    console.log(`📊 Options:`, opts);
+    console.log(`📊 Options: ${opts.width}x${opts.height} @ ${opts.frameRate}fps, quality: ${opts.quality}`);
+    
+    const renderStartTime = performance.now();
 
     try {
       // Load project
@@ -82,52 +84,137 @@ export class NodeVideoRenderer {
 
       try {
         // Extract frames
-        console.log('🎞️ Extracting frames...');
+        console.log('🎞️ Starting frame extraction...');
+        const frameStartTime = performance.now();
         
         // Debug: Choose random frames to save as debug images
         const debugFrames = this.selectDebugFrames(frameCount, 5); // Save 5 random frames for debugging
-        const debugDir = path.join(process.cwd(), 'debug-frames', jobId);
+        const debugDir = path.join(process.cwd(), 'renders', 'debug_frames', jobId);
         await fs.mkdir(debugDir, { recursive: true });
         
+        let lastProgressTime = performance.now();
+        let frameProcessingTimes: number[] = [];
+        const frameBuffers: Array<{index: number, buffer: Buffer, debugFrame?: boolean}> = [];
+        
+        console.log('🖼️ Processing frames (render only)...');
+        
         for (let frameIndex = 0; frameIndex < frameCount; frameIndex++) {
+          const frameStartTime = performance.now();
           const time = frameIndex * frameDuration;
           
-          // Seek to frame time
+          // Step 1: Seek to frame time
+          const seekStartTime = performance.now();
           this.coreApp.seek(time);
+          const seekEndTime = performance.now();
           
-          // Force a render tick to update the scene
-          await this.renderFrame();
+          // Step 2: Force a render tick to update the scene
+          const renderStartTime = performance.now();
+          this.renderFrame();
+          const renderEndTime = performance.now();
           
-          // Extract frame buffer
+          // Step 3: Extract frame buffer (PNG encoding)
+          const bufferStartTime = performance.now();
           const frameBuffer = this.extractFrameBuffer();
+          const bufferEndTime = performance.now();
           
-          // Save frame
-          const framePath = path.join(framesDir, `frame-${frameIndex.toString().padStart(6, '0')}.png`);
-          await this.environment.fileSystem!.writeBuffer(framePath, frameBuffer);
+          // Store in memory for batch writing
+          frameBuffers.push({
+            index: frameIndex,
+            buffer: frameBuffer,
+            debugFrame: debugFrames.includes(frameIndex)
+          });
           
-          // Save debug frame if selected
-          if (debugFrames.includes(frameIndex)) {
-            const debugPath = path.join(debugDir, `debug-frame-${frameIndex.toString().padStart(6, '0')}-time-${Math.round(time)}ms.png`);
-            await this.environment.fileSystem!.writeBuffer(debugPath, frameBuffer);
-            console.log(`🔍 Debug frame saved: frame ${frameIndex} (${Math.round(time)}ms) -> ${path.basename(debugPath)}`);
+          const frameEndTime = performance.now();
+          frameProcessingTimes.push(frameEndTime - frameStartTime);
+          
+          // Log detailed timing for first few frames and every 50th frame
+          if (frameIndex < 5 || frameIndex % 50 === 0) {
+            const seekTime = (seekEndTime - seekStartTime).toFixed(1);
+            const renderTime = (renderEndTime - renderStartTime).toFixed(1);
+            const bufferTime = (bufferEndTime - bufferStartTime).toFixed(1);
+            const totalTime = (frameEndTime - frameStartTime).toFixed(1);
+            console.log(`🎞️ Frame ${frameIndex}: ${totalTime}ms total (${seekTime}ms seek + ${renderTime}ms render + ${bufferTime}ms PNG)`);
           }
           
-          // Log progress every 10% or when complete
-          if (frameIndex % Math.ceil(frameCount / 10) === 0 || frameIndex === frameCount - 1) {
+          // Debug frames will be written in batch later
+          
+          // Performance logging every 25% of frames or every 5 seconds
+          const now = performance.now();
+          const shouldLogProgress = frameIndex % Math.ceil(frameCount / 4) === 0 || 
+                                   (now - lastProgressTime) > 5000 || 
+                                   frameIndex === frameCount - 1;
+          
+          if (shouldLogProgress) {
             const progress = Math.round((frameIndex / frameCount) * 100);
-            console.log(`📸 Progress: ${progress}% (${frameIndex + 1}/${frameCount} frames)`);
+            const avgFrameTime = frameProcessingTimes.reduce((a, b) => a + b, 0) / frameProcessingTimes.length;
+            const framesPerSecond = 1000 / avgFrameTime;
+            const elapsedSeconds = (now - frameStartTime) / 1000;
+            const estimatedTotalSeconds = elapsedSeconds / (frameIndex / frameCount);
+            const remainingSeconds = Math.max(0, estimatedTotalSeconds - elapsedSeconds);
+            
+            console.log(`⚡ ${progress}% (${frameIndex + 1}/${frameCount}) | ${framesPerSecond.toFixed(1)} fps | ${remainingSeconds.toFixed(0)}s remaining`);
+            lastProgressTime = now;
+            
+            // Reset frame timing array to avoid memory buildup
+            if (frameProcessingTimes.length > 100) {
+              frameProcessingTimes = frameProcessingTimes.slice(-50);
+            }
           }
         }
 
-        console.log('✅ Frame extraction complete');
+        const renderEndTime = performance.now();
+        const renderTime = (renderEndTime - frameStartTime) / 1000;
+        const avgFrameTime = frameProcessingTimes.reduce((a, b) => a + b, 0) / frameProcessingTimes.length;
+        const renderFps = 1000 / avgFrameTime;
+        console.log(`✅ Frame rendering complete in ${renderTime.toFixed(1)}s (avg ${avgFrameTime.toFixed(1)}ms/frame, ${renderFps.toFixed(1)} render fps)`);
+
+        // Batch write all frames to disk (much faster than individual writes)
+        console.log(`💾 Writing ${frameBuffers.length} frames to disk...`);
+        const writeStartTime = performance.now();
+        
+        // Create write promises for all frames
+        const writePromises: Promise<void>[] = [];
+        
+        frameBuffers.forEach(({index, buffer, debugFrame}) => {
+          // Write main frame
+          const framePath = path.join(framesDir, `frame-${index.toString().padStart(6, '0')}.png`);
+          writePromises.push(this.environment.fileSystem!.writeBuffer(framePath, buffer));
+          
+          // Write debug frame if selected
+          if (debugFrame) {
+            const time = index * frameDuration;
+            const debugPath = path.join(debugDir, `debug-frame-${index.toString().padStart(6, '0')}-time-${Math.round(time)}ms.png`);
+            writePromises.push(this.environment.fileSystem!.writeBuffer(debugPath, buffer));
+          }
+        });
+        
+        // Write all files in parallel
+        await Promise.all(writePromises);
+        
+        const writeEndTime = performance.now();
+        const writeTime = (writeEndTime - writeStartTime) / 1000;
+        const writeFps = frameBuffers.length / writeTime;
+        console.log(`✅ File writing complete in ${writeTime.toFixed(1)}s (${writeFps.toFixed(1)} files/sec)`);
+        
+        // Log debug frames saved
+        const debugCount = frameBuffers.filter(f => f.debugFrame).length;
+        if (debugCount > 0) {
+          console.log(`🔍 ${debugCount} debug frames saved to renders/debug_frames/${jobId}/`);
+        }
 
         // Combine frames with FFmpeg
+        console.log('🎬 Starting FFmpeg encoding...');
+        const ffmpegStartTime = performance.now();
         const outputPath = await this.combineFramesWithFFmpeg(framesDir, jobId, opts);
+        const ffmpegEndTime = performance.now();
+        const ffmpegTime = (ffmpegEndTime - ffmpegStartTime) / 1000;
 
         // Cleanup frames
         await this.cleanupFrames(framesDir);
 
-        console.log(`🎉 Video render complete: ${outputPath}`);
+        const totalRenderTime = (performance.now() - renderStartTime) / 1000;
+        console.log(`🎉 Render complete in ${totalRenderTime.toFixed(1)}s (${renderTime.toFixed(1)}s processing + ${writeTime.toFixed(1)}s writing + ${ffmpegTime.toFixed(1)}s encoding)`);
+        console.log(`📊 Performance: ${(frameCount / totalRenderTime).toFixed(1)} total fps | ${outputPath}`);
         return outputPath;
 
       } catch (error) {
@@ -163,12 +250,9 @@ export class NodeVideoRenderer {
     return [...new Set(debugFrames)].sort((a, b) => a - b);
   }
 
-  private async renderFrame(): Promise<void> {
-    // Force render the current frame
+  private renderFrame(): void {
+    // Force render the current frame - synchronous with node-canvas
     this.coreApp.render();
-    
-    // Small delay to ensure render completes
-    await this.environment.timer.delay(5);
   }
 
   private extractFrameBuffer(): Buffer {
@@ -190,8 +274,8 @@ export class NodeVideoRenderer {
   ): Promise<string> {
     const outputPath = path.join(process.cwd(), 'renders', `${jobId}.${options.format}`);
     
-    console.log(`🎬 Combining ${path.basename(framesDir)} frames with FFmpeg...`);
-    console.log(`📁 Output: ${outputPath}`);
+    const frameCount = await fs.readdir(framesDir).then(files => files.length);
+    console.log(`🎬 Combining ${frameCount} frames with FFmpeg...`);
 
     // Ensure renders directory exists
     await fs.mkdir(path.dirname(outputPath), { recursive: true });

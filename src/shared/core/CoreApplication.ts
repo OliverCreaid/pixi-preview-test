@@ -183,7 +183,7 @@ export class CoreApplication implements ICoreApplication {
       this.renderCurrentScene(currentScene, clampedTime);
     }
 
-    console.log(`⏩ Seeked to ${clampedTime}ms`);
+    // Seek logging removed for performance
     
     if (this.onTimeUpdateCallback) {
       this.onTimeUpdateCallback(clampedTime);
@@ -353,7 +353,7 @@ export class CoreApplication implements ICoreApplication {
       // For Node.js, trigger manual render
       const renderer = this.pixiApp.renderer;
       if (renderer && typeof (renderer as any).render === 'function') {
-        console.log('🎨 Triggering manual render for Node.js');
+        // Manual render trigger - logging removed for performance
         (renderer as any).render(this.pixiApp.stage);
       } else {
         console.warn('⚠️ No render method found on renderer');

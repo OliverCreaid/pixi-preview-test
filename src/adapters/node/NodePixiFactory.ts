@@ -187,7 +187,6 @@ class NodeRenderer implements IRenderer {
 
   private renderSprite(sprite: NodeSprite, ctx: CanvasRenderingContext2D): void {
     const texture = sprite.texture as NodeTexture;
-    console.log(`🖼️ Rendering sprite: ${sprite.width}x${sprite.height}, has image: ${!!texture.image}`);
     
     if (texture.image) {
       ctx.save();
@@ -199,7 +198,6 @@ class NodeRenderer implements IRenderer {
       
       // Draw image
       ctx.drawImage(texture.image, 0, 0, sprite.width, sprite.height);
-      console.log(`✅ Drew image at (${-anchorX}, ${-anchorY}) size ${sprite.width}x${sprite.height}`);
       
       ctx.restore();
     } else {

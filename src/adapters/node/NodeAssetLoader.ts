@@ -44,7 +44,6 @@ export class NodeAssetLoader implements IAssetLoader {
       }
 
       // Load actual image using node-canvas
-      console.log(`📸 Loading real texture: ${actualPath}`);
       const image = await loadImage(actualPath);
       const nodeTexture = new NodeTexture(image, image.width, image.height);
       this.loadedTextures.set(url, nodeTexture);

@@ -32,6 +32,7 @@ export class CoreAssetPreloader implements IAssetPreloader {
       throw new Error('Asset preloader not initialized');
     }
 
+    const preloadStartTime = performance.now();
     console.log('🚀 Starting global asset preloading...');
 
     // Parse project to get all scenes and assets
@@ -43,15 +44,22 @@ export class CoreAssetPreloader implements IAssetPreloader {
     
     this.totalAssets = allMediaAssets.length + allAudioAssets.length;
 
-    console.log(`📦 Found ${allMediaAssets.length} media assets and ${allAudioAssets.length} audio assets to preload`);
+    console.log(`📦 Preloading ${allMediaAssets.length} media + ${allAudioAssets.length} audio assets`);
 
     // Load media assets
+    const mediaStartTime = performance.now();
     await this.loadAllMediaAssets(allMediaAssets);
+    const mediaEndTime = performance.now();
 
     // Load audio assets  
+    const audioStartTime = performance.now();
     await this.loadAllAudioAssets(allAudioAssets);
+    const audioEndTime = performance.now();
 
-    console.log('✅ Global asset preloading complete!');
+    const totalTime = (performance.now() - preloadStartTime) / 1000;
+    const mediaTime = (mediaEndTime - mediaStartTime) / 1000;
+    const audioTime = (audioEndTime - audioStartTime) / 1000;
+    console.log(`✅ Asset preloading complete in ${totalTime.toFixed(1)}s (${mediaTime.toFixed(1)}s media, ${audioTime.toFixed(1)}s audio)`);
 
     if (this.onCompleteCallback) {
       this.onCompleteCallback();
@@ -144,7 +152,7 @@ export class CoreAssetPreloader implements IAssetPreloader {
       }
     }
 
-    console.log(`🖼️ Loaded ${loadedCount} media assets`);
+    // Media assets loaded, logged at end of preloadAllAssets
   }
 
   private async loadAllAudioAssets(audioAssets: VoiceElement[]): Promise<void> {
@@ -179,7 +187,7 @@ export class CoreAssetPreloader implements IAssetPreloader {
       }
     }
 
-    console.log(`🎵 Loaded ${loadedCount} audio assets`);
+    // Audio assets loaded, logged at end of preloadAllAssets
   }
 
   private async loadSingleMediaAsset(asset: MediaAsset): Promise<void> {
@@ -190,7 +198,7 @@ export class CoreAssetPreloader implements IAssetPreloader {
       this.loadedTextures.set(asset.src, texture);
       this.loadedTextures.set(asset.id, texture); // Also map by ID
       
-      console.log(`✅ Loaded texture: ${asset.src}`);
+      // Individual texture loading logged in batches above
     } catch (error) {
       console.error(`Failed to load texture: ${asset.src}`, error);
       throw error;
@@ -204,7 +212,7 @@ export class CoreAssetPreloader implements IAssetPreloader {
       const audioBuffer = await this.environment.assetLoader.loadAudio(voiceElement.value);
       this.loadedAudio.set(voiceElement.value, audioBuffer);
       
-      console.log(`✅ Loaded audio: ${voiceElement.value}`);
+      // Individual audio loading logged in batches above
     } catch (error) {
       console.error(`Failed to load audio: ${voiceElement.value}`, error);
       throw error;
@@ -222,6 +230,9 @@ export class CoreAssetPreloader implements IAssetPreloader {
       );
     }
 
-    console.log(`📊 Asset loading progress: ${this.loadingProgress.toFixed(1)}% (${loadedCount}/${this.totalAssets})`);
+    // Progress only shown for major milestones during long preloading
+    if (this.totalAssets > 10 && loadedCount % Math.max(1, Math.floor(this.totalAssets / 4)) === 0) {
+      console.log(`📊 Preloading: ${this.loadingProgress.toFixed(0)}% (${loadedCount}/${this.totalAssets})`);
+    }
   }
 }

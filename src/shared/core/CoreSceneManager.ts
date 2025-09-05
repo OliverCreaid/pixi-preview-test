@@ -465,7 +465,7 @@ class CoreTextRenderer implements ITextRenderer {
     
     if (textElements.length === 0) return;
 
-    console.log(`📝 Displaying ${textElements.length} text elements`);
+    // Text element display - logging removed for performance
     
     // Create and display each text element
     for (let i = 0; i < textElements.length; i++) {
@@ -515,7 +515,7 @@ class CoreTextRenderer implements ITextRenderer {
     this.container.addChild(textObj);
     this.currentTexts.set(index, textObj);
     
-    console.log(`📝 Added text: "${textElement.value}" at (${textObj.x}, ${textObj.y})`);
+    // Text positioning - logging removed for performance
   }
 
   private getFontConfigForElement(textElement: any): any {
